@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
+import { createStore } from 'solid-js/store'
 import { type Inventory } from '../types/inventory'
 import {
-  REAGENTS,
   calcTotalAirElement,
   calcTotalEarthElement,
   calcTotalFireElement,
@@ -35,17 +35,17 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
 
   const [error, setError] = createSignal<string>('')
 
-  const [options, setOptions] = createSignal([...inventory.reagents])
+  const [options, setOptions] = createStore([...inventory.reagents])
 
   const handleOptionSelected = (
     selectedOption: string,
     reagent: Reagent | null,
     setter: Setter<Reagent | null>
   ): void => {
-    const r = REAGENTS.find((r) => r.type === selectedOption)!
+    const r = inventory.reagents.find((r) => r.type === selectedOption)!
     setter(r)
-    const index = options().findIndex((op) => op.type === selectedOption)
-    const newOptions = [...options()]
+    const index = options.findIndex((op) => op.type === selectedOption)
+    const newOptions = [...options]
     newOptions.splice(index, 1)
     if (reagent !== null) {
       newOptions.push(reagent)
@@ -99,7 +99,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
         >
           <option selected disabled textContent="Pick a reagent" />
           {firstSelectedOption() != null && <option selected textContent={firstSelectedOption()?.type} />}
-          <For each={options()} children={(item) => <option textContent={item.type} />} />
+          <For each={options} children={(item) => <option textContent={item.type} />} />
         </select>
         <select
           id="component 2"
@@ -110,7 +110,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
         >
           <option selected disabled textContent="Pick a reagent" />
           {secondSelectedOption() != null && <option selected textContent={secondSelectedOption()?.type} />}
-          <For each={options()} children={(item) => <option textContent={item.type} />} />
+          <For each={options} children={(item) => <option textContent={item.type} />} />
         </select>
         <select
           id="component 3"
@@ -121,7 +121,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
         >
           <option selected disabled textContent="Pick a reagent" />
           {thirdSelectedOption() != null && <option selected textContent={thirdSelectedOption()?.type} />}
-          <For each={options()} children={(item) => <option textContent={item.type} />} />
+          <For each={options} children={(item) => <option textContent={item.type} />} />
         </select>
         <button
           type="button"
