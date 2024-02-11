@@ -59,7 +59,41 @@ const water: Reagent = {
   airElement: 0
 }
 
+export const fireShard1: Reagent = {
+  type: 'fire shard 1',
+  fireElement: 1,
+  waterElement: 0,
+  earthElement: 0,
+  airElement: 0
+}
+
+export const waterShard1: Reagent = {
+  type: 'water shard 1',
+  fireElement: 0,
+  waterElement: 1,
+  earthElement: 0,
+  airElement: 0
+}
+
+export const earthShard1: Reagent = {
+  type: 'earth shard 1',
+  fireElement: 0,
+  waterElement: 0,
+  earthElement: 1,
+  airElement: 0
+}
+
+export const airShard1: Reagent = {
+  type: 'air shard 1',
+  fireElement: 0,
+  waterElement: 0,
+  earthElement: 0,
+  airElement: 1
+}
+
 export const REAGENTS = [ironOre, copperOre, goldOre, mandrake, vinegar, water]
+
+export const SHARDS = [fireShard1, waterShard1, earthShard1, airShard1]
 
 export const calcTotalFireElement = (...reagents: Array<Reagent | null>): number => {
   let total = 0

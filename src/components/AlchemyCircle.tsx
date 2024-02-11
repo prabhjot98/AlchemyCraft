@@ -9,7 +9,7 @@ import {
   calcTotalWaterElement,
   type Reagent
 } from '../types/reagents'
-import { SAND, type Recipe } from '../types/recipes'
+import { type Recipe, fireShard2 } from '../types/recipes'
 import { ElementDisplay } from './ElementDisplay'
 import { RecipeDisplay } from './RecipeDisplay'
 import { RecipeSelector } from './RecipeSelector'
@@ -31,7 +31,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
     setTotalAirElement(calcTotalAirElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption()))
   })
 
-  const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(SAND)
+  const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(fireShard2)
 
   const [error, setError] = createSignal<string>('')
 
@@ -55,7 +55,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
 
   const handleCraft = (): void => {
     setError('')
-    if (firstSelectedOption === null || secondSelectedOption === null || thirdSelectedOption === null) {
+    if (firstSelectedOption() === null || secondSelectedOption() === null || thirdSelectedOption() === null) {
       setError("You haven't selected a reagent in every slot!")
       return
     }

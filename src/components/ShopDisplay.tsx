@@ -1,9 +1,17 @@
-import { type Setter, type JSXElement, createSignal } from 'solid-js'
+import { type Setter, type JSXElement, createSignal, For } from 'solid-js'
 import { type Inventory } from '../types/inventory'
-import { randomReagent, REAGENTS, type Reagent } from '../types/reagents'
+import { randomReagent, type Reagent, SHARDS } from '../types/reagents'
 
 export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory>): JSXElement => {
   const [error, setError] = createSignal<string>('')
+
+  const buyingList = {
+    sand: 40,
+    'fire potion': 200,
+    glass: 80
+  }
+
+  const buyingItems = Object.keys(buyingList)
 
   const handlePurchase = (cost: number): void => {
     setError('')
@@ -12,24 +20,52 @@ export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory
       return
     }
     setInventory((i) => ({ ...i, gold: i.gold - cost }))
-    handleAddReagent(randomReagent(REAGENTS))
+    addReagent(randomReagent(SHARDS))
   }
 
-  const handleAddReagent = (reagent: Reagent): void => {
+  const handleSell = (item: string): void => {
+    setError('')
+    if (!inventory.reagents.some((r) => r.type === item)) {
+      setError(`You don't have a ${item} in your inventory`)
+    }
+    removeReagent(item)
+    setInventory((i) => ({ ...i, gold: i.gold + buyingList[item] }))
+  }
+
+  const addReagent = (reagent: Reagent): void => {
     setInventory((i) => ({ ...i, reagents: [...i.reagents, reagent] }))
   }
 
+  const removeReagent = (reagentType: string): void => {
+    setInventory((i) => ({ ...i, reagents: i.reagents.filter((r) => r.type !== reagentType) }))
+  }
+
   return (
-    <div>
+    <div class="flex flex-col gap-2">
       <h1 class="text-4xl font-bold" textContent="Shop" />
       <button
-        class="bg-yellow-400 p-1 rounded-md"
+        class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
         onClick={() => {
-          handlePurchase(10)
+          handlePurchase(5)
         }}
       >
-        Add a random item for 10 gold
+        Buy a random shard for 5 gold
       </button>
+      <For each={buyingItems}>
+        {(item) => {
+          return (
+            <button
+              class="text-xl p-2 rounded-md bg-green-500 w-64"
+              onClick={(e) => {
+                handleSell(e.currentTarget.value)
+              }}
+              value={item}
+            >
+              Sell {item} for {buyingList[item]} gold
+            </button>
+          )
+        }}
+      </For>
       <p class="" innerText={error()} />
     </div>
   )

@@ -26,12 +26,36 @@ export const GLASS: Recipe = {
   airElement: 2
 }
 
-export const SILICON: Recipe = {
-  type: 'silicon',
-  fireElement: 4,
+export const fireShard2: Recipe = {
+  type: 'fire shard 2',
+  fireElement: 2,
   waterElement: 0,
-  earthElement: 4,
+  earthElement: 0,
+  airElement: 0
+}
+
+export const waterShard2: Recipe = {
+  type: 'water shard 2',
+  fireElement: 0,
+  waterElement: 2,
+  earthElement: 0,
+  airElement: 0
+}
+
+export const earthShard2: Recipe = {
+  type: 'earth shard 2',
+  fireElement: 0,
+  waterElement: 0,
+  earthElement: 2,
+  airElement: 0
+}
+
+export const airShard2: Recipe = {
+  type: 'air shard 2',
+  fireElement: 0,
+  waterElement: 0,
+  earthElement: 0,
   airElement: 2
 }
 
-export const RECIPES = [SAND, FIRE_POTION, GLASS, SILICON]
+export const RECIPES = [fireShard2, waterShard2, earthShard2, airShard2, SAND, FIRE_POTION, GLASS]
