@@ -1,5 +1,5 @@
 import { For, type JSXElement } from 'solid-js'
-import { type Inventory } from '../contexts/Inventory'
+import { type Inventory } from '../types/inventory'
 import { ReagentDisplay } from './ReagentDisplay'
 
 export const InventoryDisplay = (inventory: Inventory): JSXElement => {

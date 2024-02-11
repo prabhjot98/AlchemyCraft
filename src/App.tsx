@@ -1,7 +1,7 @@
 import { type Component } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { AlchemyCircle } from './components/AlchemyCircle'
-import { type Inventory } from './contexts/Inventory'
+import { type Inventory } from './types/inventory'
 import { REAGENTS, randomReagent } from './types/reagents'
 import { ShopDisplay } from './components/ShopDisplay'
 import { InventoryDisplay } from './components/InventoryDisplay'

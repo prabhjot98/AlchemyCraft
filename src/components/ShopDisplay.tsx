@@ -1,5 +1,5 @@
 import { type Setter, type JSXElement, createSignal } from 'solid-js'
-import { type Inventory } from '../contexts/Inventory'
+import { type Inventory } from '../types/inventory'
 import { randomReagent, REAGENTS, type Reagent } from '../types/reagents'
 
 export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory>): JSXElement => {

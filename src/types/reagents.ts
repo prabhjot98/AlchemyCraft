@@ -1,7 +1,3 @@
-const reagentTypes = ['iron ore', 'copper ore', 'gold ore', 'mandrake', 'vinegar', 'water'] as const
-
-export type reagent_type = (typeof reagentTypes)[number]
-
 export const randomReagent = (reagents: Reagent[]): Reagent => {
   const randomIndex = Math.floor(Math.random() * reagents.length)
   return reagents[randomIndex]

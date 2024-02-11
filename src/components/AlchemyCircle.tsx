@@ -1,14 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
-import { type Inventory } from '../contexts/Inventory'
+import { type Inventory } from '../types/inventory'
 import {
   REAGENTS,
   calcTotalAirElement,
   calcTotalEarthElement,
   calcTotalFireElement,
   calcTotalWaterElement,
-  type Reagent,
-  type reagent_type
+  type Reagent
 } from '../types/reagents'
 import { SAND, type Recipe } from '../types/recipes'
 import { ElementDisplay } from './ElementDisplay'
@@ -39,7 +38,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
   const [options, setOptions] = createSignal([...inventory.reagents])
 
   const handleOptionSelected = (
-    selectedOption: reagent_type,
+    selectedOption: string,
     reagent: Reagent | null,
     setter: Setter<Reagent | null>
   ): void => {
@@ -95,7 +94,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
           class="w-32"
           id="component 1"
           onChange={(e) => {
-            handleOptionSelected(e.target.value as reagent_type, firstSelectedOption(), setFirstSelectedOption)
+            handleOptionSelected(e.target.value, firstSelectedOption(), setFirstSelectedOption)
           }}
         >
           <option selected disabled textContent="Pick a reagent" />
@@ -106,7 +105,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
           id="component 2"
           class="w-32"
           onChange={(e) => {
-            handleOptionSelected(e.target.value as reagent_type, secondSelectedOption(), setSecondSelectedOption)
+            handleOptionSelected(e.target.value, secondSelectedOption(), setSecondSelectedOption)
           }}
         >
           <option selected disabled textContent="Pick a reagent" />
@@ -117,7 +116,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
           id="component 3"
           class="w-32"
           onChange={(e) => {
-            handleOptionSelected(e.target.value as reagent_type, thirdSelectedOption(), setThirdSelectedOption)
+            handleOptionSelected(e.target.value, thirdSelectedOption(), setThirdSelectedOption)
           }}
         >
           <option selected disabled textContent="Pick a reagent" />

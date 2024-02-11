@@ -1,4 +1,5 @@
 import { type JSXElement } from 'solid-js'
+import { type Recipe } from '../types/recipes'
 
 export const RecipeDisplay = (recipe: Recipe): JSXElement => {
   return (
