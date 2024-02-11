@@ -13,9 +13,11 @@ const App: Component = () => {
 
   return (
     <div class="w-screen h-screen flex bg-gray-200">
-      <div class="flex flex-wrap w-full  h-full p-4 gap-2">
-        <div class="flex flex-col bg-blue-200 p-2 rounded-md w-fit h-fit">{ShopDisplay(inventory, setInventory)}</div>
-        <div class="flex flex-col bg-red-200 p-2 rounded-md w-fit h-fit">
+      <div class="flex flex-wrap w-full h-full p-4 gap-2">
+        <div class="flex flex-col bg-blue-200 p-2 rounded-md min-w-80 w-fit h-fit">
+          {ShopDisplay(inventory, setInventory)}
+        </div>
+        <div class="flex flex-col bg-red-200 p-2 rounded-md min-w-80 w-fit h-fit">
           {InventoryDisplay(inventory)}
           {AlchemyCircle(inventory, setInventory)}
         </div>
