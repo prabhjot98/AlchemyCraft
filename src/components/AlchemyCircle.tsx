@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
-import { createStore } from 'solid-js/store'
 import { removeReagent, type Inventory, addReagent } from '../types/inventory'
 import {
   calcTotalAirElement,
@@ -14,7 +13,7 @@ import { ElementDisplay } from './ElementDisplay'
 import { RecipeDisplay } from './RecipeDisplay'
 import { RecipeSelector } from './RecipeSelector'
 
-export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Inventory>): JSXElement => {
+export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Setter<Inventory> }): JSXElement => {
   const [firstSelectedOption, setFirstSelectedOption] = createSignal<Reagent | null>(null)
   const [secondSelectedOption, setSecondSelectedOption] = createSignal<Reagent | null>(null)
   const [thirdSelectedOption, setThirdSelectedOption] = createSignal<Reagent | null>(null)
@@ -35,17 +34,17 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
 
   const [error, setError] = createSignal<string>('')
 
-  const [options, setOptions] = createStore([...inventory.reagents])
+  const [options, setOptions] = createSignal(props.inventory.reagents)
 
   const handleOptionSelected = (
     selectedOption: string,
     reagent: Reagent | null,
     setter: Setter<Reagent | null>
   ): void => {
-    const r = inventory.reagents.find((r) => r.type === selectedOption)!
+    const r = props.inventory.reagents.find((r) => r.type === selectedOption)!
     setter(r)
-    const index = options.findIndex((op) => op.type === selectedOption)
-    const newOptions = [...options]
+    const index = options().findIndex((op) => op.type === selectedOption)
+    const newOptions = [...options()]
     newOptions.splice(index, 1)
     if (reagent !== null) {
       newOptions.push(reagent)
@@ -66,10 +65,10 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
       totalEarthElement() >= selectedRecipe().earthElement &&
       totalAirElement() >= selectedRecipe().airElement
     ) {
-      removeReagent(firstSelectedOption()!.type, setInventory)
-      removeReagent(secondSelectedOption()!.type, setInventory)
-      removeReagent(thirdSelectedOption()!.type, setInventory)
-      addReagent(selectedRecipe(), setInventory)
+      removeReagent(firstSelectedOption()!.type, props.setInventory)
+      removeReagent(secondSelectedOption()!.type, props.setInventory)
+      removeReagent(thirdSelectedOption()!.type, props.setInventory)
+      addReagent(selectedRecipe(), props.setInventory)
 
       setFirstSelectedOption(null)
       setSecondSelectedOption(null)
@@ -91,7 +90,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
         >
           <option selected disabled textContent="Pick a reagent" />
           {firstSelectedOption() != null && <option selected textContent={firstSelectedOption()?.type} />}
-          <For each={options} children={(item) => <option textContent={item.type} />} />
+          <For each={options()} children={(item) => <option textContent={item.type} />} />
         </select>
         <select
           id="component 2"
@@ -102,7 +101,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
         >
           <option selected disabled textContent="Pick a reagent" />
           {secondSelectedOption() != null && <option selected textContent={secondSelectedOption()?.type} />}
-          <For each={options} children={(item) => <option textContent={item.type} />} />
+          <For each={options()} children={(item) => <option textContent={item.type} />} />
         </select>
         <select
           id="component 3"
@@ -113,7 +112,7 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
         >
           <option selected disabled textContent="Pick a reagent" />
           {thirdSelectedOption() != null && <option selected textContent={thirdSelectedOption()?.type} />}
-          <For each={options} children={(item) => <option textContent={item.type} />} />
+          <For each={options()} children={(item) => <option textContent={item.type} />} />
         </select>
         <button
           type="button"
@@ -127,12 +126,17 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
         />
         <div>
           <p innerText="Total Elements: " />
-          {ElementDisplay(totalFireElement(), totalWaterElement(), totalEarthElement(), totalAirElement())}
+          <ElementDisplay
+            fireElement={totalFireElement()}
+            waterElement={totalWaterElement()}
+            earthElement={totalEarthElement()}
+            airElement={totalAirElement()}
+          />
         </div>
         <p innerText={error()} />
       </div>
-      {RecipeDisplay(selectedRecipe())}
-      {RecipeSelector(selectedRecipe(), setSelectedRecipe)}
+      <RecipeDisplay recipe={selectedRecipe()} />
+      <RecipeSelector selectedRecipe={selectedRecipe()} setSelectedRecipe={setSelectedRecipe} />
     </div>
   )
 }

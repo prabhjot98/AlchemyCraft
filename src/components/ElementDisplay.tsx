@@ -1,17 +1,17 @@
 import { type JSXElement } from 'solid-js'
 
-export const ElementDisplay = (
-  fireElement: number,
-  waterElement: number,
-  earthElement: number,
+export const ElementDisplay = (props: {
+  fireElement: number
+  waterElement: number
+  earthElement: number
   airElement: number
-): JSXElement => {
+}): JSXElement => {
   return (
     <div class="flex flex-row gap-1">
-      <p class="text-red-600" textContent={fireElement} />
-      <p class="text-blue-600" textContent={waterElement} />
-      <p class="text-amber-600" textContent={earthElement} />
-      <p class="text-purple-600" textContent={airElement} />
+      <p class="text-red-600" textContent={props.fireElement} />
+      <p class="text-blue-600" textContent={props.waterElement} />
+      <p class="text-amber-600" textContent={props.earthElement} />
+      <p class="text-purple-600" textContent={props.airElement} />
     </div>
   )
 }

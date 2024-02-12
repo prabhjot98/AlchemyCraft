@@ -2,7 +2,7 @@ import { type Setter, type JSXElement, createSignal, For } from 'solid-js'
 import { removeReagent, type Inventory, addReagent, addGold, removeGold } from '../types/inventory'
 import { randomReagent, SHARDS } from '../types/reagents'
 
-export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory>): JSXElement => {
+export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<Inventory> }): JSXElement => {
   const [error, setError] = createSignal<string>('')
 
   const buyingList: Record<string, number> = {
@@ -16,22 +16,22 @@ export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory
 
   const handlePurchase = (cost: number): void => {
     setError('')
-    if (inventory.gold < cost) {
+    if (props.inventory.gold < cost) {
       setError('Not enough gold')
       return
     }
-    removeGold(cost, setInventory)
-    addReagent(randomReagent(SHARDS), setInventory)
+    removeGold(cost, props.setInventory)
+    addReagent(randomReagent(SHARDS), props.setInventory)
   }
 
   const handleSell = (item: string): void => {
     setError('')
-    if (!inventory.reagents.some((r) => r.type === item)) {
+    if (!props.inventory.reagents.some((r) => r.type === item)) {
       setError(`You don't have a ${item} in your inventory`)
       return
     }
-    removeReagent(item, setInventory)
-    addGold(buyingList[item], setInventory)
+    removeReagent(item, props.setInventory)
+    addGold(buyingList[item], props.setInventory)
   }
 
   return (
