@@ -38,9 +38,10 @@ export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory
   }
 
   const removeReagent = (reagentType: string): void => {
-    const reagentToRemove = inventory.reagents.findIndex((r) => r.type === reagentType)
-    inventory.reagents.splice(reagentToRemove, 1)
-    setInventory(inventory)
+    const newReagents = [...inventory.reagents]
+    const reagentToRemove = newReagents.findIndex((r) => r.type === reagentType)
+    newReagents.splice(reagentToRemove, 1)
+    setInventory((i) => ({ ...i, reagents: newReagents }))
   }
 
   return (
