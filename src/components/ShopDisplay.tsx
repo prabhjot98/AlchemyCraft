@@ -6,10 +6,10 @@ export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory
   const [error, setError] = createSignal<string>('')
 
   const buyingList: Record<string, number> = {
-    sand: 40,
+    sand: 60,
     'fire potion': 300,
-    glass: 80,
-    vinegar: 140
+    glass: 100,
+    vinegar: 180
   }
 
   const buyingItems = Object.keys(buyingList)

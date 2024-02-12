@@ -145,5 +145,6 @@ export const RECIPES = [
   airShard8,
   SAND,
   FIRE_POTION,
-  GLASS
+  GLASS,
+  VINEGAR
 ]
