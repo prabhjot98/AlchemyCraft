@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
 import { createStore } from 'solid-js/store'
-import { type Inventory } from '../types/inventory'
+import { removeReagent, type Inventory, addReagent } from '../types/inventory'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
@@ -37,18 +37,6 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
 
   const [options, setOptions] = createStore([...inventory.reagents])
 
-  // todo dependency inject these method
-  const removeReagent = (reagentType: string): void => {
-    const newReagents = [...inventory.reagents]
-    const reagentToRemove = newReagents.findIndex((r) => r.type === reagentType)
-    newReagents.splice(reagentToRemove, 1)
-    setInventory((i) => ({ ...i, reagents: newReagents }))
-  }
-
-  const addReagent = (reagent: Reagent): void => {
-    setInventory((i) => ({ ...i, reagents: [...i.reagents, reagent] }))
-  }
-
   const handleOptionSelected = (
     selectedOption: string,
     reagent: Reagent | null,
@@ -78,10 +66,10 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
       totalEarthElement() >= selectedRecipe().earthElement &&
       totalAirElement() >= selectedRecipe().airElement
     ) {
-      removeReagent(firstSelectedOption()!.type)
-      removeReagent(secondSelectedOption()!.type)
-      removeReagent(thirdSelectedOption()!.type)
-      addReagent(selectedRecipe())
+      removeReagent(firstSelectedOption()!.type, setInventory)
+      removeReagent(secondSelectedOption()!.type, setInventory)
+      removeReagent(thirdSelectedOption()!.type, setInventory)
+      addReagent(selectedRecipe(), setInventory)
 
       setFirstSelectedOption(null)
       setSecondSelectedOption(null)
