@@ -27,6 +27,7 @@ export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory
     setError('')
     if (!inventory.reagents.some((r) => r.type === item)) {
       setError(`You don't have a ${item} in your inventory`)
+      return
     }
     removeReagent(item)
     setInventory((i) => ({ ...i, gold: i.gold + buyingList[item] }))
@@ -37,7 +38,9 @@ export const ShopDisplay = (inventory: Inventory, setInventory: Setter<Inventory
   }
 
   const removeReagent = (reagentType: string): void => {
-    setInventory((i) => ({ ...i, reagents: i.reagents.filter((r) => r.type !== reagentType) }))
+    const reagentToRemove = inventory.reagents.findIndex((r) => r.type === reagentType)
+    inventory.reagents.splice(reagentToRemove, 1)
+    setInventory(inventory)
   }
 
   return (

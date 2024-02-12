@@ -37,6 +37,18 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
 
   const [options, setOptions] = createStore([...inventory.reagents])
 
+  // todo dependency inject these method
+  const removeReagent = (reagentType: string): void => {
+    const newReagents = [...inventory.reagents]
+    const reagentToRemove = newReagents.findIndex((r) => r.type === reagentType)
+    newReagents.splice(reagentToRemove, 1)
+    setInventory((i) => ({ ...i, reagents: newReagents }))
+  }
+
+  const addReagent = (reagent: Reagent): void => {
+    setInventory((i) => ({ ...i, reagents: [...i.reagents, reagent] }))
+  }
+
   const handleOptionSelected = (
     selectedOption: string,
     reagent: Reagent | null,
@@ -66,18 +78,10 @@ export const AlchemyCircle = (inventory: Inventory, setInventory: Setter<Invento
       totalEarthElement() >= selectedRecipe().earthElement &&
       totalAirElement() >= selectedRecipe().airElement
     ) {
-      setInventory((i) => ({
-        ...i,
-        reagents: [
-          ...i.reagents.filter(
-            (r) =>
-              r.type !== firstSelectedOption()!.type &&
-              r.type !== secondSelectedOption()!.type &&
-              r.type !== thirdSelectedOption()!.type
-          ),
-          selectedRecipe()
-        ]
-      }))
+      removeReagent(firstSelectedOption()!.type)
+      removeReagent(secondSelectedOption()!.type)
+      removeReagent(thirdSelectedOption()!.type)
+      addReagent(selectedRecipe())
 
       setFirstSelectedOption(null)
       setSecondSelectedOption(null)
