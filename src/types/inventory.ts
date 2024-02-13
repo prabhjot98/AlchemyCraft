@@ -15,6 +15,17 @@ export const removeReagent = (reagentType: string, setInventory: Setter<Inventor
   })
 }
 
+export const removeReagent2 = (setInventory: Setter<Inventory>): ((reagentType: string) => void) => {
+  return (reagentType: string) => {
+    setInventory((i) => {
+      const newReagents = [...i.reagents]
+      const reagentToRemove = newReagents.findIndex((r) => r.type === reagentType)
+      newReagents.splice(reagentToRemove, 1)
+      return { ...i, reagents: newReagents }
+    })
+  }
+}
+
 export const addReagent = (reagent: Reagent, setInventory: Setter<Inventory>): void => {
   setInventory((i) => ({ ...i, reagents: [...i.reagents, reagent] }))
 }

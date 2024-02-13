@@ -35,7 +35,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<
   }
 
   return (
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 w-full h-full">
       <h1 class="text-4xl font-bold" textContent="Shop" />
       <button
         class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
