@@ -36,6 +36,8 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
 
   const [options, setOptions] = createSignal(props.inventory.reagents)
 
+  createEffect(() => setOptions(props.inventory.reagents))
+
   const handleOptionSelected = (
     selectedOption: string,
     reagent: Reagent | null,
