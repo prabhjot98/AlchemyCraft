@@ -7,7 +7,7 @@ import { InventoryDisplay } from './components/InventoryDisplay'
 
 const App: Component = () => {
   const [inventory, setInventory] = createStore<Inventory>({
-    reagents: [],
+    reagents: {},
     gold: 50
   })
 
