@@ -47,13 +47,6 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
     removeReagent(selectedReagent, props.setInventory)
     setter(selectedReagent)
 
-    if(props.inventory.reagents[selectedOption] === undefined){
-      const index = options().findIndex((op) => op.type === selectedOption)
-      const newOptions = [...options()]
-
-      newOptions.splice(index, 1)
-      setOptions(newOptions)
-    }
     if (previousReagent !== null) {
       addReagent(previousReagent, props.setInventory)
     }
