@@ -34,24 +34,33 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
 
   const [error, setError] = createSignal<string>('')
 
-  const [options, setOptions] = createSignal(props.inventory.reagents)
+  const [options, setOptions] = createSignal(Object.keys(props.inventory.reagents).map(obj => JSON.parse(obj)))
 
-  createEffect(() => setOptions(props.inventory.reagents))
+  createEffect(() => setOptions(Object.keys(props.inventory.reagents).map(obj => JSON.parse(obj))))
 
   const handleOptionSelected = (
     selectedOption: string,
-    reagent: Reagent | null,
+    previousReagent: Reagent | null,
     setter: Setter<Reagent | null>
   ): void => {
-    const r = props.inventory.reagents.find((r) => r.type === selectedOption)!
-    setter(r)
-    const index = options().findIndex((op) => op.type === selectedOption)
-    const newOptions = [...options()]
-    newOptions.splice(index, 1)
-    if (reagent !== null) {
-      newOptions.push(reagent)
+    const selectedReagent = JSON.parse(selectedOption);
+    console.log(selectedReagent)
+    removeReagent(selectedReagent, props.setInventory)
+    console.log(props.inventory.reagents)
+    // const r = props.inventory.reagents.find((r) => r.type === selectedOption)!
+    setter(selectedReagent)
+    console.log(props.inventory.reagents[selectedOption])
+    if(props.inventory.reagents[selectedOption] === 1){
+      const index = options().findIndex((op) => op.type === selectedOption)
+      const newOptions = [...options()]
+
+      newOptions.splice(index, 1)
+      setOptions(newOptions)
+      console.log('updated')
     }
-    setOptions(newOptions)
+    if (previousReagent !== null) {
+      addReagent(previousReagent, props.setInventory)
+    }
   }
 
   const handleCraft = (): void => {
@@ -67,9 +76,9 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
       totalEarthElement() >= selectedRecipe().earthElement &&
       totalAirElement() >= selectedRecipe().airElement
     ) {
-      removeReagent(firstSelectedOption()!.type, props.setInventory)
-      removeReagent(secondSelectedOption()!.type, props.setInventory)
-      removeReagent(thirdSelectedOption()!.type, props.setInventory)
+      removeReagent(firstSelectedOption()!, props.setInventory)
+      removeReagent(secondSelectedOption()!, props.setInventory)
+      removeReagent(thirdSelectedOption()!, props.setInventory)
       addReagent(selectedRecipe(), props.setInventory)
 
       setFirstSelectedOption(null)
@@ -91,8 +100,8 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
           }}
         >
           <option selected disabled textContent="Pick a reagent" />
-          {firstSelectedOption() != null && <option selected textContent={firstSelectedOption()?.type} />}
-          <For each={options()} children={(item) => <option textContent={item.type} />} />
+          {firstSelectedOption() != null && props.inventory.reagents[JSON.stringify(firstSelectedOption)] === undefined && <option selected value={JSON.stringify(firstSelectedOption())} textContent={firstSelectedOption()?.type} />}
+          <For each={options()} children={(item) => <option value={JSON.stringify(item)} textContent={item.type} />} />
         </select>
         <select
           id="component 2"
@@ -102,8 +111,8 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
           }}
         >
           <option selected disabled textContent="Pick a reagent" />
-          {secondSelectedOption() != null && <option selected textContent={secondSelectedOption()?.type} />}
-          <For each={options()} children={(item) => <option textContent={item.type} />} />
+          {secondSelectedOption() != null && props.inventory.reagents[JSON.stringify(secondSelectedOption)] === undefined && <option selected value={JSON.stringify(secondSelectedOption())} textContent={secondSelectedOption()?.type} />}
+          <For each={options()} children={(item) => <option value={JSON.stringify(item)} textContent={item.type} />} />
         </select>
         <select
           id="component 3"
@@ -113,8 +122,8 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
           }}
         >
           <option selected disabled textContent="Pick a reagent" />
-          {thirdSelectedOption() != null && <option selected textContent={thirdSelectedOption()?.type} />}
-          <For each={options()} children={(item) => <option textContent={item.type} />} />
+          {thirdSelectedOption() != null && props.inventory.reagents[JSON.stringify(thirdSelectedOption)] === undefined && <option selected value={JSON.stringify(thirdSelectedOption())} textContent={thirdSelectedOption()?.type} />}
+          <For each={options()} children={(item) => <option value={JSON.stringify(item)}  textContent={item.type} />} />
         </select>
         <button
           type="button"
