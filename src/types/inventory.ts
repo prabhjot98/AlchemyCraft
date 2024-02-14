@@ -8,7 +8,14 @@ export interface Inventory {
 
 export const removeReagent = (reagentType: Reagent, setInventory: Setter<Inventory>): void => {
   const key = JSON.stringify(reagentType)
-  setInventory((i) => ({ ...i, reagents: {...i.reagents, [key]: (i.reagents[key] > 1 ? i.reagents[key]-1 : undefined)} }))
+  setInventory((i) => {
+    const newReagents = {...i.reagents};
+    newReagents[key] -= 1;
+    if(newReagents[key] <= 0){
+      delete newReagents[key];
+    }
+    return { ...i, reagents: newReagents }
+  });
 
 }
 

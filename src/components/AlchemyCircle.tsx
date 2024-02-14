@@ -43,20 +43,16 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
     previousReagent: Reagent | null,
     setter: Setter<Reagent | null>
   ): void => {
-    const selectedReagent = JSON.parse(selectedOption);
-    console.log(selectedReagent)
+    const selectedReagent = JSON.parse(selectedOption)
     removeReagent(selectedReagent, props.setInventory)
-    console.log(props.inventory.reagents)
-    // const r = props.inventory.reagents.find((r) => r.type === selectedOption)!
     setter(selectedReagent)
-    console.log(props.inventory.reagents[selectedOption])
-    if(props.inventory.reagents[selectedOption] === 1){
+
+    if(props.inventory.reagents[selectedOption] === undefined){
       const index = options().findIndex((op) => op.type === selectedOption)
       const newOptions = [...options()]
 
       newOptions.splice(index, 1)
       setOptions(newOptions)
-      console.log('updated')
     }
     if (previousReagent !== null) {
       addReagent(previousReagent, props.setInventory)
@@ -76,9 +72,6 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
       totalEarthElement() >= selectedRecipe().earthElement &&
       totalAirElement() >= selectedRecipe().airElement
     ) {
-      removeReagent(firstSelectedOption()!, props.setInventory)
-      removeReagent(secondSelectedOption()!, props.setInventory)
-      removeReagent(thirdSelectedOption()!, props.setInventory)
       addReagent(selectedRecipe(), props.setInventory)
 
       setFirstSelectedOption(null)
