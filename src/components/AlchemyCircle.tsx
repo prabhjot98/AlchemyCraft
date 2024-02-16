@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
-import { removeReagent, type Inventory, addReagent } from '../types/inventory'
+import { _removeReagent, type Inventory, _addReagent } from '../types/inventory'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
@@ -23,6 +23,9 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
   const [totalEarthElement, setTotalEarthElement] = createSignal<number>(0)
   const [totalAirElement, setTotalAirElement] = createSignal<number>(0)
 
+  const addReagent = _addReagent(props.setInventory)
+  const removeReagent = _removeReagent(props.setInventory)
+
   createEffect(() => {
     setTotalFireElement(calcTotalFireElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption()))
     setTotalWaterElement(calcTotalWaterElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption()))
@@ -44,11 +47,11 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
     setter: Setter<Item | null>
   ): void => {
     const selectedReagent = JSON.parse(selectedOption) as Item
-    removeReagent(selectedReagent, props.setInventory)
+    removeReagent(selectedReagent)
     setter(selectedReagent)
 
     if (previousReagent !== null) {
-      addReagent(previousReagent, props.setInventory)
+      addReagent(previousReagent)
     }
   }
 
@@ -65,7 +68,7 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
       totalEarthElement() >= selectedRecipe().earthElement &&
       totalAirElement() >= selectedRecipe().airElement
     ) {
-      addReagent(selectedRecipe(), props.setInventory)
+      addReagent(selectedRecipe())
 
       setFirstSelectedOption(null)
       setSecondSelectedOption(null)

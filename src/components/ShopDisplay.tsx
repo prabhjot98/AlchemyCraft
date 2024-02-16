@@ -1,10 +1,15 @@
-import { type Setter, type JSXElement, createSignal, For } from 'solid-js'
-import { removeReagent, type Inventory, addReagent, addGold, removeGold } from '../types/inventory'
-import { randomReagent, SHARDS } from '../types/item'
+import { For, createSignal, type JSXElement, type Setter } from 'solid-js'
+import { _addGold, _addReagent, _removeGold, _removeReagent, type Inventory } from '../types/inventory'
+import { SHARDS, randomReagent } from '../types/item'
 import { RECIPES } from '../types/recipes'
 
 export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<Inventory> }): JSXElement => {
   const [error, setError] = createSignal<string>('')
+
+  const addGold = _addGold(props.setInventory)
+  const removeGold = _removeGold(props.setInventory)
+  const addReagent = _addReagent(props.setInventory)
+  const removeReagent = _removeReagent(props.setInventory)
 
   const buyingList: Record<string, number> = {
     sand: 60,
@@ -21,8 +26,8 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<
       setError('Not enough gold')
       return
     }
-    removeGold(cost, props.setInventory)
-    addReagent(randomReagent(SHARDS), props.setInventory)
+    removeGold(cost)
+    addReagent(randomReagent(SHARDS))
   }
 
   const handleSell = (item: string): void => {
@@ -36,8 +41,8 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<
       console.log('Failed to find recipe')
       return
     }
-    removeReagent(soldItem, props.setInventory)
-    addGold(buyingList[item], props.setInventory)
+    removeReagent(soldItem)
+    addGold(buyingList[item])
   }
 
   return (

@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "compile": "tsc --build",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "verify": "pnpm compile && pnpm lint"
   },
   "license": "MIT",
   "devDependencies": {
