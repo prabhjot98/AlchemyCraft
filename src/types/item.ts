@@ -1,6 +1,6 @@
-export const randomReagent = (reagents: Item[]): Item => {
-  const randomIndex = Math.floor(Math.random() * reagents.length)
-  return reagents[randomIndex]
+export const randomItemFrom = (items: Item[]): Item => {
+  const randomIndex = Math.floor(Math.random() * items.length)
+  return items[randomIndex]
 }
 
 export interface Item {
@@ -45,26 +45,26 @@ export const airShard1: Item = {
 
 export const SHARDS = [fireShard1, waterShard1, earthShard1, airShard1]
 
-export const calcTotalFireElement = (...reagents: Array<Item | null>): number => {
+export const calcTotalFireElement = (...items: Array<Item | null>): number => {
   let total = 0
-  reagents.forEach((r) => (total += r?.fireElement ?? 0))
+  items.forEach((r) => (total += r?.fireElement ?? 0))
   return total
 }
 
-export const calcTotalWaterElement = (...reagents: Array<Item | null>): number => {
+export const calcTotalWaterElement = (...items: Array<Item | null>): number => {
   let total = 0
-  reagents.forEach((r) => (total += r?.waterElement ?? 0))
+  items.forEach((r) => (total += r?.waterElement ?? 0))
   return total
 }
 
-export const calcTotalEarthElement = (...reagents: Array<Item | null>): number => {
+export const calcTotalEarthElement = (...items: Array<Item | null>): number => {
   let total = 0
-  reagents.forEach((r) => (total += r?.earthElement ?? 0))
+  items.forEach((r) => (total += r?.earthElement ?? 0))
   return total
 }
 
-export const calcTotalAirElement = (...reagents: Array<Item | null>): number => {
+export const calcTotalAirElement = (...items: Array<Item | null>): number => {
   let total = 0
-  reagents.forEach((r) => (total += r?.airElement ?? 0))
+  items.forEach((r) => (total += r?.airElement ?? 0))
   return total
 }

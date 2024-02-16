@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
-import { _removeReagent, type Inventory, _addReagent } from '../types/inventory'
+import { _removeItem, type Inventory, _addItem } from '../types/inventory'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
@@ -23,8 +23,8 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
   const [totalEarthElement, setTotalEarthElement] = createSignal<number>(0)
   const [totalAirElement, setTotalAirElement] = createSignal<number>(0)
 
-  const addReagent = _addReagent(props.setInventory)
-  const removeReagent = _removeReagent(props.setInventory)
+  const addItem = _addItem(props.setInventory)
+  const removeItem = _removeItem(props.setInventory)
 
   createEffect(() => {
     setTotalFireElement(calcTotalFireElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption()))
@@ -37,9 +37,9 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
 
   const [error, setError] = createSignal<string>('')
 
-  const [options, setOptions] = createSignal(Object.keys(props.inventory.reagents).map((obj) => JSON.parse(obj)))
+  const [options, setOptions] = createSignal(Object.keys(props.inventory.items).map((obj) => JSON.parse(obj)))
 
-  createEffect(() => setOptions(Object.keys(props.inventory.reagents).map((obj) => JSON.parse(obj))))
+  createEffect(() => setOptions(Object.keys(props.inventory.items).map((obj) => JSON.parse(obj))))
 
   const handleOptionSelected = (
     selectedOption: string,
@@ -47,11 +47,11 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
     setter: Setter<Item | null>
   ): void => {
     const selectedReagent = JSON.parse(selectedOption) as Item
-    removeReagent(selectedReagent)
+    removeItem(selectedReagent)
     setter(selectedReagent)
 
     if (previousReagent !== null) {
-      addReagent(previousReagent)
+      addItem(previousReagent)
     }
   }
 
@@ -68,7 +68,7 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
       totalEarthElement() >= selectedRecipe().earthElement &&
       totalAirElement() >= selectedRecipe().airElement
     ) {
-      addReagent(selectedRecipe())
+      addItem(selectedRecipe())
 
       setFirstSelectedOption(null)
       setSecondSelectedOption(null)
@@ -90,7 +90,7 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
         >
           <option selected disabled textContent="Pick a reagent" />
           {firstSelectedOption() != null &&
-            props.inventory.reagents[JSON.stringify(firstSelectedOption)] === undefined && (
+            props.inventory.items[JSON.stringify(firstSelectedOption)] === undefined && (
               <option
                 selected
                 value={JSON.stringify(firstSelectedOption())}
@@ -108,7 +108,7 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
         >
           <option selected disabled textContent="Pick a reagent" />
           {secondSelectedOption() != null &&
-            props.inventory.reagents[JSON.stringify(secondSelectedOption)] === undefined && (
+            props.inventory.items[JSON.stringify(secondSelectedOption)] === undefined && (
               <option
                 selected
                 value={JSON.stringify(secondSelectedOption())}
@@ -126,7 +126,7 @@ export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Sette
         >
           <option selected disabled textContent="Pick a reagent" />
           {thirdSelectedOption() != null &&
-            props.inventory.reagents[JSON.stringify(thirdSelectedOption)] === undefined && (
+            props.inventory.items[JSON.stringify(thirdSelectedOption)] === undefined && (
               <option
                 selected
                 value={JSON.stringify(thirdSelectedOption())}

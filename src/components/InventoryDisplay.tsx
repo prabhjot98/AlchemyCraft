@@ -1,11 +1,11 @@
 import { For, createSignal, type JSXElement, createEffect } from 'solid-js'
 import { type Inventory } from '../types/inventory'
-import { ReagentDisplay } from './ReagentDisplay'
+import { ItemDisplay } from './ItemDisplay'
 
 export const InventoryDisplay = (props: { inventory: Inventory }): JSXElement => {
-  const [keys, setKeys] = createSignal<string[]>(Object.keys(props.inventory.reagents))
+  const [keys, setKeys] = createSignal<string[]>(Object.keys(props.inventory.items))
   createEffect(() => {
-    setKeys(Object.keys(props.inventory.reagents))
+    setKeys(Object.keys(props.inventory.items))
   })
 
   return (
@@ -16,7 +16,7 @@ export const InventoryDisplay = (props: { inventory: Inventory }): JSXElement =>
         <For
           each={keys()}
           children={(item) => {
-            return <ReagentDisplay reagent={JSON.parse(item)} count={props.inventory.reagents[item]} />
+            return <ItemDisplay item={JSON.parse(item)} count={props.inventory.items[item]} />
           }}
         />
       </div>

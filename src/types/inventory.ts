@@ -4,32 +4,32 @@ import { type Setter } from 'solid-js'
 import { type Item } from './item'
 
 export interface Inventory {
-  reagents: Record<string, number>
+  items: Record<string, number>
   gold: number
 }
 
-export const _removeReagent = (setInventory: Setter<Inventory>) => {
-  return (reagentType: Item) => {
-    const key = JSON.stringify(reagentType)
+export const _removeItem = (setInventory: Setter<Inventory>) => {
+  return (itemType: Item) => {
+    const key = JSON.stringify(itemType)
     setInventory((i) => {
-      const newReagents = { ...i.reagents }
-      newReagents[key] -= 1
-      if (newReagents[key] <= 0) {
-        delete newReagents[key]
+      const newItems = { ...i.items }
+      newItems[key] -= 1
+      if (newItems[key] <= 0) {
+        delete newItems[key]
       }
-      return { ...i, reagents: newReagents }
+      return { ...i, items: newItems }
     })
   }
 }
 
-export const _addReagent = (setInventory: Setter<Inventory>) => {
-  return (reagent: Item) => {
-    const key = JSON.stringify(reagent)
+export const _addItem = (setInventory: Setter<Inventory>) => {
+  return (item: Item) => {
+    const key = JSON.stringify(item)
     return setInventory((i) => ({
       ...i,
       // HACK what is this sht lol
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      reagents: { ...i.reagents, [key]: i.reagents[key] ? i.reagents[key] + 1 : 1 }
+      items: { ...i.items, [key]: i.items[key] ? i.items[key] + 1 : 1 }
     }))
   }
 }

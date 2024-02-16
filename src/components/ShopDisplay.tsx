@@ -1,6 +1,6 @@
 import { For, createSignal, type JSXElement, type Setter } from 'solid-js'
-import { _addGold, _addReagent, _removeGold, _removeReagent, type Inventory } from '../types/inventory'
-import { SHARDS, randomReagent } from '../types/item'
+import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '../types/inventory'
+import { SHARDS, randomItemFrom } from '../types/item'
 import { RECIPES } from '../types/recipes'
 
 export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<Inventory> }): JSXElement => {
@@ -8,8 +8,8 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<
 
   const addGold = _addGold(props.setInventory)
   const removeGold = _removeGold(props.setInventory)
-  const addReagent = _addReagent(props.setInventory)
-  const removeReagent = _removeReagent(props.setInventory)
+  const addItem = _addItem(props.setInventory)
+  const removeItem = _removeItem(props.setInventory)
 
   const buyingList: Record<string, number> = {
     sand: 60,
@@ -27,12 +27,12 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<
       return
     }
     removeGold(cost)
-    addReagent(randomReagent(SHARDS))
+    addItem(randomItemFrom(SHARDS))
   }
 
   const handleSell = (item: string): void => {
     setError('')
-    if (!Object.keys(props.inventory.reagents).some((r) => JSON.parse(r).type === item)) {
+    if (!Object.keys(props.inventory.items).some((r) => JSON.parse(r).type === item)) {
       setError(`You don't have a ${item} in your inventory`)
       return
     }
@@ -41,7 +41,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<
       console.log('Failed to find recipe')
       return
     }
-    removeReagent(soldItem)
+    removeItem(soldItem)
     addGold(buyingList[item])
   }
 
