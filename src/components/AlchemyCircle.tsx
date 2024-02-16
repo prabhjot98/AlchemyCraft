@@ -21,20 +21,20 @@ export const AlchemyCircle = (props: {
   const [secondSelectedOption, setSecondSelectedOption] = createSignal<Item | null>(null)
   const [thirdSelectedOption, setThirdSelectedOption] = createSignal<Item | null>(null)
 
-  const [totalFireElement, setTotalFireElement] = createSignal<number>(0)
-  const [totalWaterElement, setTotalWaterElement] = createSignal<number>(0)
-  const [totalEarthElement, setTotalEarthElement] = createSignal<number>(0)
-  const [totalAirElement, setTotalAirElement] = createSignal<number>(0)
+  const totalFireElement = (): number =>
+    calcTotalFireElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
+
+  const totalWaterElement = (): number =>
+    calcTotalWaterElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
+
+  const totalEarthElement = (): number =>
+    calcTotalEarthElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
+
+  const totalAirElement = (): number =>
+    calcTotalAirElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
 
   const addItem = _addItem(props.setInventory)
   const removeItem = _removeItem(props.setInventory)
-
-  createEffect(() => {
-    setTotalFireElement(calcTotalFireElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption()))
-    setTotalWaterElement(calcTotalWaterElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption()))
-    setTotalEarthElement(calcTotalEarthElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption()))
-    setTotalAirElement(calcTotalAirElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption()))
-  })
 
   const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(fireShard2)
 
