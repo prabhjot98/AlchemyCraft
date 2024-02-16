@@ -1,47 +1,59 @@
-// TODO fix this shit
-/* eslint-disable @typescript-eslint/no-dynamic-delete */
-import { type Setter } from 'solid-js'
 import { type Item } from './item'
+import { produce, type SetStoreFunction } from 'solid-js/store'
 
 export interface Inventory {
   items: Record<string, number>
   gold: number
+  maxSize: number
+  currentSize: number
 }
 
-export const _removeItem = (setInventory: Setter<Inventory>) => {
+export const _removeItem = (setInventory: SetStoreFunction<Inventory>) => {
   return (itemType: Item) => {
     const key = JSON.stringify(itemType)
-    setInventory((i) => {
-      const newItems = { ...i.items }
-      newItems[key] -= 1
-      if (newItems[key] <= 0) {
-        delete newItems[key]
-      }
-      return { ...i, items: newItems }
-    })
+    setInventory(
+      produce((i) => {
+        i.items[key] -= 1
+        if (i.items[key] === 0) {
+          // yes, this is real typescript
+          i.items[key] = undefined as unknown as number
+        }
+      })
+    )
   }
 }
 
-export const _addItem = (setInventory: Setter<Inventory>) => {
+export const _addItem = (setInventory: SetStoreFunction<Inventory>) => {
   return (item: Item) => {
     const key = JSON.stringify(item)
-    return setInventory((i) => ({
-      ...i,
-      // HACK what is this sht lol
-      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      items: { ...i.items, [key]: i.items[key] ? i.items[key] + 1 : 1 }
-    }))
+    setInventory(
+      produce((i) => {
+        if (i.items[key] === undefined) {
+          i.items[key] = 1
+        } else {
+          i.items[key] = i.items[key] + 1
+        }
+      })
+    )
   }
 }
 
-export const _addGold = (setInventory: Setter<Inventory>) => {
+export const _addGold = (setInventory: SetStoreFunction<Inventory>) => {
   return (gold: number) => {
-    return setInventory((i) => ({ ...i, gold: i.gold + gold }))
+    setInventory(
+      produce((i) => {
+        i.gold += gold
+      })
+    )
   }
 }
 
-export const _removeGold = (setInventory: Setter<Inventory>) => {
+export const _removeGold = (setInventory: SetStoreFunction<Inventory>) => {
   return (gold: number) => {
-    return setInventory((i) => ({ ...i, gold: i.gold - gold }))
+    setInventory(
+      produce((i) => {
+        i.gold -= gold
+      })
+    )
   }
 }

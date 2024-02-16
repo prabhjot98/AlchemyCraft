@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
-import { _removeItem, type Inventory, _addItem } from '../types/inventory'
+import { type SetStoreFunction } from 'solid-js/store'
+import { _addItem, _removeItem, type Inventory } from '../types/inventory'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
@@ -8,12 +8,15 @@ import {
   calcTotalWaterElement,
   type Item
 } from '../types/item'
-import { type Recipe, fireShard2 } from '../types/recipes'
+import { fireShard2, type Recipe } from '../types/recipes'
 import { ElementDisplay } from './ElementDisplay'
 import { RecipeDisplay } from './RecipeDisplay'
 import { RecipeSelector } from './RecipeSelector'
 
-export const AlchemyCircle = (props: { inventory: Inventory, setInventory: Setter<Inventory> }): JSXElement => {
+export const AlchemyCircle = (props: {
+  inventory: Inventory
+  setInventory: SetStoreFunction<Inventory>
+}): JSXElement => {
   const [firstSelectedOption, setFirstSelectedOption] = createSignal<Item | null>(null)
   const [secondSelectedOption, setSecondSelectedOption] = createSignal<Item | null>(null)
   const [thirdSelectedOption, setThirdSelectedOption] = createSignal<Item | null>(null)

@@ -1,10 +1,12 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, type Setter, type JSXElement } from 'solid-js'
 import { RECIPES, type Recipe } from '../types/recipes'
 
 export const RecipeSelector = (props: { selectedRecipe: Recipe, setSelectedRecipe: Setter<Recipe> }): JSXElement => {
   const handleSelectRecipe = (e: { target: { value: string } }): void => {
-    const recipe = RECIPES.find((r) => r.type === e.target.value)!
+    const recipe = RECIPES.find((r) => r.type === e.target.value)
+    if (recipe == null) {
+      return
+    }
     props.setSelectedRecipe(recipe)
   }
 

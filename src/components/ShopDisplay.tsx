@@ -1,9 +1,10 @@
-import { For, createSignal, type JSXElement, type Setter } from 'solid-js'
+import { For, createSignal, type JSXElement } from 'solid-js'
+import { type SetStoreFunction } from 'solid-js/store'
 import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '../types/inventory'
 import { SHARDS, randomItemFrom } from '../types/item'
 import { RECIPES } from '../types/recipes'
 
-export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<Inventory> }): JSXElement => {
+export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStoreFunction<Inventory> }): JSXElement => {
   const [error, setError] = createSignal<string>('')
 
   const addGold = _addGold(props.setInventory)

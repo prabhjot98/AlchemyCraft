@@ -8,7 +8,11 @@ import { InventoryDisplay } from './components/InventoryDisplay'
 const App: Component = () => {
   const [inventory, setInventory] = createStore<Inventory>({
     items: {},
-    gold: 50
+    gold: 50,
+    maxSize: 10,
+    get currentSize () {
+      return Object.keys(this.items).length
+    }
   })
 
   return (
