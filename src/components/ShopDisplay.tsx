@@ -1,6 +1,6 @@
 import { type Setter, type JSXElement, createSignal, For } from 'solid-js'
 import { removeReagent, type Inventory, addReagent, addGold, removeGold } from '../types/inventory'
-import { randomReagent, SHARDS, type Reagent } from '../types/reagents'
+import { randomReagent, SHARDS } from '../types/item'
 import { RECIPES } from '../types/recipes'
 
 export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<Inventory> }): JSXElement => {
@@ -31,7 +31,11 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: Setter<
       setError(`You don't have a ${item} in your inventory`)
       return
     }
-    const soldItem = RECIPES.find((recipe) => recipe.type === item)!
+    const soldItem = RECIPES.find((recipe) => recipe.type === item)
+    if (soldItem == null) {
+      console.log('Failed to find recipe')
+      return
+    }
     removeReagent(soldItem, props.setInventory)
     addGold(buyingList[item], props.setInventory)
   }

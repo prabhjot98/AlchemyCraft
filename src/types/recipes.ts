@@ -1,6 +1,6 @@
-import { type Reagent } from './reagents'
+import { type Item } from './item'
 
-export type Recipe = Reagent
+export type Recipe = Item
 
 export const SAND: Recipe = {
   type: 'sand',
@@ -10,7 +10,7 @@ export const SAND: Recipe = {
   airElement: 2
 }
 
-export const FIRE_POTION: Recipe = {
+export const firePotion: Recipe = {
   type: 'fire potion',
   fireElement: 6,
   waterElement: 2,
@@ -18,7 +18,7 @@ export const FIRE_POTION: Recipe = {
   airElement: 0
 }
 
-export const GLASS: Recipe = {
+export const glass: Recipe = {
   type: 'glass',
   fireElement: 2,
   waterElement: 0,
@@ -26,7 +26,7 @@ export const GLASS: Recipe = {
   airElement: 2
 }
 
-export const VINEGAR: Recipe = {
+export const vinegar: Recipe = {
   type: 'vinegar',
   fireElement: 0,
   waterElement: 4,
@@ -130,6 +130,46 @@ export const airShard8: Recipe = {
   airElement: 8
 }
 
+export const ironOre: Item = {
+  type: 'iron ore',
+  fireElement: 2,
+  waterElement: 0,
+  earthElement: 2,
+  airElement: 0
+}
+
+export const copperOre: Item = {
+  type: 'copper ore',
+  fireElement: 1,
+  waterElement: 0,
+  earthElement: 2,
+  airElement: 0
+}
+
+export const goldOre: Item = {
+  type: 'gold ore',
+  fireElement: 2,
+  waterElement: 0,
+  earthElement: 4,
+  airElement: 0
+}
+
+export const mandrake: Item = {
+  type: 'mandrake',
+  fireElement: 0,
+  waterElement: 2,
+  earthElement: 2,
+  airElement: 2
+}
+
+export const water: Item = {
+  type: 'water',
+  fireElement: 0,
+  waterElement: 8,
+  earthElement: 0,
+  airElement: 0
+}
+
 export const RECIPES = [
   fireShard2,
   waterShard2,
@@ -144,7 +184,7 @@ export const RECIPES = [
   earthShard8,
   airShard8,
   SAND,
-  FIRE_POTION,
-  GLASS,
-  VINEGAR
+  firePotion,
+  glass,
+  vinegar
 ]
