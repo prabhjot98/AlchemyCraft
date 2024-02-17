@@ -11,9 +11,12 @@ import {
   firePotion,
   glass,
   goldOre,
-  ironOre,
+  tinOre,
   mandrake,
-  vinegar
+  vinegar,
+  bomb,
+  alcohol,
+  bronze
 } from '../types/recipes'
 
 export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStoreFunction<Inventory> }): JSXElement => {
@@ -28,12 +31,15 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
   buyingList.set(copperOre, 30)
   buyingList.set(coal, 30)
   buyingList.set(SAND, 60)
-  buyingList.set(ironOre, 60)
+  buyingList.set(tinOre, 60)
   buyingList.set(mandrake, 100)
   buyingList.set(glass, 100)
   buyingList.set(goldOre, 140)
   buyingList.set(vinegar, 180)
+  buyingList.set(alcohol, 200)
+  buyingList.set(bronze, 240)
   buyingList.set(firePotion, 300)
+  buyingList.set(bomb, 999)
 
   const handlePurchase = (cost: number): void => {
     setError('')
@@ -86,7 +92,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
           )
         }}
       </For>
-      <p class="" innerText={error()} />
+      <p class="text-2xl font-bold" innerText={error()} />
     </div>
   )
 }

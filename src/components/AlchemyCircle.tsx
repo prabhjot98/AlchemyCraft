@@ -88,13 +88,13 @@ export const AlchemyCircle = (props: {
         />
         <button
           type="button"
-          class="w-32 h-16 bg-gray-300 rounded-md outline outline-gray-600
+          class="w-32 h-16 text-xl font-semibold bg-gray-300 rounded-md outline outline-gray-600
             hover:bg-blue-300 hover:outline-blue-600 active:bg-violet-300 active:outline-violet-600"
           onClick={() => {
             handleCraft()
           }}
           value="craft"
-          textContent="Craft"
+          textContent={'Craft ' + selectedRecipe().type}
         />
         <div>
           <p innerText="Total Elements: " />
@@ -105,7 +105,7 @@ export const AlchemyCircle = (props: {
             airElement={totalAirElement()}
           />
         </div>
-        <p innerText={error()} />
+        <p class="text-2xl font-bold" innerText={error()} />
       </div>
       <RecipeDisplay recipe={selectedRecipe()} />
       <RecipeSelector selectedRecipe={selectedRecipe()} setSelectedRecipe={setSelectedRecipe} />

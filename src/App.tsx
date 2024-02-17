@@ -19,13 +19,13 @@ const App: Component = () => {
   return (
     <div class="w-screen h-screen flex bg-gray-200">
       <div class="flex flex-wrap w-full h-full p-4 gap-2">
-        <div class="flex flex-col bg-blue-200 p-2 rounded-md min-w-80 w-fit h-fit">
+        <div class="flex flex-col bg-blue-200 p-2 rounded-md w-80 h-fit">
           <ShopDisplay inventory={inventory} setInventory={setInventory} />
         </div>
-        <div class="flex flex-col bg-red-200 p-2 rounded-md min-w-[28rem] w-fit h-fit">
+        <div class="flex flex-col bg-red-200 p-2 rounded-md w-[28rem] h-fit">
           <InventoryDisplay inventory={inventory} />
         </div>
-        <div class="flex flex-col bg-purple-200 p-2 rounded-md min-w-[28rem] w-fit h-fit">
+        <div class="flex flex-col bg-purple-200 p-2 rounded-md w-[32rem] h-fit">
           <AlchemyCircle inventory={inventory} setInventory={setInventory} />
         </div>
       </div>

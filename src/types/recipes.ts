@@ -146,6 +146,14 @@ export const copperOre: Item = {
   airElement: 0
 }
 
+export const tinOre: Item = {
+  type: 'tin ore',
+  fireElement: 1,
+  waterElement: 0,
+  earthElement: 4,
+  airElement: 1
+}
+
 export const goldOre: Item = {
   type: 'gold ore',
   fireElement: 2,
@@ -170,12 +178,28 @@ export const mandrake: Item = {
   airElement: 2
 }
 
-export const water: Item = {
-  type: 'water',
-  fireElement: 0,
-  waterElement: 8,
+export const bronze: Item = {
+  type: 'bronze',
+  fireElement: 2,
+  waterElement: 0,
+  earthElement: 6,
+  airElement: 1
+}
+
+export const alcohol: Item = {
+  type: 'alcohol',
+  fireElement: 2,
+  waterElement: 5,
   earthElement: 0,
   airElement: 0
+}
+
+export const bomb: Item = {
+  type: 'bomb',
+  fireElement: 8,
+  waterElement: 2,
+  earthElement: 10,
+  airElement: 4
 }
 
 export const RECIPES = [
@@ -199,6 +223,8 @@ export const RECIPES = [
   copperOre,
   goldOre,
   mandrake,
-  water,
-  coal
+  bronze,
+  coal,
+  alcohol,
+  bomb
 ]
