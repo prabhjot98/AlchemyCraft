@@ -66,6 +66,7 @@ export const AlchemyCircle = (props: {
 
   return (
     <div>
+      <p class="text-4xl font-bold" textContent="Crafting" />
       <div class="flex flex-col gap-4 justify-center">
         <ItemSelector
           items={props.inventory.items}

@@ -25,6 +25,9 @@ export const ItemSelector = (props: {
   }
   return (
     <div class="flex flex-row gap-2 align-middle">
+      {modalIsOpen() && (
+        <div class="absolute top-0 left-0 bg-black/30 w-full h-full" onClick={() => setModalIsOpen(false)} />
+      )}
       <button
         class="bg-gray-200 p-1 rounded-md border border-black"
         onClick={() => setModalIsOpen(true)}
@@ -32,7 +35,7 @@ export const ItemSelector = (props: {
       />
       {props.selectedItem !== null && <p class="p-1">Currently selected item is {props.selectedItem.type}</p>}
       {modalIsOpen() && (
-        <div class="fixed top-[10%] left-[10%] bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-1/2 h-fit">
+        <div class="fixed top-[10%] left-[10%] bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-1/2 h-fit z-10">
           <button
             class="absolute right-2 bottom-2 p-2 bg-red-300 border border-black rounded-md"
             onClick={() => setModalIsOpen(false)}
