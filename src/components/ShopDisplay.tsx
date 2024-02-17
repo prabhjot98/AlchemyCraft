@@ -3,7 +3,18 @@ import { For, createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '../types/inventory'
 import { type Item, SHARDS, randomItemFrom } from '../types/item'
-import { RECIPES, SAND, copperOre, firePotion, glass, goldOre, ironOre, mandrake, vinegar } from '../types/recipes'
+import {
+  RECIPES,
+  SAND,
+  coal,
+  copperOre,
+  firePotion,
+  glass,
+  goldOre,
+  ironOre,
+  mandrake,
+  vinegar
+} from '../types/recipes'
 
 export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStoreFunction<Inventory> }): JSXElement => {
   const [error, setError] = createSignal<string>('')
@@ -15,6 +26,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
 
   const buyingList = new Map<Item, number>()
   buyingList.set(copperOre, 30)
+  buyingList.set(coal, 30)
   buyingList.set(SAND, 60)
   buyingList.set(ironOre, 60)
   buyingList.set(mandrake, 100)
@@ -35,13 +47,13 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
 
   const handleSell = (item: string): void => {
     setError('')
-    if (!Object.keys(props.inventory.items).some((r) => JSON.parse(r).type === item)) {
-      setError(`You don't have a ${item} in your inventory`)
-      return
-    }
     const soldItem = RECIPES.find((recipe) => recipe.type === item)
     if (soldItem == null) {
       console.log('Failed to find recipe')
+      return
+    }
+    if (props.inventory.items.get(soldItem) === undefined) {
+      setError(`You don't have a ${item} in your inventory`)
       return
     }
     removeItem(soldItem)

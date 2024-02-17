@@ -30,7 +30,7 @@ export const vinegar: Recipe = {
   type: 'vinegar',
   fireElement: 0,
   waterElement: 4,
-  earthElement: 1,
+  earthElement: 0,
   airElement: 4
 }
 
@@ -154,6 +154,14 @@ export const goldOre: Item = {
   airElement: 0
 }
 
+export const coal: Item = {
+  type: 'coal',
+  fireElement: 2,
+  waterElement: 0,
+  earthElement: 1,
+  airElement: 0
+}
+
 export const mandrake: Item = {
   type: 'mandrake',
   fireElement: 0,
@@ -191,5 +199,6 @@ export const RECIPES = [
   copperOre,
   goldOre,
   mandrake,
-  water
+  water,
+  coal
 ]

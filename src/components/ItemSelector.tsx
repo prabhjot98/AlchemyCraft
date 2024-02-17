@@ -2,7 +2,7 @@ import { For, type JSXElement, createSignal, type Setter } from 'solid-js'
 import { ItemDisplay } from './ItemDisplay'
 import { type Item } from '../types/item'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _removeItem, type Inventory } from '../types/inventory'
+import { _addItem, _removeItem, type Inventory } from '../types/inventory'
 
 export const ItemSelector = (props: {
   items: Map<Item, number>
@@ -13,8 +13,12 @@ export const ItemSelector = (props: {
   const [modalIsOpen, setModalIsOpen] = createSignal(false)
 
   const removeItem = _removeItem(props.setInventory)
+  const addItem = _addItem(props.setInventory)
 
   const handleItemSelected = (i: Item): void => {
+    if (props.selectedItem !== null) {
+      addItem(props.selectedItem)
+    }
     removeItem(i)
     props.setSelectedItem(i)
     setModalIsOpen(false)
