@@ -16,7 +16,11 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
     sand: 60,
     'fire potion': 300,
     glass: 100,
-    vinegar: 180
+    vinegar: 180,
+    mandrake: 100,
+    'gold ore': 140,
+    'iron ore': 60,
+    'copper ore': 30
   }
 
   const buyingItems = Object.keys(buyingList)

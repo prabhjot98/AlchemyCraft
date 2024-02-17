@@ -186,5 +186,10 @@ export const RECIPES = [
   SAND,
   firePotion,
   glass,
-  vinegar
+  vinegar,
+  ironOre,
+  copperOre,
+  goldOre,
+  mandrake,
+  water
 ]
