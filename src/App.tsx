@@ -4,14 +4,15 @@ import { AlchemyCircle } from './components/AlchemyCircle'
 import { type Inventory } from './types/inventory'
 import { ShopDisplay } from './components/ShopDisplay'
 import { InventoryDisplay } from './components/InventoryDisplay'
+import { type Item } from './types/item'
 
 const App: Component = () => {
   const [inventory, setInventory] = createStore<Inventory>({
-    items: {},
-    gold: 50,
-    maxSize: 10,
+    items: new Map<Item, number>(),
+    gold: 70,
+    maxSize: 12,
     get currentSize () {
-      return Object.keys(this.items).length
+      return [...this.items.keys()].length
     }
   })
 
@@ -25,6 +26,8 @@ const App: Component = () => {
           <InventoryDisplay inventory={inventory} />
           <AlchemyCircle inventory={inventory} setInventory={setInventory} />
         </div>
+
+        <div class="flex flex-col bg-red-200 p-2 rounded-md min-w-[28rem] w-fit h-fit">{inventory.currentSize}</div>
       </div>
     </div>
   )

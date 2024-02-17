@@ -1,59 +1,46 @@
+import { type SetStoreFunction } from 'solid-js/store'
 import { type Item } from './item'
-import { produce, type SetStoreFunction } from 'solid-js/store'
 
 export interface Inventory {
-  items: Record<string, number>
+  items: Map<Item, number>
   gold: number
   maxSize: number
   currentSize: number
 }
 
 export const _removeItem = (setInventory: SetStoreFunction<Inventory>) => {
-  return (itemType: Item) => {
-    const key = JSON.stringify(itemType)
-    setInventory(
-      produce((i) => {
-        i.items[key] -= 1
-        if (i.items[key] === 0) {
-          // yes, this is real typescript
-          i.items[key] = undefined as unknown as number
-        }
-      })
-    )
+  return (item: Item) => {
+    setInventory('items', (i) => {
+      const newMap = new Map(i)
+      const count = newMap.get(item) ?? 0
+      newMap.set(item, count - 1)
+      if (count === 0) {
+        newMap.delete(item)
+      }
+      return newMap
+    })
   }
 }
 
 export const _addItem = (setInventory: SetStoreFunction<Inventory>) => {
   return (item: Item) => {
-    const key = JSON.stringify(item)
-    setInventory(
-      produce((i) => {
-        if (i.items[key] === undefined) {
-          i.items[key] = 1
-        } else {
-          i.items[key] = i.items[key] + 1
-        }
-      })
-    )
+    setInventory('items', (i) => {
+      const newMap = new Map(i)
+      const count = newMap.get(item) ?? 0
+      newMap.set(item, count + 1)
+      return newMap
+    })
   }
 }
 
 export const _addGold = (setInventory: SetStoreFunction<Inventory>) => {
   return (gold: number) => {
-    setInventory(
-      produce((i) => {
-        i.gold += gold
-      })
-    )
+    setInventory('gold', (g) => g + gold)
   }
 }
 
 export const _removeGold = (setInventory: SetStoreFunction<Inventory>) => {
   return (gold: number) => {
-    setInventory(
-      produce((i) => {
-        i.gold -= gold
-      })
-    )
+    setInventory('gold', (g) => g - gold)
   }
 }

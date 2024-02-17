@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addItem, _removeItem, type Inventory } from '../types/inventory'
@@ -92,13 +93,8 @@ export const AlchemyCircle = (props: {
           }}
         >
           <option selected disabled textContent="Pick a reagent" />
-          {firstSelectedOption() != null &&
-            props.inventory.items[JSON.stringify(firstSelectedOption)] === undefined && (
-              <option
-                selected
-                value={JSON.stringify(firstSelectedOption())}
-                textContent={firstSelectedOption()?.type}
-              />
+          {firstSelectedOption() != null && props.inventory.items.get(firstSelectedOption()!) === undefined && (
+            <option selected value={JSON.stringify(firstSelectedOption())} textContent={firstSelectedOption()?.type} />
           )}
           <For each={options()} children={(item) => <option value={JSON.stringify(item)} textContent={item.type} />} />
         </select>
@@ -110,13 +106,12 @@ export const AlchemyCircle = (props: {
           }}
         >
           <option selected disabled textContent="Pick a reagent" />
-          {secondSelectedOption() != null &&
-            props.inventory.items[JSON.stringify(secondSelectedOption)] === undefined && (
-              <option
-                selected
-                value={JSON.stringify(secondSelectedOption())}
-                textContent={secondSelectedOption()?.type}
-              />
+          {secondSelectedOption() != null && props.inventory.items.get(secondSelectedOption()!) === undefined && (
+            <option
+              selected
+              value={JSON.stringify(secondSelectedOption())}
+              textContent={secondSelectedOption()?.type}
+            />
           )}
           <For each={options()} children={(item) => <option value={JSON.stringify(item)} textContent={item.type} />} />
         </select>
@@ -128,13 +123,8 @@ export const AlchemyCircle = (props: {
           }}
         >
           <option selected disabled textContent="Pick a reagent" />
-          {thirdSelectedOption() != null &&
-            props.inventory.items[JSON.stringify(thirdSelectedOption)] === undefined && (
-              <option
-                selected
-                value={JSON.stringify(thirdSelectedOption())}
-                textContent={thirdSelectedOption()?.type}
-              />
+          {thirdSelectedOption() != null && props.inventory.items.get(thirdSelectedOption()!) === undefined && (
+            <option selected value={JSON.stringify(thirdSelectedOption())} textContent={thirdSelectedOption()?.type} />
           )}
           <For each={options()} children={(item) => <option value={JSON.stringify(item)} textContent={item.type} />} />
         </select>
