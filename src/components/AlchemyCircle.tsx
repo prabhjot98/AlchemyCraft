@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { For, createEffect, createSignal, type JSXElement, type Setter } from 'solid-js'
+import { createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, _removeItem, type Inventory } from '../types/inventory'
+import { _addItem, type Inventory } from '../types/inventory'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
@@ -13,6 +13,7 @@ import { fireShard2, type Recipe } from '../types/recipes'
 import { ElementDisplay } from './ElementDisplay'
 import { RecipeDisplay } from './RecipeDisplay'
 import { RecipeSelector } from './RecipeSelector'
+import { ItemSelector } from './ItemSelector'
 
 export const AlchemyCircle = (props: {
   inventory: Inventory
@@ -35,29 +36,10 @@ export const AlchemyCircle = (props: {
     calcTotalAirElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
 
   const addItem = _addItem(props.setInventory)
-  const removeItem = _removeItem(props.setInventory)
 
   const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(fireShard2)
 
   const [error, setError] = createSignal<string>('')
-
-  const [options, setOptions] = createSignal(Object.keys(props.inventory.items).map((obj) => JSON.parse(obj)))
-
-  createEffect(() => setOptions(Object.keys(props.inventory.items).map((obj) => JSON.parse(obj))))
-
-  const handleOptionSelected = (
-    selectedOption: string,
-    previousReagent: Item | null,
-    setter: Setter<Item | null>
-  ): void => {
-    const selectedReagent = JSON.parse(selectedOption) as Item
-    removeItem(selectedReagent)
-    setter(selectedReagent)
-
-    if (previousReagent !== null) {
-      addItem(previousReagent)
-    }
-  }
 
   const handleCraft = (): void => {
     setError('')
@@ -85,49 +67,24 @@ export const AlchemyCircle = (props: {
   return (
     <div>
       <div class="flex flex-col gap-4 justify-center">
-        <select
-          class="w-32"
-          id="component 1"
-          onChange={(e) => {
-            handleOptionSelected(e.target.value, firstSelectedOption(), setFirstSelectedOption)
-          }}
-        >
-          <option selected disabled textContent="Pick a reagent" />
-          {firstSelectedOption() != null && props.inventory.items.get(firstSelectedOption()!) === undefined && (
-            <option selected value={JSON.stringify(firstSelectedOption())} textContent={firstSelectedOption()?.type} />
-          )}
-          <For each={options()} children={(item) => <option value={JSON.stringify(item)} textContent={item.type} />} />
-        </select>
-        <select
-          id="component 2"
-          class="w-32"
-          onChange={(e) => {
-            handleOptionSelected(e.target.value, secondSelectedOption(), setSecondSelectedOption)
-          }}
-        >
-          <option selected disabled textContent="Pick a reagent" />
-          {secondSelectedOption() != null && props.inventory.items.get(secondSelectedOption()!) === undefined && (
-            <option
-              selected
-              value={JSON.stringify(secondSelectedOption())}
-              textContent={secondSelectedOption()?.type}
-            />
-          )}
-          <For each={options()} children={(item) => <option value={JSON.stringify(item)} textContent={item.type} />} />
-        </select>
-        <select
-          id="component 3"
-          class="w-32"
-          onChange={(e) => {
-            handleOptionSelected(e.target.value, thirdSelectedOption(), setThirdSelectedOption)
-          }}
-        >
-          <option selected disabled textContent="Pick a reagent" />
-          {thirdSelectedOption() != null && props.inventory.items.get(thirdSelectedOption()!) === undefined && (
-            <option selected value={JSON.stringify(thirdSelectedOption())} textContent={thirdSelectedOption()?.type} />
-          )}
-          <For each={options()} children={(item) => <option value={JSON.stringify(item)} textContent={item.type} />} />
-        </select>
+        <ItemSelector
+          items={props.inventory.items}
+          setInventory={props.setInventory}
+          selectedItem={firstSelectedOption()}
+          setSelectedItem={setFirstSelectedOption}
+        />
+        <ItemSelector
+          items={props.inventory.items}
+          setInventory={props.setInventory}
+          selectedItem={secondSelectedOption()}
+          setSelectedItem={setSecondSelectedOption}
+        />
+        <ItemSelector
+          items={props.inventory.items}
+          setInventory={props.setInventory}
+          selectedItem={thirdSelectedOption()}
+          setSelectedItem={setThirdSelectedOption}
+        />
         <button
           type="button"
           class="w-32 h-16 bg-gray-300 rounded-md outline outline-gray-600

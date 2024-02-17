@@ -11,7 +11,15 @@ export const InventoryDisplay = (props: { inventory: Inventory }): JSXElement =>
         <For
           each={[...props.inventory.items.keys()]}
           children={(item) => {
-            return <ItemDisplay item={item} count={props.inventory.items.get(item) ?? 0} />
+            return (
+              <ItemDisplay
+                item={item}
+                count={props.inventory.items.get(item) ?? 0}
+                onClick={() => {
+                  console.log('CLICKED!')
+                }}
+              />
+            )
           }}
         />
       </div>

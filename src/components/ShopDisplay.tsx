@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '../types/inventory'
-import { SHARDS, randomItemFrom } from '../types/item'
-import { RECIPES } from '../types/recipes'
+import { type Item, SHARDS, randomItemFrom } from '../types/item'
+import { RECIPES, SAND, copperOre, firePotion, glass, goldOre, ironOre, mandrake, vinegar } from '../types/recipes'
 
 export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStoreFunction<Inventory> }): JSXElement => {
   const [error, setError] = createSignal<string>('')
@@ -12,18 +13,15 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
   const addItem = _addItem(props.setInventory)
   const removeItem = _removeItem(props.setInventory)
 
-  const buyingList: Record<string, number> = {
-    sand: 60,
-    'fire potion': 300,
-    glass: 100,
-    vinegar: 180,
-    mandrake: 100,
-    'gold ore': 140,
-    'iron ore': 60,
-    'copper ore': 30
-  }
-
-  const buyingItems = Object.keys(buyingList)
+  const buyingList = new Map<Item, number>()
+  buyingList.set(copperOre, 30)
+  buyingList.set(SAND, 60)
+  buyingList.set(ironOre, 60)
+  buyingList.set(mandrake, 100)
+  buyingList.set(glass, 100)
+  buyingList.set(goldOre, 140)
+  buyingList.set(vinegar, 180)
+  buyingList.set(firePotion, 300)
 
   const handlePurchase = (cost: number): void => {
     setError('')
@@ -47,7 +45,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
       return
     }
     removeItem(soldItem)
-    addGold(buyingList[item])
+    addGold(buyingList.get(soldItem)!)
   }
 
   return (
@@ -61,7 +59,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
       >
         Buy a random shard for 5 gold
       </button>
-      <For each={buyingItems}>
+      <For each={[...buyingList.keys()]}>
         {(item) => {
           return (
             <button
@@ -69,9 +67,9 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
               onClick={(e) => {
                 handleSell(e.currentTarget.value)
               }}
-              value={item}
+              value={item.type}
             >
-              Sell {item} for {buyingList[item]} gold
+              Sell {item.type} for {buyingList.get(item)} gold
             </button>
           )
         }}

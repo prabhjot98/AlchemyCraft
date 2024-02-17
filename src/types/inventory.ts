@@ -13,9 +13,10 @@ export const _removeItem = (setInventory: SetStoreFunction<Inventory>) => {
     setInventory('items', (i) => {
       const newMap = new Map(i)
       const count = newMap.get(item) ?? 0
-      newMap.set(item, count - 1)
-      if (count === 0) {
+      if (count === 1) {
         newMap.delete(item)
+      } else {
+        newMap.set(item, count - 1)
       }
       return newMap
     })

@@ -26,8 +26,6 @@ const App: Component = () => {
           <InventoryDisplay inventory={inventory} />
           <AlchemyCircle inventory={inventory} setInventory={setInventory} />
         </div>
-
-        <div class="flex flex-col bg-red-200 p-2 rounded-md min-w-[28rem] w-fit h-fit">{inventory.currentSize}</div>
       </div>
     </div>
   )
