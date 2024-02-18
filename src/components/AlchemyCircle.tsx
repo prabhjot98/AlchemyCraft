@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, type Inventory } from '../types/inventory'
+import { _addItem, _removeItem, type Inventory } from '../types/inventory'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
@@ -36,6 +36,7 @@ export const AlchemyCircle = (props: {
     calcTotalAirElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
 
   const addItem = _addItem(props.setInventory)
+  const removeItem = _removeItem(props.setInventory)
 
   const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(fireShard2)
 
@@ -56,9 +57,21 @@ export const AlchemyCircle = (props: {
     ) {
       addItem(selectedRecipe())
 
-      setFirstSelectedOption(null)
-      setSecondSelectedOption(null)
-      setThirdSelectedOption(null)
+      if ((props.inventory.items.get(firstSelectedOption()!) ?? 0) === 0) {
+        setFirstSelectedOption(null)
+      } else {
+        removeItem(firstSelectedOption()!)
+      }
+      if ((props.inventory.items.get(secondSelectedOption()!) ?? 0) === 0) {
+        setSecondSelectedOption(null)
+      } else {
+        removeItem(secondSelectedOption()!)
+      }
+      if ((props.inventory.items.get(thirdSelectedOption()!) ?? 0) === 0) {
+        setThirdSelectedOption(null)
+      } else {
+        removeItem(thirdSelectedOption()!)
+      }
     } else {
       setError("You don't have enough elements to craft this item!")
     }
