@@ -35,12 +35,13 @@ export const ItemSelector = (props: {
       />
       {props.selectedItem !== null && <p class="p-1">Currently selected item is {props.selectedItem.type}</p>}
       {modalIsOpen() && (
-        <div class="fixed top-[10%] left-[10%] bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-1/2 h-fit z-10">
+        <div class="absolute bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-80 h-fit z-10">
           <button
             class="absolute right-2 bottom-2 p-2 bg-red-300 border border-black rounded-md"
             onClick={() => setModalIsOpen(false)}
-            innerText="Close"
+            innerText="X"
           />
+          {[...props.items.keys()].length === 0 && <p class="text-xl" innerText="Nothing in your inventory" />}
           <For each={[...props.items.keys()]}>
             {(i) => (
               <ItemDisplay

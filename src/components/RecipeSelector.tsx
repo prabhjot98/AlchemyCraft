@@ -21,11 +21,11 @@ export const RecipeSelector = (props: { selectedRecipe: Recipe, setSelectedRecip
         innerText="Select a recipe"
       />
       {modalIsOpen() && (
-        <div class="fixed top-[10%] left-[10%] bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-1/2 h-fit">
+        <div class="absolute bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-1/2 h-fit">
           <button
             class="absolute right-2 bottom-2 p-2 bg-red-300 border border-black rounded-md"
             onClick={() => setModalIsOpen(false)}
-            innerText="Close"
+            innerText="X"
           />
           <For each={RECIPES}>
             {(r) => (
