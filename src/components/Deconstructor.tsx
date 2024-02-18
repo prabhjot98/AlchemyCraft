@@ -3,7 +3,7 @@ import { type SetStoreFunction } from 'solid-js/store'
 import { _addItem, type Inventory } from '../types/inventory'
 import { ItemSelector } from './ItemSelector'
 import { type JSXElement, createSignal } from 'solid-js'
-import { fireShard1, waterShard1, type Item, earthShard1, airShard1 } from '../types/item'
+import { fireShard1, waterShard1, type Item, earthShard1, airShard1 } from '../types/items'
 
 export const Deconstructor = (props: {
   inventory: Inventory
@@ -43,7 +43,7 @@ export const Deconstructor = (props: {
 
   return (
     <div class="flex flex-col gap-2 w-full h-full">
-      <p class="text-4xl font-bold" textContent="Deconstructor" />
+      <h1 textContent="Deconstructor" />
       <ItemSelector
         items={props.inventory.items}
         setInventory={props.setInventory}
@@ -79,7 +79,7 @@ export const Deconstructor = (props: {
           </div>
         </div>
       )}
-      <p class="text-2xl font-bold" innerText={error()} />
+      <h4 innerText={error()} />
     </div>
   )
 }

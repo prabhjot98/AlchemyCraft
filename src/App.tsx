@@ -1,20 +1,22 @@
 import { type Component } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { AlchemyCircle } from './components/AlchemyCircle'
-import { type Inventory } from './types/inventory'
-import { ShopDisplay } from './components/ShopDisplay'
-import { InventoryDisplay } from './components/InventoryDisplay'
-import { type Item } from './types/item'
+import { CompressorContainer } from './components/CompressorContainer'
 import { Deconstructor } from './components/Deconstructor'
+import { InventoryDisplay } from './components/InventoryDisplay'
+import { ShopDisplay } from './components/ShopDisplay'
+import { type Inventory } from './types/inventory'
+import { type Item } from './types/items'
 
-const App: Component = () => {
+export const App: Component = () => {
   const [inventory, setInventory] = createStore<Inventory>({
     items: new Map<Item, number>(),
     gold: 70,
     maxSize: 12,
     get currentSize () {
       return [...this.items.keys()].length
-    }
+    },
+    machines: []
   })
 
   return (
@@ -32,9 +34,10 @@ const App: Component = () => {
         <div class="flex flex-col bg-orange-200 p-2 rounded-md w-[32rem] h-fit">
           <Deconstructor inventory={inventory} setInventory={setInventory} />
         </div>
+        <div class="flex flex-col bg-pink-200 p-2 rounded-md w-[32rem] h-fit">
+          <CompressorContainer inventory={inventory} setInventory={setInventory} />
+        </div>
       </div>
     </div>
   )
 }
-
-export default App

@@ -2,7 +2,7 @@
 import { For, createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '../types/inventory'
-import { type Item, SHARDS, randomItemFrom } from '../types/item'
+import { type Item, SHARDS, randomItemFrom, fireShard1, waterShard1, earthShard1, airShard1 } from '../types/items'
 import {
   RECIPES,
   SAND,
@@ -18,6 +18,7 @@ import {
   alcohol,
   bronze
 } from '../types/recipes'
+import { _addMachine } from '../types/machines'
 
 export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStoreFunction<Inventory> }): JSXElement => {
   const [error, setError] = createSignal<string>('')
@@ -26,6 +27,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
   const removeGold = _removeGold(props.setInventory)
   const addItem = _addItem(props.setInventory)
   const removeItem = _removeItem(props.setInventory)
+  const addMachine = _addMachine(props.setInventory)
 
   const buyingList = new Map<Item, number>()
   buyingList.set(copperOre, 30)
@@ -41,7 +43,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
   buyingList.set(firePotion, 300)
   buyingList.set(bomb, 999)
 
-  const handlePurchase = (cost: number): void => {
+  const handlePurchaseRandomShard = (cost: number): void => {
     setError('')
     if (props.inventory.gold < cost) {
       setError('Not enough gold')
@@ -49,6 +51,18 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
     }
     removeGold(cost)
     addItem(randomItemFrom(SHARDS))
+  }
+
+  const handlePurchaseCompressor = (cost: number, type: Item): void => {
+    setError('')
+    if (props.inventory.gold < cost) {
+      setError('Not enough gold')
+      return
+    }
+    removeGold(cost)
+    addMachine({
+      type
+    })
   }
 
   const handleSell = (item: string): void => {
@@ -68,31 +82,60 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
 
   return (
     <div class="flex flex-col gap-2 w-full h-full">
-      <h1 class="text-4xl font-bold" textContent="Shop" />
-      <button
-        class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
-        onClick={() => {
-          handlePurchase(5)
-        }}
-      >
-        Buy a random shard for 5 gold
-      </button>
-      <For each={[...buyingList.keys()]}>
-        {(item) => {
-          return (
-            <button
-              class="text-xl p-2 rounded-md bg-green-500 w-64"
-              onClick={(e) => {
-                handleSell(e.currentTarget.value)
-              }}
-              value={item.type}
-            >
-              Sell {item.type} for {buyingList.get(item)} gold
-            </button>
-          )
-        }}
-      </For>
-      <p class="text-2xl font-bold" innerText={error()} />
+      <h1 textContent="Shop" />
+      <div class="flex flex-wrap gap-1">
+        <button
+          class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
+          onClick={() => {
+            handlePurchaseRandomShard(5)
+          }}
+          innerText="Buy a random shard for 5 gold"
+        />
+        <button
+          class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
+          onClick={() => {
+            handlePurchaseCompressor(100, fireShard1)
+          }}
+          innerText="Buy a fire shard 1 compressor for 100 gold"
+        />
+        <button
+          class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
+          onClick={() => {
+            handlePurchaseCompressor(100, waterShard1)
+          }}
+          innerText="Buy a water shard 1 compressor for 100 gold"
+        />
+        <button
+          class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
+          onClick={() => {
+            handlePurchaseCompressor(100, earthShard1)
+          }}
+          innerText="Buy an earth shard 1 compressor for 100 gold"
+        />
+        <button
+          class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
+          onClick={() => {
+            handlePurchaseCompressor(100, airShard1)
+          }}
+          innerText="Buy an air shard 1 compressor for 100 gold"
+        />
+        <For each={[...buyingList.keys()]}>
+          {(item) => {
+            return (
+              <button
+                class="text-lg p-2 rounded-md bg-green-500 w-24 h-24"
+                onClick={(e) => {
+                  handleSell(e.currentTarget.value)
+                }}
+                value={item.type}
+              >
+                {item.type} for {buyingList.get(item)}G
+              </button>
+            )
+          }}
+        </For>
+      </div>
+      <h4 innerText={error()} />
     </div>
   )
 }

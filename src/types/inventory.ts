@@ -1,11 +1,13 @@
 import { type SetStoreFunction } from 'solid-js/store'
-import { type Item } from './item'
+import { type Item } from './items'
+import { type Machine } from './machines'
 
 export interface Inventory {
   items: Map<Item, number>
   gold: number
   maxSize: number
   currentSize: number
+  machines: Machine[]
 }
 
 export const _removeItem = (setInventory: SetStoreFunction<Inventory>) => {
@@ -24,11 +26,11 @@ export const _removeItem = (setInventory: SetStoreFunction<Inventory>) => {
 }
 
 export const _addItem = (setInventory: SetStoreFunction<Inventory>) => {
-  return (item: Item) => {
+  return (item: Item, amount?: number) => {
     setInventory('items', (i) => {
       const newMap = new Map(i)
       const count = newMap.get(item) ?? 0
-      newMap.set(item, count + 1)
+      newMap.set(item, count + (amount ?? 1))
       return newMap
     })
   }

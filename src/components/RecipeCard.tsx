@@ -1,5 +1,5 @@
 import { type JSXElement } from 'solid-js'
-import { type Item } from '../types/item'
+import { type Item } from '../types/items'
 import { ElementDisplay } from './ElementDisplay'
 
 export const RecipeCard = (props: { recipe: Item, onClick?: () => void, selected?: boolean }): JSXElement => {

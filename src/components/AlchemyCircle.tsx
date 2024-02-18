@@ -8,7 +8,7 @@ import {
   calcTotalFireElement,
   calcTotalWaterElement,
   type Item
-} from '../types/item'
+} from '../types/items'
 import { fireShard2, type Recipe } from '../types/recipes'
 import { ElementDisplay } from './ElementDisplay'
 import { RecipeDisplay } from './RecipeDisplay'
@@ -78,8 +78,8 @@ export const AlchemyCircle = (props: {
   }
 
   return (
-    <div>
-      <p class="text-4xl font-bold" textContent="Crafting" />
+    <div class="flex flex-col gap-2 w-full h-full">
+      <h1 textContent="Crafting" />
       <div class="flex flex-col gap-4 justify-center">
         <ItemSelector
           items={props.inventory.items}
@@ -101,8 +101,7 @@ export const AlchemyCircle = (props: {
         />
         <button
           type="button"
-          class="w-32 h-16 text-xl font-semibold bg-gray-300 rounded-md outline outline-gray-600
-            hover:bg-blue-300 hover:outline-blue-600 active:bg-violet-300 active:outline-violet-600"
+          class="w-32 h-16 text-xl font-semibold bg-gray-300 "
           onClick={() => {
             handleCraft()
           }}
@@ -118,7 +117,7 @@ export const AlchemyCircle = (props: {
             airElement={totalAirElement()}
           />
         </div>
-        <p class="text-2xl font-bold" innerText={error()} />
+        <h4 innerText={error()} />
       </div>
       <RecipeDisplay recipe={selectedRecipe()} />
       <RecipeSelector selectedRecipe={selectedRecipe()} setSelectedRecipe={setSelectedRecipe} />
