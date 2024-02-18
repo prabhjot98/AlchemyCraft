@@ -44,7 +44,7 @@ export const AlchemyCircle = (props: {
   const handleCraft = (): void => {
     setError('')
     if (firstSelectedOption() === null || secondSelectedOption() === null || thirdSelectedOption() === null) {
-      setError("You haven't selected a reagent in every slot!")
+      setError("You haven't selected an item in every slot!")
       return
     }
 

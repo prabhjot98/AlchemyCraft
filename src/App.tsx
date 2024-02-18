@@ -5,6 +5,7 @@ import { type Inventory } from './types/inventory'
 import { ShopDisplay } from './components/ShopDisplay'
 import { InventoryDisplay } from './components/InventoryDisplay'
 import { type Item } from './types/item'
+import { Deconstructor } from './components/Deconstructor'
 
 const App: Component = () => {
   const [inventory, setInventory] = createStore<Inventory>({
@@ -27,6 +28,9 @@ const App: Component = () => {
         </div>
         <div class="flex flex-col bg-purple-200 p-2 rounded-md w-[32rem] h-fit">
           <AlchemyCircle inventory={inventory} setInventory={setInventory} />
+        </div>
+        <div class="flex flex-col bg-orange-200 p-2 rounded-md w-[32rem] h-fit">
+          <Deconstructor inventory={inventory} setInventory={setInventory} />
         </div>
       </div>
     </div>
