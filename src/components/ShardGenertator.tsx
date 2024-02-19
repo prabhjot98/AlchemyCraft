@@ -3,9 +3,9 @@ import { type SetStoreFunction } from 'solid-js/store'
 import { _addItem, type Inventory } from '../types/inventory'
 import { type Item } from '../types/items'
 
-const DURATION = 1000
+const DURATION = 1000 * 60
 
-export const ShardCompressor = (props: { setInventory: SetStoreFunction<Inventory>, shard: Item }): JSXElement => {
+export const ShardGenerator = (props: { setInventory: SetStoreFunction<Inventory>, shard: Item }): JSXElement => {
   const [shardCount, setShardCount] = createSignal<number>(0)
   setInterval(() => setShardCount(shardCount() + 1), DURATION)
 

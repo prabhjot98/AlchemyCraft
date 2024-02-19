@@ -53,7 +53,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
     addItem(randomItemFrom(SHARDS))
   }
 
-  const handlePurchaseCompressor = (cost: number, type: Item): void => {
+  const handlePurchaseGenerator = (cost: number, type: Item): void => {
     setError('')
     if (props.inventory.gold < cost) {
       setError('Not enough gold')
@@ -94,30 +94,30 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
         <button
           class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
           onClick={() => {
-            handlePurchaseCompressor(100, fireShard1)
+            handlePurchaseGenerator(100, fireShard1)
           }}
-          innerText="Buy a fire shard 1 compressor for 100 gold"
+          innerText="Buy a fire shard 1 generator for 100 gold"
         />
         <button
           class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
           onClick={() => {
-            handlePurchaseCompressor(100, waterShard1)
+            handlePurchaseGenerator(100, waterShard1)
           }}
-          innerText="Buy a water shard 1 compressor for 100 gold"
+          innerText="Buy a water shard 1 generator for 100 gold"
         />
         <button
           class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
           onClick={() => {
-            handlePurchaseCompressor(100, earthShard1)
+            handlePurchaseGenerator(100, earthShard1)
           }}
-          innerText="Buy an earth shard 1 compressor for 100 gold"
+          innerText="Buy an earth shard 1 generator for 100 gold"
         />
         <button
           class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
           onClick={() => {
-            handlePurchaseCompressor(100, airShard1)
+            handlePurchaseGenerator(100, airShard1)
           }}
-          innerText="Buy an air shard 1 compressor for 100 gold"
+          innerText="Buy an air shard 1 generator for 100 gold"
         />
         <For each={[...buyingList.keys()]}>
           {(item) => {

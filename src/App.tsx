@@ -1,7 +1,7 @@
 import { type Component } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { AlchemyCircle } from './components/AlchemyCircle'
-import { CompressorContainer } from './components/CompressorContainer'
+import { GeneratorContainer } from './components/GeneratorContainer'
 import { Deconstructor } from './components/Deconstructor'
 import { InventoryDisplay } from './components/InventoryDisplay'
 import { ShopDisplay } from './components/ShopDisplay'
@@ -21,7 +21,7 @@ export const App: Component = () => {
 
   return (
     <div class="w-screen h-screen flex bg-gray-200">
-      <div class="flex flex-wrap w-full h-full p-4 gap-2">
+      <div class="flex flex-wrap w-fit h-fit p-2 gap-2">
         <div class="flex flex-col bg-blue-200 p-2 rounded-md w-80 h-fit">
           <ShopDisplay inventory={inventory} setInventory={setInventory} />
         </div>
@@ -35,7 +35,7 @@ export const App: Component = () => {
           <Deconstructor inventory={inventory} setInventory={setInventory} />
         </div>
         <div class="flex flex-col bg-pink-200 p-2 rounded-md w-[32rem] h-fit">
-          <CompressorContainer inventory={inventory} setInventory={setInventory} />
+          <GeneratorContainer inventory={inventory} setInventory={setInventory} />
         </div>
       </div>
     </div>

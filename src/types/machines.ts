@@ -2,11 +2,11 @@ import { type SetStoreFunction } from 'solid-js/store'
 import { type Item } from './items'
 import { type Inventory } from './inventory'
 
-export interface Compressor {
+export interface Generator {
   type: Item
 }
 
-export type Machine = Compressor
+export type Machine = Generator
 
 export const _addMachine = (setInventory: SetStoreFunction<Inventory>) => {
   return (machine: Machine) => {
