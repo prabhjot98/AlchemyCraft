@@ -4,15 +4,16 @@ import { AlchemyCircle } from './components/AlchemyCircle'
 import { GeneratorContainer } from './components/GeneratorContainer'
 import { Deconstructor } from './components/Deconstructor'
 import { InventoryDisplay } from './components/InventoryDisplay'
-import { ShopDisplay } from './components/ShopDisplay'
 import { type Inventory } from './types/inventory'
 import { type Item } from './types/items'
+import { ShardRockDisplay } from './components/ShardRockDisplay'
+import { QuestDisplay } from './components/QuestDisplay'
 
 export const App: Component = () => {
   const [inventory, setInventory] = createStore<Inventory>({
     items: new Map<Item, number>(),
-    gold: 70,
-    maxSize: 12,
+    gold: 0,
+    maxSize: 15,
     get currentSize () {
       return [...this.items.keys()].length
     },
@@ -23,7 +24,10 @@ export const App: Component = () => {
     <div class="w-screen h-screen flex bg-gray-200">
       <div class="flex flex-wrap w-fit h-fit p-2 gap-2">
         <div class="flex flex-col bg-blue-200 p-2 rounded-md w-80 h-fit">
-          <ShopDisplay inventory={inventory} setInventory={setInventory} />
+          <QuestDisplay inventory={inventory} setInventory={setInventory} />
+        </div>
+        <div class="flex flex-wrap bg-amber-200 p-2 rounded-md w-80 gap-2 h-fit">
+          <ShardRockDisplay inventory={inventory} setInventory={setInventory} />
         </div>
         <div class="flex flex-col bg-red-200 p-2 rounded-md w-[28rem] h-fit">
           <InventoryDisplay inventory={inventory} />

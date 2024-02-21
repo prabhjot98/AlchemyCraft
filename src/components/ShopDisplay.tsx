@@ -5,7 +5,7 @@ import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '..
 import { type Item, SHARDS, randomItemFrom, fireShard1, waterShard1, earthShard1, airShard1 } from '../types/items'
 import {
   RECIPES,
-  SAND,
+  sand,
   coal,
   copperOre,
   firePotion,
@@ -32,7 +32,7 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
   const buyingList = new Map<Item, number>()
   buyingList.set(copperOre, 30)
   buyingList.set(coal, 30)
-  buyingList.set(SAND, 60)
+  buyingList.set(sand, 60)
   buyingList.set(tinOre, 60)
   buyingList.set(mandrake, 100)
   buyingList.set(glass, 100)

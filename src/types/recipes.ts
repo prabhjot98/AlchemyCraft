@@ -2,7 +2,55 @@ import { type Item } from './items'
 
 export type Recipe = Item
 
-export const SAND: Recipe = {
+export const clay: Recipe = {
+  type: 'clay',
+  fireElement: 0,
+  waterElement: 1,
+  earthElement: 2,
+  airElement: 1
+}
+
+export const ash: Recipe = {
+  type: 'ash',
+  fireElement: 1,
+  waterElement: 0,
+  earthElement: 1,
+  airElement: 1
+}
+
+export const steam: Recipe = {
+  type: 'steam',
+  fireElement: 1,
+  waterElement: 1,
+  earthElement: 0,
+  airElement: 1
+}
+
+export const cobblestone: Recipe = {
+  type: 'cobblestone',
+  fireElement: 1,
+  waterElement: 1,
+  earthElement: 1,
+  airElement: 0
+}
+
+export const sparklingWater: Recipe = {
+  type: 'sparkling water',
+  fireElement: 0,
+  waterElement: 2,
+  earthElement: 0,
+  airElement: 1
+}
+
+export const pot: Recipe = {
+  type: 'pot',
+  fireElement: 2,
+  waterElement: 1,
+  earthElement: 1,
+  airElement: 1
+}
+
+export const sand: Recipe = {
   type: 'sand',
   fireElement: 0,
   waterElement: 0,
@@ -215,16 +263,24 @@ export const RECIPES = [
   waterShard8,
   earthShard8,
   airShard8,
-  SAND,
-  firePotion,
+  sand,
   glass,
   vinegar,
   ironOre,
   copperOre,
+  tinOre,
   goldOre,
   mandrake,
   bronze,
   coal,
   alcohol,
-  bomb
+  firePotion,
+  bomb,
+  sparklingWater,
+  cobblestone,
+  steam,
+  clay,
+  ash,
+  steam,
+  pot
 ]

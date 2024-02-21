@@ -1,5 +1,5 @@
 import { For, type JSXElement } from 'solid-js'
-import { ShardGenerator } from './ShardGenertator'
+import { ShardGenerator } from './ShardGenerator'
 import { type SetStoreFunction } from 'solid-js/store'
 import { type Inventory } from '../types/inventory'
 
