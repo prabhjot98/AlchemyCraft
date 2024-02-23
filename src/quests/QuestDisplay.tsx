@@ -74,41 +74,67 @@ export const QuestDisplay = (props: {
     <div class="flex flex-col gap-2 w-full h-full">
       <h1 textContent="Quests" />
       <div class="flex flex-wrap gap-1">
-        <button
+        <div
+          class="flex flex-row gap-2 align-middle"
           onClick={() => {
             handleBlacksmith()
           }}
         >
-          Blacksmith: Give me a gold ore and I'll give you a machine that can generate fire shard 1's
-        </button>
-        <button
+          <img
+            src="../../public/assets/items/blacksmith__Anime_S3844297624_St40_G7 (Custom).png"
+            class="min-h-32 min-w-32 rounded-xl"
+          />
+          <button>Give me a gold ore and I'll give you a machine that can generate fire shard 1's</button>
+        </div>
+        <div
+          class="flex flex-row gap-2 align-middle"
           onClick={() => {
             handleOldMan()
           }}
         >
-          Old man: Give me a alcohol and I'll give you a machine that can generate water shard 1's
-        </button>
-        <button
+          <img
+            src="../../public/assets/items/drunk_happy_old_man__Anime_S2426875797_St40_G7 (Custom).png"
+            class="min-h-32 min-w-32 rounded-xl"
+          />
+          <button>Old man: Give me a alcohol and I'll give you a machine that can generate water shard 1's</button>
+        </div>
+        <div
+          class="flex flex-row gap-2 align-middle"
           onClick={() => {
             handleShopkeeper()
           }}
         >
-          Shopkeeper: Give me a glass and I'll give you a machine that can generate earth shard 1's
-        </button>
-        <button
+          <img
+            src="../../public/assets/items/merchant__Anime_S3469690194_St40_G7 (Custom).png"
+            class="min-h-32 min-w-32 rounded-xl"
+          />
+          <button>Shopkeeper: Give me a glass and I'll give you a machine that can generate earth shard 1's</button>
+        </div>
+        <div
+          class="flex flex-row gap-2 align-middle"
           onClick={() => {
             handleFarmer()
           }}
         >
-          Farmer: Give me a mandrake and I'll give you a machine that can generate air shard 1's
-        </button>
-        <button
+          <img
+            src="../../public/assets/items/farmer__Anime_S3891257133_St40_G7 (Custom).png"
+            class="min-h-32 min-w-32 rounded-xl"
+          />
+
+          <button>Farmer: Give me a mandrake and I'll give you a machine that can generate air shard 1's</button>
+        </div>
+        <div
+          class="flex flex-row gap-2 align-middle"
           onClick={() => {
             handleUSA()
           }}
         >
-          USA: Give us a bomb and we'll give you 1000G
-        </button>
+          <img
+            src="../../public/assets/items/man_wearing_the_american_flag_as_a_bandana__Anime_S3665157605_St40_G7 (Custom).png"
+            class="min-h-32 min-w-32 rounded-xl"
+          />
+          <button>USA: Give us a bomb and we'll give you 1000G</button>
+        </div>
       </div>
       <h4 innerText={error()} />
     </div>
