@@ -66,14 +66,6 @@ export const firePotion: Recipe = {
   airElement: 0
 }
 
-export const glass: Recipe = {
-  type: 'glass',
-  fireElement: 2,
-  waterElement: 0,
-  earthElement: 2,
-  airElement: 2
-}
-
 export const vinegar: Recipe = {
   type: 'vinegar',
   fireElement: 0,
@@ -202,28 +194,12 @@ export const tinOre: Item = {
   airElement: 1
 }
 
-export const goldOre: Item = {
-  type: 'gold ore',
-  fireElement: 2,
-  waterElement: 0,
-  earthElement: 4,
-  airElement: 0
-}
-
 export const coal: Item = {
   type: 'coal',
   fireElement: 2,
   waterElement: 0,
   earthElement: 1,
   airElement: 0
-}
-
-export const mandrake: Item = {
-  type: 'mandrake',
-  fireElement: 0,
-  waterElement: 2,
-  earthElement: 2,
-  airElement: 2
 }
 
 export const bronze: Item = {
@@ -239,6 +215,30 @@ export const alcohol: Item = {
   fireElement: 2,
   waterElement: 5,
   earthElement: 0,
+  airElement: 0
+}
+
+export const glass: Recipe = {
+  type: 'glass',
+  fireElement: 2,
+  waterElement: 0,
+  earthElement: 2,
+  airElement: 2
+}
+
+export const mandrake: Item = {
+  type: 'mandrake',
+  fireElement: 0,
+  waterElement: 2,
+  earthElement: 2,
+  airElement: 2
+}
+
+export const goldOre: Item = {
+  type: 'gold ore',
+  fireElement: 2,
+  waterElement: 0,
+  earthElement: 4,
   airElement: 0
 }
 

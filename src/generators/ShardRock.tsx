@@ -1,9 +1,9 @@
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addItem, type Inventory } from '../inventory/inventory'
 import { createSignal, type JSXElement } from 'solid-js'
-import { fireShard1, waterShard1, type Item, airShard1 } from '../items/items'
+import { fireShard1, waterShard1, type Item, airShard1, earthShard1 } from '../items/items'
 
-const CLICKS_NEEDED = 10
+const CLICKS_NEEDED = 5
 
 export enum ShardRockType {
   FIRE,
@@ -19,7 +19,7 @@ const getShardFromType = (shardRockType: ShardRockType): Item => {
     case ShardRockType.WATER:
       return waterShard1
     case ShardRockType.EARTH:
-      return waterShard1
+      return earthShard1
     case ShardRockType.AIR:
       return airShard1
   }

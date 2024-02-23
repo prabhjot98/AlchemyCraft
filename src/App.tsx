@@ -17,7 +17,8 @@ export const App: Component = () => {
     get currentSize () {
       return [...this.items.keys()].length
     },
-    machines: []
+    machines: [],
+    completedQuests: []
   })
 
   return (

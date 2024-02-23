@@ -1,6 +1,7 @@
 import { type SetStoreFunction } from 'solid-js/store'
 import { type Item } from '../items/items'
 import { type Generator } from '../generators/generators'
+import { type Quest } from '../quests/quest'
 
 export interface Inventory {
   items: Map<Item, number>
@@ -8,6 +9,7 @@ export interface Inventory {
   maxSize: number
   currentSize: number
   machines: Generator[]
+  completedQuests: Quest[]
 }
 
 export const _removeItem = (setInventory: SetStoreFunction<Inventory>) => {
@@ -45,5 +47,15 @@ export const _addGold = (setInventory: SetStoreFunction<Inventory>) => {
 export const _removeGold = (setInventory: SetStoreFunction<Inventory>) => {
   return (gold: number) => {
     setInventory('gold', (g) => g - gold)
+  }
+}
+
+export const _completeQuest = (setInventory: SetStoreFunction<Inventory>) => {
+  return (quest: Quest) => {
+    setInventory('completedQuests', (c) => {
+      const newMap = [...c]
+      newMap.push(quest)
+      return newMap
+    })
   }
 }
