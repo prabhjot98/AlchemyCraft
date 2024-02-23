@@ -1,7 +1,7 @@
 import { type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
-import { type Inventory } from '../types/inventory'
-import { airShard1, earthShard1, fireShard1, waterShard1 } from '../types/items'
+import { type Inventory } from '../inventory/inventory'
+import { airShard1, earthShard1, fireShard1, waterShard1 } from '../items/items'
 import { ShardRock } from './ShardRock'
 
 export const ShardRockDisplay = (props: {

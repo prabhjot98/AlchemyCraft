@@ -1,10 +1,10 @@
 import { createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addGold, _removeItem, type Inventory } from '../types/inventory'
+import { _addGold, _removeItem, type Inventory } from '../inventory/inventory'
 
-import { _addMachine } from '../types/machines'
-import { alcohol, glass, goldOre, mandrake } from '../types/recipes'
-import { airShard1, earthShard1, fireShard1, waterShard1 } from '../types/items'
+import { _addMachine } from '../generators/generators'
+import { alcohol, glass, goldOre, mandrake } from '../recipes/recipes'
+import { airShard1, earthShard1, fireShard1, waterShard1 } from '../items/items'
 export const QuestDisplay = (props: {
   inventory: Inventory
   setInventory: SetStoreFunction<Inventory>

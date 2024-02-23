@@ -1,6 +1,6 @@
 import { type JSXElement } from 'solid-js'
-import { type Item } from '../types/items'
-import { ElementDisplay } from './ElementDisplay'
+import { type Item } from '../items/items'
+import { ElementDisplay } from '../components/ElementDisplay'
 
 export const ItemDisplay = (props: { item: Item, count: number, onClick?: () => void }): JSXElement => {
   return (

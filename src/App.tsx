@@ -1,13 +1,13 @@
 import { type Component } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { AlchemyCircle } from './components/AlchemyCircle'
-import { GeneratorContainer } from './components/GeneratorContainer'
 import { Deconstructor } from './components/Deconstructor'
-import { InventoryDisplay } from './components/InventoryDisplay'
-import { type Inventory } from './types/inventory'
-import { type Item } from './types/items'
-import { ShardRockDisplay } from './components/ShardRockDisplay'
-import { QuestDisplay } from './components/QuestDisplay'
+import { QuestDisplay } from './quests/QuestDisplay'
+import { GeneratorContainer } from './generators/GeneratorContainer'
+import { ShardRockDisplay } from './generators/ShardRockDisplay'
+import { InventoryDisplay } from './inventory/InventoryDisplay'
+import { type Inventory } from './inventory/inventory'
+import { type Item } from './items/items'
 
 export const App: Component = () => {
   const [inventory, setInventory] = createStore<Inventory>({
