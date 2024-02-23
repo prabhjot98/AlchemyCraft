@@ -1,7 +1,7 @@
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, type Inventory } from '../types/inventory'
+import { _addItem, type Inventory } from '../inventory/inventory'
 import { createSignal, type JSXElement } from 'solid-js'
-import { type Item } from '../types/items'
+import { type Item } from '../items/items'
 
 const CLICKS_NEEDED = 10
 

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { For, createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '../types/inventory'
-import { type Item, SHARDS, randomItemFrom, fireShard1, waterShard1, earthShard1, airShard1 } from '../types/items'
+import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '../inventory/inventory'
+import { type Item, SHARDS, randomItemFrom, fireShard1, waterShard1, earthShard1, airShard1 } from '../items/items'
 import {
   RECIPES,
   sand,
@@ -17,8 +17,8 @@ import {
   bomb,
   alcohol,
   bronze
-} from '../types/recipes'
-import { _addMachine } from '../types/machines'
+} from '../recipes/recipes'
+import { _addMachine } from '../generators/generators'
 
 export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStoreFunction<Inventory> }): JSXElement => {
   const [error, setError] = createSignal<string>('')

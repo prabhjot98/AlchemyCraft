@@ -1,7 +1,7 @@
 import { For, type Setter, type JSXElement, createSignal } from 'solid-js'
-import { RECIPES, type Recipe } from '../types/recipes'
 import { RecipeCard } from './RecipeCard'
-import { Modal } from './Modal'
+import { RECIPES, type Recipe } from './recipes'
+import { Modal } from '../components/Modal'
 
 export const RecipeSelector = (props: { selectedRecipe: Recipe, setSelectedRecipe: Setter<Recipe> }): JSXElement => {
   const [modalIsOpen, setModalIsOpen] = createSignal(false)

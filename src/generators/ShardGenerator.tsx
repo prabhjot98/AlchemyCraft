@@ -1,7 +1,7 @@
 import { createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, type Inventory } from '../types/inventory'
-import { type Item } from '../types/items'
+import { _addItem, type Inventory } from '../inventory/inventory'
+import { type Item } from '../items/items'
 
 const DURATION = 1000 * 15
 

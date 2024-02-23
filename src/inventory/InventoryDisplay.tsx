@@ -1,6 +1,6 @@
 import { For, type JSXElement } from 'solid-js'
-import { type Inventory } from '../types/inventory'
-import { ItemDisplay } from './ItemDisplay'
+import { type Inventory } from '../inventory/inventory'
+import { ItemDisplay } from '../items/ItemDisplay'
 
 export const InventoryDisplay = (props: { inventory: Inventory }): JSXElement => {
   const numberOfUniqueItems = (): number => [...props.inventory.items.keys()].length

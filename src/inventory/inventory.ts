@@ -1,13 +1,13 @@
 import { type SetStoreFunction } from 'solid-js/store'
-import { type Item } from './items'
-import { type Machine } from './machines'
+import { type Item } from '../items/items'
+import { type Generator } from '../generators/generators'
 
 export interface Inventory {
   items: Map<Item, number>
   gold: number
   maxSize: number
   currentSize: number
-  machines: Machine[]
+  machines: Generator[]
 }
 
 export const _removeItem = (setInventory: SetStoreFunction<Inventory>) => {

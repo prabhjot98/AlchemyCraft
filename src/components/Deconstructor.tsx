@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, type Inventory } from '../types/inventory'
-import { ItemSelector } from './ItemSelector'
+import { _addItem, type Inventory } from '../inventory/inventory'
 import { type JSXElement, createSignal } from 'solid-js'
-import { fireShard1, waterShard1, type Item, earthShard1, airShard1 } from '../types/items'
+import { fireShard1, waterShard1, type Item, earthShard1, airShard1 } from '../items/items'
+import { ItemSelector } from '../items/ItemSelector'
 
 export const Deconstructor = (props: {
   inventory: Inventory

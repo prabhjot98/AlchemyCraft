@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, _removeItem, type Inventory } from '../types/inventory'
+import { _addItem, _removeItem, type Inventory } from '../inventory/inventory'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
   calcTotalFireElement,
   calcTotalWaterElement,
   type Item
-} from '../types/items'
-import { fireShard2, type Recipe } from '../types/recipes'
+} from '../items/items'
+import { ItemSelector } from '../items/ItemSelector'
+import { RecipeDisplay } from '../recipes/RecipeDisplay'
+import { fireShard2, type Recipe } from '../recipes/recipes'
+import { RecipeSelector } from '../recipes/RecipeSelector'
 import { ElementDisplay } from './ElementDisplay'
-import { RecipeDisplay } from './RecipeDisplay'
-import { RecipeSelector } from './RecipeSelector'
-import { ItemSelector } from './ItemSelector'
 
 export const AlchemyCircle = (props: {
   inventory: Inventory

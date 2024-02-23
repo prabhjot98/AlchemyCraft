@@ -1,7 +1,7 @@
 import { For, type JSXElement } from 'solid-js'
 import { ShardGenerator } from './ShardGenerator'
 import { type SetStoreFunction } from 'solid-js/store'
-import { type Inventory } from '../types/inventory'
+import { type Inventory } from '../inventory/inventory'
 
 export const GeneratorContainer = (props: {
   inventory: Inventory
