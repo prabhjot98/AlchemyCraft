@@ -3,7 +3,7 @@ import { _addItem, type Inventory } from '../inventory/inventory'
 import { createSignal, type JSXElement } from 'solid-js'
 import { fireShard1, waterShard1, type Item, airShard1, earthShard1 } from '../items/items'
 
-const CLICKS_NEEDED = 5
+const CLICKS_NEEDED = 3
 
 export enum ShardRockType {
   FIRE,

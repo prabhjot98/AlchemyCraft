@@ -11,7 +11,7 @@ import {
 } from '../items/items'
 import { ItemSelector } from '../items/ItemSelector'
 import { RecipeDisplay } from '../recipes/RecipeDisplay'
-import { fireShard2, type Recipe } from '../recipes/recipes'
+import { fireShard3, type Recipe } from '../recipes/recipes'
 import { RecipeSelector } from '../recipes/RecipeSelector'
 import { ElementDisplay } from './ElementDisplay'
 
@@ -38,7 +38,7 @@ export const AlchemyCircle = (props: {
   const addItem = _addItem(props.setInventory)
   const removeItem = _removeItem(props.setInventory)
 
-  const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(fireShard2)
+  const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(fireShard3)
 
   const [error, setError] = createSignal<string>('')
 
@@ -50,10 +50,10 @@ export const AlchemyCircle = (props: {
     }
 
     if (
-      totalFireElement() >= selectedRecipe().fireElement &&
-      totalWaterElement() >= selectedRecipe().waterElement &&
-      totalEarthElement() >= selectedRecipe().earthElement &&
-      totalAirElement() >= selectedRecipe().airElement
+      totalFireElement() === selectedRecipe().fireElement &&
+      totalWaterElement() === selectedRecipe().waterElement &&
+      totalEarthElement() === selectedRecipe().earthElement &&
+      totalAirElement() === selectedRecipe().airElement
     ) {
       addItem(selectedRecipe())
 
@@ -73,7 +73,7 @@ export const AlchemyCircle = (props: {
         removeItem(thirdSelectedOption()!)
       }
     } else {
-      setError("You don't have enough elements to craft this item!")
+      setError('You need to match the elements exactly to craft this item!')
     }
   }
 

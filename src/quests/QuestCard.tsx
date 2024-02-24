@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { type Setter, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addGold, _addItem, _completeQuest, _removeItem, type Inventory } from '../inventory/inventory'
-import { QuestGiver, type Quest } from './quest'
+import { QuestGiver, type Quest, isItemReward, isGeneratorReward, isGoldReward } from './quest'
 import { _addMachine } from '../generators/generators'
 
 const getQuestGiverImg = (questGiver: QuestGiver): string => {
@@ -39,15 +40,17 @@ export const QuestCard = (props: {
       return
     }
     removeItem(quest.questItem)
-    if (quest.rewardItem !== undefined) {
-      addItem(quest.rewardItem)
-    }
-    if (quest.rewardGenerator !== undefined) {
-      addMachine(quest.rewardGenerator)
-    }
-    if (quest.rewardGold !== undefined) {
-      addGold(quest.rewardGold)
-    }
+    quest.rewards.forEach((reward) => {
+      if (isItemReward(reward)) {
+        addItem(reward.item)
+      }
+      if (isGeneratorReward(reward)) {
+        addMachine(reward.generator)
+      }
+      if (isGoldReward(reward)) {
+        addGold(reward.gold)
+      }
+    })
     completeQuest(quest)
     props.setError('Thanks for the item!')
   }

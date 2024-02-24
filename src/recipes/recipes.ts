@@ -6,7 +6,7 @@ export const clay: Recipe = {
   type: 'clay',
   fireElement: 0,
   waterElement: 1,
-  earthElement: 2,
+  earthElement: 3,
   airElement: 1
 }
 
@@ -37,16 +37,16 @@ export const cobblestone: Recipe = {
 export const sparklingWater: Recipe = {
   type: 'sparkling water',
   fireElement: 0,
-  waterElement: 2,
+  waterElement: 3,
   earthElement: 0,
-  airElement: 1
+  airElement: 2
 }
 
 export const pot: Recipe = {
   type: 'pot',
   fireElement: 2,
   waterElement: 1,
-  earthElement: 1,
+  earthElement: 3,
   airElement: 1
 }
 
@@ -54,135 +54,103 @@ export const sand: Recipe = {
   type: 'sand',
   fireElement: 0,
   waterElement: 0,
-  earthElement: 2,
-  airElement: 2
+  earthElement: 3,
+  airElement: 3
 }
 
 export const firePotion: Recipe = {
   type: 'fire potion',
   fireElement: 6,
-  waterElement: 2,
-  earthElement: 4,
+  waterElement: 3,
+  earthElement: 9,
   airElement: 0
 }
 
 export const vinegar: Recipe = {
   type: 'vinegar',
   fireElement: 0,
-  waterElement: 4,
+  waterElement: 9,
   earthElement: 0,
-  airElement: 4
+  airElement: 9
 }
 
-export const fireShard2: Recipe = {
-  type: 'fire shard 2',
-  fireElement: 2,
+export const fireShard3: Recipe = {
+  type: 'fire shard 3',
+  fireElement: 3,
   waterElement: 0,
   earthElement: 0,
   airElement: 0
 }
 
-export const waterShard2: Recipe = {
-  type: 'water shard 2',
+export const waterShard3: Recipe = {
+  type: 'water shard 3',
   fireElement: 0,
-  waterElement: 2,
+  waterElement: 3,
   earthElement: 0,
   airElement: 0
 }
 
-export const earthShard2: Recipe = {
-  type: 'earth shard 2',
+export const earthShard3: Recipe = {
+  type: 'earth shard 3',
   fireElement: 0,
   waterElement: 0,
-  earthElement: 2,
+  earthElement: 3,
   airElement: 0
 }
 
-export const airShard2: Recipe = {
-  type: 'air shard 2',
+export const airShard3: Recipe = {
+  type: 'air shard 3',
   fireElement: 0,
   waterElement: 0,
   earthElement: 0,
-  airElement: 2
+  airElement: 3
 }
 
-export const fireShard4: Recipe = {
-  type: 'fire shard 4',
-  fireElement: 4,
-  waterElement: 0,
-  earthElement: 0,
-  airElement: 0
-}
-
-export const waterShard4: Recipe = {
-  type: 'water shard 4',
-  fireElement: 0,
-  waterElement: 4,
-  earthElement: 0,
-  airElement: 0
-}
-
-export const earthShard4: Recipe = {
-  type: 'earth shard 4',
-  fireElement: 0,
-  waterElement: 0,
-  earthElement: 4,
-  airElement: 0
-}
-
-export const airShard4: Recipe = {
-  type: 'air shard 4',
-  fireElement: 0,
-  waterElement: 0,
-  earthElement: 0,
-  airElement: 4
-}
-
-export const fireShard8: Recipe = {
-  type: 'fire shard 8',
-  fireElement: 8,
+export const fireShard9: Recipe = {
+  type: 'fire shard 9',
+  fireElement: 9,
   waterElement: 0,
   earthElement: 0,
   airElement: 0
 }
 
-export const waterShard8: Recipe = {
-  type: 'water shard 8',
+export const waterShard9: Recipe = {
+  type: 'water shard 9',
   fireElement: 0,
-  waterElement: 8,
+  waterElement: 9,
   earthElement: 0,
   airElement: 0
 }
 
-export const earthShard8: Recipe = {
-  type: 'earth shard 8',
+export const earthShard9: Recipe = {
+  type: 'earth shard 9',
   fireElement: 0,
   waterElement: 0,
-  earthElement: 8,
+  earthElement: 9,
   airElement: 0
 }
 
-export const airShard8: Recipe = {
-  type: 'air shard 8',
+export const airShard9: Recipe = {
+  type: 'air shard 9',
   fireElement: 0,
   waterElement: 0,
   earthElement: 0,
-  airElement: 8
+  airElement: 9
 }
 
 export const ironOre: Item = {
   type: 'iron ore',
-  fireElement: 2,
+  fireElement: 3,
   waterElement: 0,
-  earthElement: 2,
+  earthElement: 3,
   airElement: 0
 }
 
 export const copperOre: Item = {
   type: 'copper ore',
   fireElement: 1,
-  waterElement: 0,
-  earthElement: 2,
+  waterElement: 1,
+  earthElement: 3,
   airElement: 0
 }
 
@@ -190,7 +158,7 @@ export const tinOre: Item = {
   type: 'tin ore',
   fireElement: 1,
   waterElement: 0,
-  earthElement: 4,
+  earthElement: 9,
   airElement: 1
 }
 
@@ -204,65 +172,61 @@ export const coal: Item = {
 
 export const bronze: Item = {
   type: 'bronze',
-  fireElement: 2,
+  fireElement: 3,
   waterElement: 0,
   earthElement: 6,
-  airElement: 1
+  airElement: 0
 }
 
 export const alcohol: Item = {
   type: 'alcohol',
-  fireElement: 2,
-  waterElement: 5,
+  fireElement: 3,
+  waterElement: 6,
   earthElement: 0,
   airElement: 0
 }
 
 export const glass: Recipe = {
   type: 'glass',
-  fireElement: 2,
+  fireElement: 6,
   waterElement: 0,
-  earthElement: 2,
-  airElement: 2
+  earthElement: 3,
+  airElement: 3
 }
 
 export const mandrake: Item = {
   type: 'mandrake',
   fireElement: 0,
-  waterElement: 2,
-  earthElement: 2,
-  airElement: 2
+  waterElement: 3,
+  earthElement: 3,
+  airElement: 3
 }
 
 export const goldOre: Item = {
   type: 'gold ore',
-  fireElement: 2,
+  fireElement: 3,
   waterElement: 0,
-  earthElement: 4,
+  earthElement: 9,
   airElement: 0
 }
 
 export const bomb: Item = {
   type: 'bomb',
-  fireElement: 8,
-  waterElement: 2,
-  earthElement: 10,
-  airElement: 4
+  fireElement: 9,
+  waterElement: 3,
+  earthElement: 15,
+  airElement: 9
 }
 
 export const RECIPES = [
-  fireShard2,
-  waterShard2,
-  earthShard2,
-  airShard2,
-  fireShard4,
-  waterShard4,
-  earthShard4,
-  airShard4,
-  fireShard8,
-  waterShard8,
-  earthShard8,
-  airShard8,
+  fireShard3,
+  waterShard3,
+  earthShard3,
+  airShard3,
+  fireShard9,
+  waterShard9,
+  earthShard9,
+  airShard9,
   sand,
   glass,
   vinegar,
