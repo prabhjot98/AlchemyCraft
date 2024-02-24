@@ -28,13 +28,13 @@ const getShardFromType = (shardRockType: ShardRockType): Item => {
 const getShardImage = (shardRockType: ShardRockType): string => {
   switch (shardRockType) {
     case ShardRockType.FIRE:
-      return '../../public/assets/items/one_fire_crystal__Anime_S531468354_St40_G7 (Custom).png'
+      return '/public/assets/items/one_fire_crystal__Anime_S531468354_St40_G7 (Custom).png'
     case ShardRockType.WATER:
-      return '../../public/assets/items/one_blue_crystal__Anime_S938936857_St40_G7 (Custom).png'
+      return '/public/assets/items/one_blue_crystal__Anime_S938936857_St40_G7 (Custom).png'
     case ShardRockType.EARTH:
-      return '../../public/assets/items/one_brown_crystal__Anime_S1221490770_St40_G7 (Custom).png'
+      return '/public/assets/items/one_brown_crystal__Anime_S1221490770_St40_G7 (Custom).png'
     case ShardRockType.AIR:
-      return '../../public/assets/items/one_white_crystal__Anime_S3421455093_St40_G7 (Custom).png'
+      return '/public/assets/items/one_white_crystal__Anime_S3421455093_St40_G7 (Custom).png'
   }
 }
 
