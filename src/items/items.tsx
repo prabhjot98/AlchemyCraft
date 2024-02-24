@@ -11,39 +11,39 @@ export interface Item {
   airElement: number
 }
 
-export const fireShard1: Item = {
-  type: 'fire shard 1',
+export const smallFireShard: Item = {
+  type: 'small fire shard',
   fireElement: 1,
   waterElement: 0,
   earthElement: 0,
   airElement: 0
 }
 
-export const waterShard1: Item = {
-  type: 'water shard 1',
+export const smallWaterShard: Item = {
+  type: 'small water shard',
   fireElement: 0,
   waterElement: 1,
   earthElement: 0,
   airElement: 0
 }
 
-export const earthShard1: Item = {
-  type: 'earth shard 1',
+export const smallEarthShard: Item = {
+  type: 'small earth shard',
   fireElement: 0,
   waterElement: 0,
   earthElement: 1,
   airElement: 0
 }
 
-export const airShard1: Item = {
-  type: 'air shard 1',
+export const smallAirShard: Item = {
+  type: 'small air shard',
   fireElement: 0,
   waterElement: 0,
   earthElement: 0,
   airElement: 1
 }
 
-export const SHARDS = [fireShard1, waterShard1, earthShard1, airShard1]
+export const SHARDS = [smallFireShard, smallWaterShard, smallEarthShard, smallAirShard]
 
 export const calcTotalFireElement = (...items: Array<Item | null>): number => {
   let total = 0

@@ -11,7 +11,7 @@ import {
 } from '../items/items'
 import { ItemSelector } from '../items/ItemSelector'
 import { RecipeDisplay } from '../recipes/RecipeDisplay'
-import { fireShard3, type Recipe } from '../recipes/recipes'
+import { mediumFireShard, type Recipe } from '../recipes/recipes'
 import { RecipeSelector } from '../recipes/RecipeSelector'
 import { ElementDisplay } from './ElementDisplay'
 
@@ -38,7 +38,7 @@ export const AlchemyCircle = (props: {
   const addItem = _addItem(props.setInventory)
   const removeItem = _removeItem(props.setInventory)
 
-  const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(fireShard3)
+  const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(mediumFireShard)
 
   const [error, setError] = createSignal<string>('')
 

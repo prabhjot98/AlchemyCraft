@@ -2,7 +2,15 @@
 import { For, createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addGold, _addItem, _removeGold, _removeItem, type Inventory } from '../inventory/inventory'
-import { type Item, SHARDS, randomItemFrom, fireShard1, waterShard1, earthShard1, airShard1 } from '../items/items'
+import {
+  type Item,
+  SHARDS,
+  randomItemFrom,
+  smallFireShard,
+  smallWaterShard,
+  smallEarthShard,
+  smallAirShard
+} from '../items/items'
 import {
   RECIPES,
   sand,
@@ -94,28 +102,28 @@ export const ShopDisplay = (props: { inventory: Inventory, setInventory: SetStor
         <button
           class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
           onClick={() => {
-            handlePurchaseGenerator(100, fireShard1)
+            handlePurchaseGenerator(100, smallFireShard)
           }}
           innerText="Buy a fire shard 1 generator for 100 gold"
         />
         <button
           class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
           onClick={() => {
-            handlePurchaseGenerator(100, waterShard1)
+            handlePurchaseGenerator(100, smallWaterShard)
           }}
           innerText="Buy a water shard 1 generator for 100 gold"
         />
         <button
           class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
           onClick={() => {
-            handlePurchaseGenerator(100, earthShard1)
+            handlePurchaseGenerator(100, smallEarthShard)
           }}
           innerText="Buy an earth shard 1 generator for 100 gold"
         />
         <button
           class="text-xl bg-yellow-400 p-2 rounded-md w-fit"
           onClick={() => {
-            handlePurchaseGenerator(100, airShard1)
+            handlePurchaseGenerator(100, smallAirShard)
           }}
           innerText="Buy an air shard 1 generator for 100 gold"
         />

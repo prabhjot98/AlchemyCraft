@@ -74,64 +74,64 @@ export const vinegar: Recipe = {
   airElement: 9
 }
 
-export const fireShard3: Recipe = {
-  type: 'fire shard 3',
+export const mediumFireShard: Recipe = {
+  type: 'medium fire shard',
   fireElement: 3,
   waterElement: 0,
   earthElement: 0,
   airElement: 0
 }
 
-export const waterShard3: Recipe = {
-  type: 'water shard 3',
+export const mediumWaterShard: Recipe = {
+  type: 'medium water shard',
   fireElement: 0,
   waterElement: 3,
   earthElement: 0,
   airElement: 0
 }
 
-export const earthShard3: Recipe = {
-  type: 'earth shard 3',
+export const mediumEarthShard: Recipe = {
+  type: 'medium earth shard',
   fireElement: 0,
   waterElement: 0,
   earthElement: 3,
   airElement: 0
 }
 
-export const airShard3: Recipe = {
-  type: 'air shard 3',
+export const mediumAirShard: Recipe = {
+  type: 'medium air shard',
   fireElement: 0,
   waterElement: 0,
   earthElement: 0,
   airElement: 3
 }
 
-export const fireShard9: Recipe = {
-  type: 'fire shard 9',
+export const largeFireShard: Recipe = {
+  type: 'large fire shard',
   fireElement: 9,
   waterElement: 0,
   earthElement: 0,
   airElement: 0
 }
 
-export const waterShard9: Recipe = {
-  type: 'water shard 9',
+export const largeWaterShard: Recipe = {
+  type: 'large water shard',
   fireElement: 0,
   waterElement: 9,
   earthElement: 0,
   airElement: 0
 }
 
-export const earthShard9: Recipe = {
-  type: 'earth shard 9',
+export const largeEarthShard: Recipe = {
+  type: 'large earth shard',
   fireElement: 0,
   waterElement: 0,
   earthElement: 9,
   airElement: 0
 }
 
-export const airShard9: Recipe = {
-  type: 'air shard 9',
+export const largeAirShard: Recipe = {
+  type: 'large air shard',
   fireElement: 0,
   waterElement: 0,
   earthElement: 0,
@@ -219,14 +219,14 @@ export const bomb: Item = {
 }
 
 export const RECIPES = [
-  fireShard3,
-  waterShard3,
-  earthShard3,
-  airShard3,
-  fireShard9,
-  waterShard9,
-  earthShard9,
-  airShard9,
+  mediumFireShard,
+  mediumWaterShard,
+  mediumEarthShard,
+  mediumAirShard,
+  largeFireShard,
+  largeWaterShard,
+  largeEarthShard,
+  largeAirShard,
   sand,
   glass,
   vinegar,

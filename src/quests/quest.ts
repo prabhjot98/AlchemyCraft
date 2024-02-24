@@ -1,4 +1,4 @@
-import { fireShard1, waterShard1, type Item, earthShard1, airShard1 } from '../items/items'
+import { smallFireShard, smallWaterShard, type Item, smallEarthShard, smallAirShard } from '../items/items'
 import { type Generator } from '../generators/generators'
 import { alcohol, bomb, glass, goldOre, mandrake } from '../recipes/recipes'
 
@@ -36,7 +36,7 @@ export const BlacksmithQuest1: Quest = {
   questGiver: QuestGiver.BLACKSMITH,
   dialog: "Give me a gold ore and I'll give you a machine that can generate fire shard 1's",
   preReqQuest: null,
-  rewards: [{ generator: { type: fireShard1 } }]
+  rewards: [{ generator: { type: smallFireShard } }]
 }
 
 export const DrunkOldManQuest1: Quest = {
@@ -44,7 +44,7 @@ export const DrunkOldManQuest1: Quest = {
   questGiver: QuestGiver.DRUNK_OLD_MAN,
   dialog: "Give me a alcohol and I'll give you a machine that can generate water shard 1's",
   preReqQuest: null,
-  rewards: [{ generator: { type: waterShard1 } }]
+  rewards: [{ generator: { type: smallWaterShard } }]
 }
 
 export const FarmerQuest1: Quest = {
@@ -52,7 +52,7 @@ export const FarmerQuest1: Quest = {
   questGiver: QuestGiver.FARMER,
   dialog: "Give me a mandrake and I'll give you a machine that can generate earth shard 1's",
   preReqQuest: null,
-  rewards: [{ generator: { type: earthShard1 } }]
+  rewards: [{ generator: { type: smallEarthShard } }]
 }
 
 export const MerchantQuest1: Quest = {
@@ -60,7 +60,7 @@ export const MerchantQuest1: Quest = {
   questGiver: QuestGiver.MERCHANT,
   dialog: "Give me a glass and I'll give you a machine that can generate air shard 1's",
   preReqQuest: null,
-  rewards: [{ generator: { type: airShard1 } }]
+  rewards: [{ generator: { type: smallAirShard } }]
 }
 
 export const MericaQuest1: Quest = {

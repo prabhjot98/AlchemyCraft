@@ -1,7 +1,7 @@
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addItem, type Inventory } from '../inventory/inventory'
 import { createSignal, type JSXElement } from 'solid-js'
-import { fireShard1, waterShard1, type Item, airShard1, earthShard1 } from '../items/items'
+import { smallFireShard, smallWaterShard, type Item, smallAirShard, smallEarthShard } from '../items/items'
 
 const CLICKS_NEEDED = 3
 
@@ -15,13 +15,13 @@ export enum ShardRockType {
 const getShardFromType = (shardRockType: ShardRockType): Item => {
   switch (shardRockType) {
     case ShardRockType.FIRE:
-      return fireShard1
+      return smallFireShard
     case ShardRockType.WATER:
-      return waterShard1
+      return smallWaterShard
     case ShardRockType.EARTH:
-      return earthShard1
+      return smallEarthShard
     case ShardRockType.AIR:
-      return airShard1
+      return smallAirShard
   }
 }
 
@@ -58,16 +58,15 @@ export const ShardRock = (props: {
   }
 
   return (
-    <div class="relative">
-      <p class="absolute text-xl text-white bg-black rounded-xl">{shard.type}</p>
+    <div
+      class="relative"
+      onClick={() => {
+        handleClick()
+      }}
+    >
+      <p class="absolute text-white bg-black rounded-xl">{shard.type}</p>
       <p class="absolute text-xl top-[100px] right-0 bg-black rounded-xl text-white">{clickCount()}</p>
-      <img
-        class="h-32 w-32 rounded-xl"
-        onClick={() => {
-          handleClick()
-        }}
-        src={shardImage}
-      />
+      <img class="h-32 w-32 rounded-xl" src={shardImage} />
     </div>
   )
 }

@@ -2,7 +2,7 @@
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addItem, type Inventory } from '../inventory/inventory'
 import { type JSXElement, createSignal } from 'solid-js'
-import { fireShard1, waterShard1, type Item, earthShard1, airShard1 } from '../items/items'
+import { smallFireShard, smallWaterShard, type Item, smallEarthShard, smallAirShard } from '../items/items'
 import { ItemSelector } from '../items/ItemSelector'
 
 export const Deconstructor = (props: {
@@ -26,16 +26,16 @@ export const Deconstructor = (props: {
     const totalAir = selectedItem()!.airElement
 
     for (let i = 0; i < totalFire; i++) {
-      addItem(fireShard1)
+      addItem(smallFireShard)
     }
     for (let i = 0; i < totalWater; i++) {
-      addItem(waterShard1)
+      addItem(smallWaterShard)
     }
     for (let i = 0; i < totalEarth; i++) {
-      addItem(earthShard1)
+      addItem(smallEarthShard)
     }
     for (let i = 0; i < totalAir; i++) {
-      addItem(airShard1)
+      addItem(smallAirShard)
     }
 
     setSelectedItem(null)

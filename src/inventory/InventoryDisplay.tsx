@@ -18,7 +18,7 @@ export const InventoryDisplay = (props: { inventory: Inventory }): JSXElement =>
         <For
           each={[...Array(props.inventory.maxSize - numberOfUniqueItems())]}
           children={() => {
-            return <div class="flex flex-col w-32 h-24 bg-gray-100 p-1 rounded-md justify-center" />
+            return <div class="flex flex-col w-32 h-28 bg-gray-100 p-1 rounded-md justify-center" />
           }}
         />
       </div>
