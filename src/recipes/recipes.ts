@@ -55,7 +55,7 @@ export const sand: Recipe = {
   fireElement: 0,
   waterElement: 0,
   earthElement: 3,
-  airElement: 3
+  airElement: 2
 }
 
 export const firePotion: Recipe = {
@@ -191,7 +191,7 @@ export const glass: Recipe = {
   fireElement: 6,
   waterElement: 0,
   earthElement: 3,
-  airElement: 3
+  airElement: 2
 }
 
 export const mandrake: Item = {

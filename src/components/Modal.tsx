@@ -6,7 +6,7 @@ export const Modal = (props: {
   setIsOpen: Setter<boolean>
 }): JSXElement => {
   return (
-    <div class="fixed top-1/3 left-1/3">
+    <div class="fixed top-32 left-32">
       {props.isOpen() && (
         <div class="fixed top-0 left-0 bg-black/30 w-full h-full" onClick={() => props.setIsOpen(false)} />
       )}

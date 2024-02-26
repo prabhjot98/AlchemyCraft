@@ -1,6 +1,6 @@
 import { For, type JSXElement, createSignal, type Setter } from 'solid-js'
 import { ItemDisplay } from './ItemDisplay'
-import { type Item } from '../items/items'
+import { type Item } from './items'
 import { type SetStoreFunction } from 'solid-js/store'
 import { _addItem, _removeItem, type Inventory } from '../inventory/inventory'
 import { Modal } from '../components/Modal'

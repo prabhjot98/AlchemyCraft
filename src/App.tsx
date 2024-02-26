@@ -39,9 +39,10 @@ export const App: Component = () => {
         <div class="flex flex-col bg-pink-200 p-2 rounded-md w-[32rem] h-fit">
           <GeneratorContainer inventory={inventory} setInventory={setInventory} />
         </div>
-        <div class="flex flex-col bg-orange-200 p-2 rounded-md w-[32rem] h-fit">
+        {/* <div class="flex flex-col bg-orange-200 p-2 rounded-md w-[32rem] h-fit">
           <Deconstructor inventory={inventory} setInventory={setInventory} />
         </div>
+        */}
       </div>
     </div>
   )

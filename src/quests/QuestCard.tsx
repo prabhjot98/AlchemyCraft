@@ -8,15 +8,15 @@ import { _addMachine } from '../generators/generators'
 const getQuestGiverImg = (questGiver: QuestGiver): string => {
   switch (questGiver) {
     case QuestGiver.BLACKSMITH:
-      return '/public/assets/items/blacksmith__Anime_S3844297624_St40_G7 (Custom).png'
+      return '/assets/items/blacksmith__Anime_S3844297624_St40_G7 (Custom).png'
     case QuestGiver.DRUNK_OLD_MAN:
-      return '/public/assets/items/drunk_happy_old_man__Anime_S2426875797_St40_G7 (Custom).png'
+      return '/assets/items/drunk_happy_old_man__Anime_S2426875797_St40_G7 (Custom).png'
     case QuestGiver.FARMER:
-      return '/public/assets/items/farmer__Anime_S3891257133_St40_G7 (Custom).png'
+      return '/assets/items/farmer__Anime_S3891257133_St40_G7 (Custom).png'
     case QuestGiver.MERCHANT:
-      return '/public/assets/items/merchant__Anime_S3469690194_St40_G7 (Custom).png'
+      return '/assets/items/merchant__Anime_S3469690194_St40_G7 (Custom).png'
     case QuestGiver.MERICA:
-      return '/public/assets/items/man_wearing_the_american_flag_as_a_bandana__Anime_S3665157605_St40_G7 (Custom).png'
+      return '/assets/items/man_wearing_the_american_flag_as_a_bandana__Anime_S3665157605_St40_G7 (Custom).png'
   }
 }
 

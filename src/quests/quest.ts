@@ -1,6 +1,6 @@
 import { smallFireShard, smallWaterShard, type Item, smallEarthShard, smallAirShard } from '../items/items'
 import { type Generator } from '../generators/generators'
-import { alcohol, bomb, glass, goldOre, mandrake } from '../recipes/recipes'
+import { alcohol, bomb, coal, glass, mandrake } from '../recipes/recipes'
 
 export enum QuestGiver {
   BLACKSMITH,
@@ -32,34 +32,34 @@ export interface Quest {
 }
 
 export const BlacksmithQuest1: Quest = {
-  questItem: goldOre,
+  questItem: coal,
   questGiver: QuestGiver.BLACKSMITH,
-  dialog: "Give me a gold ore and I'll give you a machine that can generate fire shard 1's",
+  dialog: "Give me one coal and I'll give you a machine that can generate fire shard 1's",
   preReqQuest: null,
   rewards: [{ generator: { type: smallFireShard } }]
 }
 
-export const DrunkOldManQuest1: Quest = {
+export const BlacksmithQuest2: Quest = {
   questItem: alcohol,
-  questGiver: QuestGiver.DRUNK_OLD_MAN,
-  dialog: "Give me a alcohol and I'll give you a machine that can generate water shard 1's",
-  preReqQuest: null,
+  questGiver: QuestGiver.BLACKSMITH,
+  dialog: "Give me one alcohol and I'll give you a machine that can generate water shard 1's",
+  preReqQuest: BlacksmithQuest1,
   rewards: [{ generator: { type: smallWaterShard } }]
 }
 
-export const FarmerQuest1: Quest = {
+export const BlacksmithQuest3: Quest = {
   questItem: mandrake,
-  questGiver: QuestGiver.FARMER,
-  dialog: "Give me a mandrake and I'll give you a machine that can generate earth shard 1's",
-  preReqQuest: null,
+  questGiver: QuestGiver.BLACKSMITH,
+  dialog: "Give me one mandrake and I'll give you a machine that can generate earth shard 1's",
+  preReqQuest: BlacksmithQuest2,
   rewards: [{ generator: { type: smallEarthShard } }]
 }
 
-export const MerchantQuest1: Quest = {
+export const BlacksmithQuest4: Quest = {
   questItem: glass,
-  questGiver: QuestGiver.MERCHANT,
-  dialog: "Give me a glass and I'll give you a machine that can generate air shard 1's",
-  preReqQuest: null,
+  questGiver: QuestGiver.BLACKSMITH,
+  dialog: "Give me one glass and I'll give you a machine that can generate air shard 1's",
+  preReqQuest: BlacksmithQuest3,
   rewards: [{ generator: { type: smallAirShard } }]
 }
 
@@ -71,4 +71,4 @@ export const MericaQuest1: Quest = {
   rewards: [{ gold: 1000 }]
 }
 
-export const QUESTS = [BlacksmithQuest1, DrunkOldManQuest1, FarmerQuest1, MerchantQuest1, MericaQuest1]
+export const QUESTS = [BlacksmithQuest1, BlacksmithQuest2, BlacksmithQuest3, BlacksmithQuest4, MericaQuest1]
