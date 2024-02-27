@@ -8,6 +8,7 @@ import { ShardRockDisplay } from './generators/ShardRockDisplay'
 import { InventoryDisplay } from './inventory/InventoryDisplay'
 import { type Inventory } from './inventory/inventory'
 import { type Item } from './items/items'
+import { GardenDisplay } from './items/GardenDisplay'
 
 export const App: Component = () => {
   const [inventory, setInventory] = createStore<Inventory>({
@@ -39,10 +40,12 @@ export const App: Component = () => {
         <div class="flex flex-col bg-pink-200 p-2 rounded-md w-[32rem] h-fit">
           <GeneratorContainer inventory={inventory} setInventory={setInventory} />
         </div>
-        {/* <div class="flex flex-col bg-orange-200 p-2 rounded-md w-[32rem] h-fit">
+        <div class="flex flex-col bg-green-200 p-2 rounded-md w-[32rem] h-fit">
+          <GardenDisplay inventory={inventory} setInventory={setInventory} />
+        </div>
+        <div class="flex flex-col bg-orange-200 p-2 rounded-md w-[32rem] h-fit">
           <Deconstructor inventory={inventory} setInventory={setInventory} />
         </div>
-        */}
       </div>
     </div>
   )

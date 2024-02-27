@@ -142,7 +142,7 @@ export const ironOre: Item = {
   type: 'iron ore',
   fireElement: 3,
   waterElement: 0,
-  earthElement: 3,
+  earthElement: 2,
   airElement: 0
 }
 
@@ -206,7 +206,7 @@ export const goldOre: Item = {
   type: 'gold ore',
   fireElement: 3,
   waterElement: 0,
-  earthElement: 9,
+  earthElement: 8,
   airElement: 0
 }
 

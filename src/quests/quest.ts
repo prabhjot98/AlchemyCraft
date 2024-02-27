@@ -1,6 +1,7 @@
 import { smallFireShard, smallWaterShard, type Item, smallEarthShard, smallAirShard } from '../items/items'
 import { type Generator } from '../generators/generators'
-import { alcohol, bomb, coal, glass, mandrake } from '../recipes/recipes'
+import { alcohol, ash, bomb, clay, coal, glass, mandrake } from '../recipes/recipes'
+import { cabbageSeed, carrotSeed } from '../items/seeds'
 
 export enum QuestGiver {
   BLACKSMITH,
@@ -63,6 +64,22 @@ export const BlacksmithQuest4: Quest = {
   rewards: [{ generator: { type: smallAirShard } }]
 }
 
+export const FarmerQuest1: Quest = {
+  questItem: ash,
+  questGiver: QuestGiver.FARMER,
+  dialog: "Give me one ash and I'll give you a cabbage seed",
+  preReqQuest: null,
+  rewards: [{ item: cabbageSeed }]
+}
+
+export const FarmerQuest2: Quest = {
+  questItem: clay,
+  questGiver: QuestGiver.FARMER,
+  dialog: "Give me one clay and I'll give you a carrot seed",
+  preReqQuest: FarmerQuest1,
+  rewards: [{ item: carrotSeed }]
+}
+
 export const MericaQuest1: Quest = {
   questItem: bomb,
   questGiver: QuestGiver.MERICA,
@@ -71,4 +88,12 @@ export const MericaQuest1: Quest = {
   rewards: [{ gold: 1000 }]
 }
 
-export const QUESTS = [BlacksmithQuest1, BlacksmithQuest2, BlacksmithQuest3, BlacksmithQuest4, MericaQuest1]
+export const QUESTS = [
+  BlacksmithQuest1,
+  BlacksmithQuest2,
+  BlacksmithQuest3,
+  BlacksmithQuest4,
+  FarmerQuest1,
+  FarmerQuest2,
+  MericaQuest1
+]

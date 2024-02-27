@@ -12,7 +12,7 @@ export const GeneratorContainer = (props: {
       <h1 textContent="Shard Generators" />
       <div class="flex flex-row flex-wrap gap-1 ">
         <For each={props.inventory.machines}>
-          {(c) => <ShardGenerator setInventory={props.setInventory} shard={c.type} />}
+          {(c) => <ShardGenerator setInventory={props.setInventory} shard={c.type} duration={1000 * 10} />}
         </For>
       </div>
     </div>
