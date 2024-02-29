@@ -14,6 +14,7 @@ import { RecipeDisplay } from '../recipes/RecipeDisplay'
 import { mediumFireShard, type Recipe } from '../recipes/recipes'
 import { RecipeSelector } from '../recipes/RecipeSelector'
 import { ElementDisplay } from './ElementDisplay'
+import { RECIPES } from '../recipes/recipes'
 
 export const AlchemyCircle = (props: {
   inventory: Inventory
@@ -42,6 +43,29 @@ export const AlchemyCircle = (props: {
 
   const [error, setError] = createSignal<string>('')
 
+  // returns the first recipe with the given elements [fire, water, earth, air]
+  // returns null if a match cannot be found
+  const getRecipeWithElements = (elements: number[]): Item => {
+    for (var i=0; i<RECIPES.length; i++){
+      if (
+        elements[0] === RECIPES[i].fireElement &&
+        elements[1] === RECIPES[i].waterElement &&
+        elements[2] === RECIPES[i].earthElement &&
+        elements[3] === RECIPES[i].airElement
+      ) {
+        return RECIPES[i]
+      }
+    }
+    return {type: "???", fireElement: 0, waterElement: 0, earthElement: 0, airElement: 0}
+  }
+
+  const getAllElements = () => {
+    return [
+      totalFireElement(),
+      totalWaterElement(),
+      totalEarthElement(),
+      totalAirElement()]
+  }
   const handleCraft = (): void => {
     setError('')
     if (firstSelectedOption() === null || secondSelectedOption() === null || thirdSelectedOption() === null) {
@@ -49,13 +73,9 @@ export const AlchemyCircle = (props: {
       return
     }
 
-    if (
-      totalFireElement() === selectedRecipe().fireElement &&
-      totalWaterElement() === selectedRecipe().waterElement &&
-      totalEarthElement() === selectedRecipe().earthElement &&
-      totalAirElement() === selectedRecipe().airElement
-    ) {
-      addItem(selectedRecipe())
+    const selectedRecipe = getRecipeWithElements(getAllElements());
+    if (selectedRecipe.type != "???"){
+      addItem(selectedRecipe)
 
       if ((props.inventory.items.get(firstSelectedOption()!) ?? 0) === 0) {
         setFirstSelectedOption(null)
@@ -106,7 +126,7 @@ export const AlchemyCircle = (props: {
             handleCraft()
           }}
           value="craft"
-          textContent={'Craft ' + selectedRecipe().type}
+          textContent={'Craft ' + getRecipeWithElements(getAllElements()).type}
         />
         <div>
           <p innerText="Total Elements: " />
