@@ -1,11 +1,11 @@
 import { For, type JSXElement } from 'solid-js'
 import { ShardGenerator } from './ShardGenerator'
 import { type SetStoreFunction } from 'solid-js/store'
-import { type Inventory } from '../inventory/inventory'
+import { type Player } from '../player/player'
 
 export const GeneratorContainer = (props: {
-  inventory: Inventory
-  setInventory: SetStoreFunction<Inventory>
+  inventory: Player
+  setInventory: SetStoreFunction<Player>
 }): JSXElement => {
   return (
     <div class="flex flex-col gap-2 w-full h-full">

@@ -1,15 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createEffect, createSignal, For, type JSXElement } from 'solid-js'
 import { type Seed } from './seeds'
-import { type Inventory } from '../inventory/inventory'
+import { type Player } from '../player/player'
 import { createStore, type SetStoreFunction } from 'solid-js/store'
 import { SeedSelector } from './SeedSelector'
 import { ShardGenerator } from '../generators/ShardGenerator'
 
-export const GardenDisplay = (props: {
-  inventory: Inventory
-  setInventory: SetStoreFunction<Inventory>
-}): JSXElement => {
+export const GardenDisplay = (props: { inventory: Player, setInventory: SetStoreFunction<Player> }): JSXElement => {
   const [garden, setGarden] = createStore<Seed[]>([])
 
   const [selectedSeed, setSelectedSeed] = createSignal<Seed | null>(null)

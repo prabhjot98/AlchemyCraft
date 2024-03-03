@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createSignal, type JSXElement } from 'solid-js'
-import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, _removeItem, type Inventory } from '../inventory/inventory'
+import { _addItem, _removeItem, usePlayer } from '../player/player'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
@@ -13,15 +12,14 @@ import { ItemSelector } from '../items/ItemSelector'
 import { RecipeDisplay } from '../recipes/RecipeDisplay'
 import { mediumFireShard, type Recipe } from '../recipes/recipes'
 import { RecipeSelector } from '../recipes/RecipeSelector'
-import { ElementDisplay } from './ElementDisplay'
+import { ElementDisplay } from '../items/ElementDisplay'
 
-export const AlchemyCircle = (props: {
-  inventory: Inventory
-  setInventory: SetStoreFunction<Inventory>
-}): JSXElement => {
+export const CraftingDisplay = (): JSXElement => {
   const [firstSelectedOption, setFirstSelectedOption] = createSignal<Item | null>(null)
   const [secondSelectedOption, setSecondSelectedOption] = createSignal<Item | null>(null)
   const [thirdSelectedOption, setThirdSelectedOption] = createSignal<Item | null>(null)
+
+  const [inventory, setInventory] = usePlayer()
 
   const totalFireElement = (): number =>
     calcTotalFireElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
@@ -35,8 +33,8 @@ export const AlchemyCircle = (props: {
   const totalAirElement = (): number =>
     calcTotalAirElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
 
-  const addItem = _addItem(props.setInventory)
-  const removeItem = _removeItem(props.setInventory)
+  const addItem = _addItem(setInventory)
+  const removeItem = _removeItem(setInventory)
 
   const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(mediumFireShard)
 
@@ -57,17 +55,17 @@ export const AlchemyCircle = (props: {
     ) {
       addItem(selectedRecipe())
 
-      if ((props.inventory.items.get(firstSelectedOption()!) ?? 0) === 0) {
+      if ((inventory.items.get(firstSelectedOption()!) ?? 0) === 0) {
         setFirstSelectedOption(null)
       } else {
         removeItem(firstSelectedOption()!)
       }
-      if ((props.inventory.items.get(secondSelectedOption()!) ?? 0) === 0) {
+      if ((inventory.items.get(secondSelectedOption()!) ?? 0) === 0) {
         setSecondSelectedOption(null)
       } else {
         removeItem(secondSelectedOption()!)
       }
-      if ((props.inventory.items.get(thirdSelectedOption()!) ?? 0) === 0) {
+      if ((inventory.items.get(thirdSelectedOption()!) ?? 0) === 0) {
         setThirdSelectedOption(null)
       } else {
         removeItem(thirdSelectedOption()!)
@@ -78,24 +76,24 @@ export const AlchemyCircle = (props: {
   }
 
   return (
-    <div class="flex flex-col gap-2 w-full h-full">
+    <div class="flex flex-col gap-2 p-2 bg-gray-200 w-full h-full">
       <h1 textContent="Crafting" />
       <div class="flex flex-col gap-4 justify-center">
         <ItemSelector
-          items={props.inventory.items}
-          setInventory={props.setInventory}
+          items={inventory.items}
+          setInventory={setInventory}
           selectedItem={firstSelectedOption()}
           setSelectedItem={setFirstSelectedOption}
         />
         <ItemSelector
-          items={props.inventory.items}
-          setInventory={props.setInventory}
+          items={inventory.items}
+          setInventory={setInventory}
           selectedItem={secondSelectedOption()}
           setSelectedItem={setSecondSelectedOption}
         />
         <ItemSelector
-          items={props.inventory.items}
-          setInventory={props.setInventory}
+          items={inventory.items}
+          setInventory={setInventory}
           selectedItem={thirdSelectedOption()}
           setSelectedItem={setThirdSelectedOption}
         />
