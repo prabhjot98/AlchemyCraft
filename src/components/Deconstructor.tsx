@@ -1,18 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, type Inventory } from '../inventory/inventory'
-import { type JSXElement, createSignal } from 'solid-js'
-import { smallFireShard, smallWaterShard, type Item, smallEarthShard, smallAirShard } from '../items/items'
+import { createSignal, type JSXElement } from 'solid-js'
 import { ItemSelector } from '../items/ItemSelector'
+import { smallAirShard, smallEarthShard, smallFireShard, smallWaterShard, type Item } from '../items/items'
+import { _addItem, usePlayer } from '../player/player'
 
-export const Deconstructor = (props: {
-  inventory: Inventory
-  setInventory: SetStoreFunction<Inventory>
-}): JSXElement => {
+export const Deconstructor = (): JSXElement => {
   const [selectedItem, setSelectedItem] = createSignal<Item | null>(null)
   const [error, setError] = createSignal<string>('')
 
-  const addItem = _addItem(props.setInventory)
+  const [inventory, setInventory] = usePlayer()
+
+  const addItem = _addItem(setInventory)
 
   const handleDeconstruct = (): void => {
     setError('')
@@ -42,11 +40,11 @@ export const Deconstructor = (props: {
   }
 
   return (
-    <div class="flex flex-col gap-2 w-full h-full">
+    <div class="flex flex-col gap-2 bg-orange-200 h-[500px]">
       <h1 textContent="Deconstructor" />
       <ItemSelector
-        items={props.inventory.items}
-        setInventory={props.setInventory}
+        items={inventory.items}
+        setInventory={setInventory}
         selectedItem={selectedItem()}
         setSelectedItem={setSelectedItem}
       />

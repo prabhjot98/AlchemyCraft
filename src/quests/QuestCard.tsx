@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { type Setter, type JSXElement } from 'solid-js'
-import { type SetStoreFunction } from 'solid-js/store'
-import { _addGold, _addItem, _completeQuest, _removeItem, type Inventory } from '../inventory/inventory'
+import { _addGold, _addItem, _completeQuest, _removeItem, usePlayer } from '../player/player'
 import { QuestGiver, type Quest, isItemReward, isGeneratorReward, isGoldReward } from './quest'
 import { _addMachine } from '../generators/generators'
 
@@ -20,22 +19,20 @@ const getQuestGiverImg = (questGiver: QuestGiver): string => {
   }
 }
 
-export const QuestCard = (props: {
-  inventory: Inventory
-  setInventory: SetStoreFunction<Inventory>
-  quest: Quest
-  setError: Setter<string>
-}): JSXElement => {
+export const QuestCard = (props: { quest: Quest, setError: Setter<string> }): JSXElement => {
   const questGiverImg = getQuestGiverImg(props.quest.questGiver)
+  const [inventory, setInventory] = usePlayer()
 
   const handleReward = (quest: Quest): void => {
-    const addGold = _addGold(props.setInventory)
-    const removeItem = _removeItem(props.setInventory)
-    const addItem = _addItem(props.setInventory)
-    const addMachine = _addMachine(props.setInventory)
-    const completeQuest = _completeQuest(props.setInventory)
+    const addGold = _addGold(setInventory)
+    const removeItem = _removeItem(setInventory)
+    const addItem = _addItem(setInventory)
+    const addMachine = _addMachine(setInventory)
+    const completeQuest = _completeQuest(setInventory)
 
-    if (props.inventory.items.get(quest.questItem) === undefined) {
+    console.log([...inventory.items.keys()].some((i) => i.type === quest.questItem.type))
+
+    if (inventory.items.get(quest.questItem) === undefined) {
       props.setError(`You don't have a ${quest.questItem.type} in your inventory`)
       return
     }

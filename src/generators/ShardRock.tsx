@@ -1,9 +1,8 @@
-import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, type Inventory } from '../inventory/inventory'
+import { _addItem, usePlayer } from '../player/player'
 import { createSignal, type JSXElement } from 'solid-js'
 import { smallFireShard, smallWaterShard, type Item, smallAirShard, smallEarthShard } from '../items/items'
 
-const CLICKS_NEEDED = 3
+const CLICKS_NEEDED = 1
 
 export enum ShardRockType {
   FIRE,
@@ -38,13 +37,10 @@ const getShardImage = (shardRockType: ShardRockType): string => {
   }
 }
 
-export const ShardRock = (props: {
-  inventory: Inventory
-  setInventory: SetStoreFunction<Inventory>
-  shardRockType: ShardRockType
-}): JSXElement => {
+export const ShardRock = (props: { shardRockType: ShardRockType }): JSXElement => {
   const [clickCount, setClickCount] = createSignal(CLICKS_NEEDED)
-  const addItem = _addItem(props.setInventory)
+  const [, setInventory] = usePlayer()
+  const addItem = _addItem(setInventory)
 
   const shard = getShardFromType(props.shardRockType)
   const shardImage = getShardImage(props.shardRockType)
@@ -64,9 +60,8 @@ export const ShardRock = (props: {
         handleClick()
       }}
     >
-      <p class="absolute text-white bg-black rounded-xl">{shard.type}</p>
-      <p class="absolute text-xl top-[100px] right-0 bg-black rounded-xl text-white">{clickCount()}</p>
-      <img class="h-32 w-32 rounded-xl" src={shardImage} />
+      <p class="absolute -translate-y-8"> u clicked</p>
+      <img class="rounded-xl" src={shardImage} />
     </div>
   )
 }

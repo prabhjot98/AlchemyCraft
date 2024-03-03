@@ -61,7 +61,7 @@ export const sand: Recipe = {
 export const firePotion: Recipe = {
   type: 'fire potion',
   fireElement: 6,
-  waterElement: 3,
+  waterElement: 0,
   earthElement: 9,
   airElement: 0
 }
@@ -213,10 +213,12 @@ export const goldOre: Item = {
 export const bomb: Item = {
   type: 'bomb',
   fireElement: 9,
-  waterElement: 3,
+  waterElement: 0,
   earthElement: 15,
   airElement: 9
 }
+
+export const BEGINING_RECIPES = [mediumFireShard, mediumWaterShard, mediumEarthShard, mediumAirShard]
 
 export const RECIPES = [
   mediumFireShard,

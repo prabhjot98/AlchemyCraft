@@ -1,19 +1,21 @@
-import { type JSXElement } from 'solid-js'
+import { Show, type JSXElement } from 'solid-js'
 import { type Item } from './items'
-import { ElementDisplay } from '../components/ElementDisplay'
+import { ElementDisplay } from './ElementDisplay'
 
-export const ItemDisplay = (props: { item: Item, count: number, onClick?: () => void }): JSXElement => {
+export const ItemDisplay = (props: { item: Item, count?: number, onClick?: () => void }): JSXElement => {
   return (
-    <div class="flex flex-col w-32 h-28 bg-gray-100 p-0.5 rounded-md justify-center " onClick={props.onClick}>
-      <p class="font-semibold" textContent={props.item.type} />
+    <div class="flex flex-row bg-gray-100 rounded-md justify-center px-2 m-auto w-96" onClick={props.onClick}>
+      <h4 class="font-semibold w-max text-xl" textContent={props.item.type} />
       <ElementDisplay
-        class="mx-auto"
+        class="ml-auto mr-2"
         fireElement={props.item.fireElement}
         waterElement={props.item.waterElement}
         earthElement={props.item.earthElement}
         airElement={props.item.airElement}
       />
-      <p class="font-semibold mr-2 ml-auto" textContent={'x ' + props.count} />
+      <Show when={props.count !== undefined}>
+        <h4 class="font-semibold mr-1 " textContent={'x ' + props.count} />
+      </Show>
     </div>
   )
 }

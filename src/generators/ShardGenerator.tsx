@@ -1,10 +1,10 @@
 import { createSignal, type JSXElement } from 'solid-js'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, type Inventory } from '../inventory/inventory'
+import { _addItem, type Player } from '../player/player'
 import { type Item } from '../items/items'
 
 export const ShardGenerator = (props: {
-  setInventory: SetStoreFunction<Inventory>
+  setInventory: SetStoreFunction<Player>
   shard: Item
   duration: number
 }): JSXElement => {
