@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createSignal, type JSXElement } from 'solid-js'
-import { _addItem, _removeItem, usePlayer } from '../player/player'
+import { ElementDisplay } from '../items/ElementDisplay'
 import {
   calcTotalAirElement,
   calcTotalEarthElement,
@@ -9,11 +9,10 @@ import {
   type Item
 } from '../items/items'
 import { ItemSelector } from '../items/ItemSelector'
+import { _addItem, _removeItem, usePlayer } from '../player/player'
 import { RecipeDisplay } from '../recipes/RecipeDisplay'
-import { mediumFireShard, type Recipe } from '../recipes/recipes'
+import { mediumFireShard, RECIPES, type Recipe } from '../recipes/recipes'
 import { RecipeSelector } from '../recipes/RecipeSelector'
-import { ElementDisplay } from './ElementDisplay'
-import { RECIPES } from '../recipes/recipes'
 
 export const CraftingDisplay = (): JSXElement => {
   const [firstSelectedOption, setFirstSelectedOption] = createSignal<Item | null>(null)
@@ -44,7 +43,7 @@ export const CraftingDisplay = (): JSXElement => {
   // returns the first recipe with the given elements [fire, water, earth, air]
   // returns null if a match cannot be found
   const getRecipeWithElements = (elements: number[]): Item => {
-    for (var i=0; i<RECIPES.length; i++){
+    for (let i = 0; i < RECIPES.length; i++) {
       if (
         elements[0] === RECIPES[i].fireElement &&
         elements[1] === RECIPES[i].waterElement &&
@@ -54,15 +53,11 @@ export const CraftingDisplay = (): JSXElement => {
         return RECIPES[i]
       }
     }
-    return {type: "???", fireElement: 0, waterElement: 0, earthElement: 0, airElement: 0}
+    return { type: '???', fireElement: 0, waterElement: 0, earthElement: 0, airElement: 0 }
   }
 
   const getAllElements = () => {
-    return [
-      totalFireElement(),
-      totalWaterElement(),
-      totalEarthElement(),
-      totalAirElement()]
+    return [totalFireElement(), totalWaterElement(), totalEarthElement(), totalAirElement()]
   }
   const handleCraft = (): void => {
     setError('')
@@ -71,8 +66,8 @@ export const CraftingDisplay = (): JSXElement => {
       return
     }
 
-    const selectedRecipe = getRecipeWithElements(getAllElements());
-    if (selectedRecipe.type != "???"){
+    const selectedRecipe = getRecipeWithElements(getAllElements())
+    if (selectedRecipe.type !== '???') {
       addItem(selectedRecipe)
 
       if ((inventory.items.get(firstSelectedOption()!) ?? 0) === 0) {
