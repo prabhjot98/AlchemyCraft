@@ -10,9 +10,7 @@ import {
 } from '../items/items'
 import { ItemSelector } from '../items/ItemSelector'
 import { _addItem, _removeItem, usePlayer } from '../player/player'
-import { RecipeDisplay } from '../recipes/RecipeDisplay'
-import { mediumFireShard, RECIPES, type Recipe } from '../recipes/recipes'
-import { RecipeSelector } from '../recipes/RecipeSelector'
+import { RECIPES } from '../recipes/recipes'
 
 export const CraftingDisplay = (): JSXElement => {
   const [firstSelectedOption, setFirstSelectedOption] = createSignal<Item | null>(null)
@@ -35,8 +33,6 @@ export const CraftingDisplay = (): JSXElement => {
 
   const addItem = _addItem(setInventory)
   const removeItem = _removeItem(setInventory)
-
-  const [selectedRecipe, setSelectedRecipe] = createSignal<Recipe>(mediumFireShard)
 
   const [error, setError] = createSignal<string>('')
 
@@ -132,8 +128,6 @@ export const CraftingDisplay = (): JSXElement => {
         </div>
         <h4 innerText={error()} />
       </div>
-      <RecipeDisplay recipe={selectedRecipe()} />
-      <RecipeSelector selectedRecipe={selectedRecipe()} setSelectedRecipe={setSelectedRecipe} />
     </div>
   )
 }
