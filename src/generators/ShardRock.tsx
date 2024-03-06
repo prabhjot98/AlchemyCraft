@@ -28,13 +28,13 @@ const getShardFromType = (shardRockType: ShardRockType): Item => {
 const getShardImage = (shardRockType: ShardRockType): string => {
   switch (shardRockType) {
     case ShardRockType.FIRE:
-      return '/assets/items/one_fire_crystal__Anime_S531468354_St40_G7 (Custom).png'
+      return '/assets/shard crystals/red_crystal.png'
     case ShardRockType.WATER:
-      return '/assets/items/one_blue_crystal__Anime_S938936857_St40_G7 (Custom).png'
+      return '/assets/shard crystals/blue_crystal.png'
     case ShardRockType.EARTH:
-      return '/assets/items/one_brown_crystal__Anime_S1221490770_St40_G7 (Custom).png'
+      return '/assets/shard crystals/brown_crystal.png'
     case ShardRockType.AIR:
-      return '/assets/items/one_white_crystal__Anime_S3421455093_St40_G7 (Custom).png'
+      return '/assets/shard crystals/white_crystal.png'
   }
 }
 
@@ -61,7 +61,6 @@ export const ShardRock = (props: { shardRockType: ShardRockType }): JSXElement =
         handleClick()
       }}
     >
-      <p class="absolute -translate-y-8"> u clicked</p>
       <img class="rounded-xl" src={shardImage} />
     </div>
   )

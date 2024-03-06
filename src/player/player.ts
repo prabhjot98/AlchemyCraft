@@ -1,12 +1,13 @@
 /* eslint-disable no-fallthrough */
 import { createStore, type SetStoreFunction } from 'solid-js/store'
 import { STARTER_ITEMS, type Item } from '../items/items'
-import { type Generator } from '../generators/generators'
-import { type Quest } from '../quests/quest'
+import { _addMachine, type Generator } from '../generators/generators'
+import { isGeneratorReward, isGoldReward, isItemReward, type Quest } from '../quests/quest'
 import { createContext, useContext } from 'solid-js'
 import { tierTwoItems } from '../items/tier2'
 import { tierThreeItems } from '../items/tier3'
 import { tierFourItems } from '../items/tier4'
+import toast from 'solid-toast'
 
 export interface Player {
   items: Map<Item, number>
@@ -95,12 +96,14 @@ export const _addItem = (setInventory: SetStoreFunction<Player>) => {
       newMap.set(item, count + (amount ?? 1))
       return newMap
     })
+    toast(`Obtained ${item.type}`)
   }
 }
 
 export const _addGold = (setInventory: SetStoreFunction<Player>) => {
   return (gold: number) => {
     setInventory('gold', (g) => g + gold)
+    toast(`Obtained ${gold.toString()} gold`)
   }
 }
 
@@ -117,9 +120,22 @@ export const _completeQuest = (setInventory: SetStoreFunction<Player>) => {
       newMap.push(quest)
       return newMap
     })
+    _removeItem(setInventory)(quest.questItem)
+    quest.rewards.forEach((reward) => {
+      if (isItemReward(reward)) {
+        _addItem(setInventory)(reward.item)
+      }
+      if (isGeneratorReward(reward)) {
+        _addMachine(setInventory)(reward.generator)
+      }
+      if (isGoldReward(reward)) {
+        _addGold(setInventory)(reward.gold)
+      }
+    })
   }
 }
 
 export function levelUp (setInventory: SetStoreFunction<Player>) {
   setInventory('level', (l) => l + 1)
+  toast('LEVEL UP!')
 }

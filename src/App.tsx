@@ -1,16 +1,20 @@
-import { type JSXElement } from 'solid-js'
-import { PlayerContext } from './player/player'
+import { For, type JSXElement } from 'solid-js'
+import { PlayerContext, usePlayer } from './player/player'
 import { ShardRock, ShardRockType } from './generators/ShardRock'
 import { Modal, ModalContext } from './components/Modal'
 import { ToolBar } from './toolbar/Toolbar'
+import { Toaster } from 'solid-toast'
+import { ShardGenerator } from './generators/ShardGenerator'
 
 function Container (props: { children: JSXElement }) {
   return <div class="bg-red-300 w-16 h-16 md:w-32 md:h-32">{props.children}</div>
 }
 
 export const App = () => {
+  const [player] = usePlayer()
   return (
     <PlayerContext.Provider value={PlayerContext.defaultValue}>
+      <Toaster />
       <ModalContext.Provider value={undefined}>
         <Modal />
         <div class="flex w-screen h-screen bg-gradient-to-b from-[#58BEA4] to-[#DAC2A7]">
@@ -28,9 +32,13 @@ export const App = () => {
             <Container>
               <ShardRock shardRockType={ShardRockType.AIR} />
             </Container>
-            <Container> </Container>
-            <Container> </Container>
-            <Container> </Container>
+            <For each={player.machines}>
+              {(generator) => (
+                <Container>
+                  <ShardGenerator duration={10000} shard={generator.type} />
+                </Container>
+              )}
+            </For>
           </div>
         </div>
       </ModalContext.Provider>
