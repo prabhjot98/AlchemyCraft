@@ -10,7 +10,7 @@ import {
 } from '../items/items'
 import { ItemSelector } from '../items/ItemSelector'
 import { _addItem, _removeItem, usePlayer } from '../player/player'
-import { RECIPES } from '../recipes/recipes'
+import { STARTER_ITEMS } from '../items/items'
 
 export const CraftingDisplay = (): JSXElement => {
   const [firstSelectedOption, setFirstSelectedOption] = createSignal<Item | null>(null)
@@ -39,17 +39,17 @@ export const CraftingDisplay = (): JSXElement => {
   // returns the first recipe with the given elements [fire, water, earth, air]
   // returns null if a match cannot be found
   const getRecipeWithElements = (elements: number[]): Item => {
-    for (let i = 0; i < RECIPES.length; i++) {
+    for (let i = 0; i < STARTER_ITEMS.length; i++) {
       if (
-        elements[0] === RECIPES[i].fireElement &&
-        elements[1] === RECIPES[i].waterElement &&
-        elements[2] === RECIPES[i].earthElement &&
-        elements[3] === RECIPES[i].airElement
+        elements[0] === STARTER_ITEMS[i].fireElement &&
+        elements[1] === STARTER_ITEMS[i].waterElement &&
+        elements[2] === STARTER_ITEMS[i].earthElement &&
+        elements[3] === STARTER_ITEMS[i].airElement
       ) {
-        return RECIPES[i]
+        return STARTER_ITEMS[i]
       }
     }
-    return { type: '???', fireElement: 0, waterElement: 0, earthElement: 0, airElement: 0 }
+    return { type: '???', tier: 0, fireElement: 0, waterElement: 0, earthElement: 0, airElement: 0 }
   }
 
   const getAllElements = () => {

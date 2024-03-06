@@ -1,13 +1,13 @@
 import { For, type Setter, type JSXElement, createSignal, Show } from 'solid-js'
-import { type Recipe } from './recipes'
 import { usePlayer } from '../player/player'
 import { ItemCard } from '../items/ItemCard'
+import { type Item } from '../items/items'
 
-export const RecipeSelector = (props: { selectedRecipe: Recipe, setSelectedRecipe: Setter<Recipe> }): JSXElement => {
+export const RecipeSelector = (props: { selectedRecipe: Item, setSelectedRecipe: Setter<Item> }): JSXElement => {
   const [modalIsOpen, setModalIsOpen] = createSignal(false)
   const [player] = usePlayer()
 
-  const handleRecipeCardSelected = (r: Recipe): void => {
+  const handleRecipeCardSelected = (r: Item): void => {
     props.setSelectedRecipe(r)
     setModalIsOpen(false)
   }

@@ -1,13 +1,12 @@
-import { For, createSignal, type JSXElement, createMemo } from 'solid-js'
+import { For, createSignal, type JSXElement } from 'solid-js'
 import { ItemDisplay } from '../items/ItemDisplay'
 import { usePlayer } from '../player/player'
 
 export const RecipeList = (): JSXElement => {
   const [filter, setFilter] = createSignal<string>('')
   const [player] = usePlayer()
-  const filteredItems = createMemo(() => {
-    return player.knownItems.filter((item) => filter() === '' || item.type.search(filter()) !== -1)
-  })
+
+  const filteredItems = () => player.knownItems.filter((item) => filter() === '' || item.type.search(filter()) !== -1)
 
   return (
     <div class="flex flex-col bg-gray-300/80 rounded-lg h-[500px] p-2">

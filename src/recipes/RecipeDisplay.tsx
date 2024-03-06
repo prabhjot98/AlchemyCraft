@@ -1,7 +1,7 @@
 import { type JSXElement } from 'solid-js'
-import { type Recipe } from './recipes'
+import { type Item } from '../items/items'
 
-export const RecipeDisplay = (props: { recipe: Recipe }): JSXElement => {
+export const RecipeDisplay = (props: { recipe: Item }): JSXElement => {
   return (
     <div class="flex flex-row">
       <p class="pr-1" textContent="You need at least" />

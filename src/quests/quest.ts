@@ -1,7 +1,10 @@
-import { smallFireShard, smallWaterShard, type Item, smallEarthShard, smallAirShard } from '../items/items'
+import { smallFireShard, smallWaterShard, smallEarthShard, smallAirShard } from '../items/tier0'
 import { type Generator } from '../generators/generators'
-import { alcohol, ash, bomb, clay, coal, glass, mandrake } from '../recipes/recipes'
 import { cabbageSeed, carrotSeed } from '../items/seeds'
+import { type Item } from '../items/items'
+import { ash, coal } from '../items/tier1'
+import { alcohol, clay, mandrake, glass } from '../items/tier2'
+import { bomb } from '../items/tier4'
 
 export enum QuestGiver {
   BLACKSMITH,

@@ -1,12 +1,17 @@
+import { createEffect } from 'solid-js'
 import { CraftingDisplay } from '../components/CraftingDisplay'
 import { Deconstructor } from '../components/Deconstructor'
 import { useModal } from '../components/Modal'
 import { InventoryList } from '../inventory/InventoryList'
+import { levelUp, usePlayer } from '../player/player'
 import { QuestDisplay } from '../quests/QuestDisplay'
 import { RecipeList } from '../recipes/RecipeList'
 
 export function ToolBar () {
   const setThingInModal = useModal()
+  const [player, setPlayer] = usePlayer()
+
+  createEffect(() => { console.log(player.level) })
 
   return (
     <div
@@ -55,6 +60,14 @@ export function ToolBar () {
           }}
         >
           Deconstruct
+        </div>
+        <div
+          class="w-16 h-16 bg-orange-300"
+          onClick={() => {
+            levelUp(setPlayer)
+          }}
+        >
+          lvl up
         </div>
       </div>
     </div>

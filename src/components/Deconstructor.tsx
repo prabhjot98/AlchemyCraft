@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { createSignal, type JSXElement } from 'solid-js'
 import { ItemSelector } from '../items/ItemSelector'
-import { smallAirShard, smallEarthShard, smallFireShard, smallWaterShard, type Item } from '../items/items'
+import { smallAirShard, smallEarthShard, smallFireShard, smallWaterShard } from '../items/tier0'
 import { _addItem, usePlayer } from '../player/player'
+import { type Item } from '../items/items'
 
 export const Deconstructor = (): JSXElement => {
   const [selectedItem, setSelectedItem] = createSignal<Item | null>(null)

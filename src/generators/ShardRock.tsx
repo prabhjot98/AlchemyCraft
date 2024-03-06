@@ -1,6 +1,7 @@
 import { _addItem, usePlayer } from '../player/player'
 import { createSignal, type JSXElement } from 'solid-js'
-import { smallFireShard, smallWaterShard, type Item, smallAirShard, smallEarthShard } from '../items/items'
+import { smallFireShard, smallWaterShard, smallAirShard, smallEarthShard } from '../items/tier0'
+import { type Item } from '../items/items'
 
 const CLICKS_NEEDED = 1
 
