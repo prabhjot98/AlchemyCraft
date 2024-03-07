@@ -33,20 +33,19 @@ export function ToolBar () {
           }}
         />
         <img
-          src="/assets/icons/grimoire.png"
+          src="/assets/icons/recipe_book.png"
           class="w-16 h-16 rounded-md hover:bg-blue-300"
           onClick={() => {
             setThingInModal(<RecipeList />)
           }}
         />
-        <div
-          class="w-16 h-16 rounded-md bg-orange-300 hover:bg-blue-300"
+        <img
+          src="/assets/icons/quest_log.png"
+          class="w-16 h-16 rounded-md hover:bg-blue-300"
           onClick={() => {
             setThingInModal(<QuestDisplay />)
           }}
-        >
-          Quests
-        </div>
+        />
         <div
           class="w-16 h-16 rounded-md bg-orange-300 break-all hover:bg-blue-300"
           onClick={() => {
