@@ -11,7 +11,7 @@ const livingClay: Recipe = {
   firstItem: 'small fire shard',
   secondItem: 'small fire shard',
   thirdItem: 'small fire shard',
-  result: 'small water shard'
+  result: "philospher's stone"
 }
 
 const RECIPES: Recipe[] = [livingClay]

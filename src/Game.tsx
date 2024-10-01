@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { CraftingCircle } from './player/CraftingCircle'
-import { Backpack } from './player/backpack'
+import { Backpack } from './player/Backpack'
 import { Mine } from './player/mine'
 
 export const Game = () => {

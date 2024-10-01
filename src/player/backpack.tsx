@@ -7,7 +7,7 @@ export const Backpack = (): JSXElement => {
   const [player] = usePlayer()
 
   return (
-    <div class="bg-white/50 mx-auto gap-1 rounded w-96 h-80 p-4 mb-4 flex flex-wrap">
+    <div class="bg-white/50 mx-auto grid grid-cols-5 grid-rows-4 gap-x-2 min-w-96 rounded min-h-80 p-4 mb-4">
       <For each={[...player.items.keys()]}>
         {(i) => {
           const draggable = createDraggable(i)

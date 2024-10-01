@@ -35,7 +35,12 @@ export const smallAirShard: Item = {
   imgSrc: '/assets/shard crystals/white_crystal.png'
 }
 
-export const ITEMS = [smallFireShard, smallAirShard, smallEarthShard, smallWaterShard]
+export const philosphersStone: Item = {
+  name: "philospher's stone",
+  imgSrc: '/assets/shard crystals/white_crystal.png'
+}
+
+export const ITEMS = [philosphersStone, smallFireShard, smallAirShard, smallEarthShard, smallWaterShard]
 
 export function findItem (itemName: ItemName): Item {
   const foundItem = ITEMS.find((i) => i.name === itemName)
