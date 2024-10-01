@@ -5,7 +5,7 @@ import { ElementDisplay } from './ElementDisplay'
 export const ItemDisplay = (props: { item: Item, count?: number, onClick?: () => void }): JSXElement => {
   return (
     <div class="flex flex-row bg-gray-100 rounded-md justify-center px-2 m-auto w-96" onClick={props.onClick}>
-      <h4 class="font-semibold w-max text-xl" textContent={props.item.type} />
+      <h4 class="font-semibold w-max text-xl" textContent={props.item.name} />
       <ElementDisplay
         class="ml-auto mr-2"
         fireElement={props.item.fireElement}

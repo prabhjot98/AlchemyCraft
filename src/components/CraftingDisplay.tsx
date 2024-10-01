@@ -9,7 +9,7 @@ import {
   type Item
 } from '../items/items'
 import { ItemSelector } from '../items/ItemSelector'
-import { _addItem, _removeItem, usePlayer } from '../player/player'
+import { addItem, removeItem, usePlayer } from '../player/player'
 import { STARTER_ITEMS } from '../items/items'
 
 export const CraftingDisplay = (): JSXElement => {
@@ -31,8 +31,8 @@ export const CraftingDisplay = (): JSXElement => {
   const totalAirElement = (): number =>
     calcTotalAirElement(firstSelectedOption(), secondSelectedOption(), thirdSelectedOption())
 
-  const addItem = _addItem(setInventory)
-  const removeItem = _removeItem(setInventory)
+  const addItem = addItem(setInventory)
+  const removeItem = removeItem(setInventory)
 
   const [error, setError] = createSignal<string>('')
 
@@ -49,7 +49,7 @@ export const CraftingDisplay = (): JSXElement => {
         return STARTER_ITEMS[i]
       }
     }
-    return { type: '???', tier: 0, fireElement: 0, waterElement: 0, earthElement: 0, airElement: 0 }
+    return { name: '???', tier: 0, fireElement: 0, waterElement: 0, earthElement: 0, airElement: 0 }
   }
 
   const getAllElements = () => {
@@ -63,7 +63,7 @@ export const CraftingDisplay = (): JSXElement => {
     }
 
     const selectedRecipe = getRecipeWithElements(getAllElements())
-    if (selectedRecipe.type !== '???') {
+    if (selectedRecipe.name !== '???') {
       addItem(selectedRecipe)
 
       if ((inventory.items.get(firstSelectedOption()!) ?? 0) === 0) {
@@ -115,7 +115,7 @@ export const CraftingDisplay = (): JSXElement => {
             handleCraft()
           }}
           value="craft"
-          textContent={'Craft ' + getRecipeWithElements(getAllElements()).type}
+          textContent={'Craft ' + getRecipeWithElements(getAllElements()).name}
         />
         <div>
           <p innerText="Total Elements: " />

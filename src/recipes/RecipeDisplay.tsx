@@ -10,7 +10,7 @@ export const RecipeDisplay = (props: { recipe: Item }): JSXElement => {
       <p class="text-amber-600 pr-1" textContent={props.recipe.earthElement + ' earth,'} />
       <p class="text-purple-600 pr-1" textContent={props.recipe.airElement + ' air,'} />
       <p class="pr-1" textContent="to craft" />
-      <p class="font-bold" textContent={`${props.recipe.type}`} />
+      <p class="font-bold" textContent={`${props.recipe.name}`} />
     </div>
   )
 }

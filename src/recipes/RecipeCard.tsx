@@ -9,7 +9,7 @@ export const RecipeCard = (props: { item: Item, onClick?: () => void, selected?:
       classList={{ 'bg-green-300': props.selected === true }}
       onClick={props.onClick}
     >
-      <h4 textContent={props.item.type} />
+      <h4 textContent={props.item.name} />
       <ElementDisplay
         fireElement={props.item.fireElement}
         waterElement={props.item.waterElement}

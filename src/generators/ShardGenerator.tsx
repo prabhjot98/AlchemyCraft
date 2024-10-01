@@ -1,5 +1,5 @@
 import { createSignal, type JSXElement } from 'solid-js'
-import { _addItem, usePlayer } from '../player/player'
+import { addItem, usePlayer } from '../player/player'
 import { type Item } from '../items/items'
 
 export const ShardGenerator = (props: { shard: Item, duration?: number }): JSXElement => {
@@ -8,7 +8,7 @@ export const ShardGenerator = (props: { shard: Item, duration?: number }): JSXEl
 
   const [, setPlayer] = usePlayer()
 
-  const addItem = _addItem(setPlayer)
+  const addItem = addItem(setPlayer)
 
   const handleClaimShards = (): void => {
     addItem(props.shard, shardCount())
@@ -22,7 +22,7 @@ export const ShardGenerator = (props: { shard: Item, duration?: number }): JSXEl
         handleClaimShards()
       }}
     >
-      You have {shardCount()} {props.shard.type} ready to claim
+      You have {shardCount()} {props.shard.name} ready to claim
     </span>
   )
 }

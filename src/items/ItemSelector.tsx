@@ -2,7 +2,7 @@ import { For, type JSXElement, createSignal, type Setter, Show } from 'solid-js'
 import { ItemDisplay } from './ItemDisplay'
 import { type Item } from './items'
 import { type SetStoreFunction } from 'solid-js/store'
-import { _addItem, _removeItem, type Player } from '../player/player'
+import { addItem, removeItem, type Player } from '../player/player'
 
 export const ItemSelector = (props: {
   items: Map<Item, number>
@@ -12,8 +12,8 @@ export const ItemSelector = (props: {
 }): JSXElement => {
   const [modalIsOpen, setModalIsOpen] = createSignal(false)
 
-  const removeItem = _removeItem(props.setInventory)
-  const addItem = _addItem(props.setInventory)
+  const removeItem = removeItem(props.setInventory)
+  const addItem = addItem(props.setInventory)
 
   const handleItemSelected = (i: Item): void => {
     if (props.selectedItem !== null) {
@@ -31,7 +31,7 @@ export const ItemSelector = (props: {
         onClick={() => setModalIsOpen(true)}
         innerText="Select an item"
       />
-      {props.selectedItem !== null && <p class="p-1">Currently selected item is {props.selectedItem.type}</p>}
+      {props.selectedItem !== null && <p class="p-1">Currently selected item is {props.selectedItem.name}</p>}
       <Show when={modalIsOpen()}>
         <div class="absolute z-50 bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-80 h-fit ">
           <button

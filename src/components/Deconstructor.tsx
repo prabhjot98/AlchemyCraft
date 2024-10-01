@@ -2,7 +2,7 @@
 import { createSignal, type JSXElement } from 'solid-js'
 import { ItemSelector } from '../items/ItemSelector'
 import { smallAirShard, smallEarthShard, smallFireShard, smallWaterShard } from '../items/tier0'
-import { _addItem, usePlayer } from '../player/player'
+import { addItem, usePlayer } from '../player/player'
 import { type Item } from '../items/items'
 
 export const Deconstructor = (): JSXElement => {
@@ -11,7 +11,7 @@ export const Deconstructor = (): JSXElement => {
 
   const [inventory, setInventory] = usePlayer()
 
-  const addItem = _addItem(setInventory)
+  const addItem = addItem(setInventory)
 
   const handleDeconstruct = (): void => {
     setError('')
@@ -58,7 +58,7 @@ export const Deconstructor = (): JSXElement => {
             onClick={() => {
               handleDeconstruct()
             }}
-            textContent={'Deconstruct ' + selectedItem()!.type}
+            textContent={'Deconstruct ' + selectedItem()!.name}
           />
           <div class={'flex flex-wrap gap-1 '}>
             <p textContent="You will get: " class="pr-1" />
