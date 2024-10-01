@@ -1,14 +1,10 @@
 import { CraftingDisplay } from '../components/CraftingDisplay'
-import { Deconstructor } from '../components/Deconstructor'
 import { useModal } from '../components/Modal'
 import { InventoryList } from '../inventory/InventoryList'
-import { levelUp, usePlayer } from '../player/player'
-import { QuestDisplay } from '../quests/QuestDisplay'
 import { RecipeList } from '../recipes/RecipeList'
 
 export function ToolBar () {
   const setThingInModal = useModal()
-  const [, setPlayer] = usePlayer()
 
   return (
     <div
@@ -39,29 +35,6 @@ export function ToolBar () {
             setThingInModal(<RecipeList />)
           }}
         />
-        <img
-          src="/assets/icons/quest_log.png"
-          class="w-16 h-16 rounded-md hover:bg-blue-300"
-          onClick={() => {
-            setThingInModal(<QuestDisplay />)
-          }}
-        />
-        <div
-          class="w-16 h-16 rounded-md bg-orange-300 break-all hover:bg-blue-300"
-          onClick={() => {
-            setThingInModal(<Deconstructor />)
-          }}
-        >
-          Deconstruct
-        </div>
-        <div
-          class="w-16 h-16 rounded-md bg-orange-300 hover:bg-blue-300"
-          onClick={() => {
-            levelUp(setPlayer)
-          }}
-        >
-          lvl up
-        </div>
       </div>
     </div>
   )

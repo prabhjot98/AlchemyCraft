@@ -25,7 +25,7 @@ PlayerContext.defaultValue = createDefaultInventory()
 export function usePlayer () {
   const player = useContext(PlayerContext)
   if (player === undefined) {
-    throw new Error('No value in worldContext')
+    throw new Error('No value in playerContext')
   }
   return player
 }
@@ -55,9 +55,11 @@ export const addItem = (itemName: ItemName, amount?: number) => {
   toast(`Obtained ${itemName}`)
 }
 
-export const setSlot = (itemName: ItemName, slot: '1' | '2' | '3') => {
+export const setSlot = (itemName: ItemName | null, slot: '1' | '2' | '3') => {
   const [, setInventory] = usePlayer()
-  const item = findItem(itemName)
+  if (itemName === null) {
+    setInventory(`slot${slot}`, itemName)
+    return
+  }
   setInventory(`slot${slot}`, itemName)
-  toast(`Slot ${slot} is ${item.name}`)
 }
