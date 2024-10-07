@@ -1,5 +1,5 @@
 import { createStore, type SetStoreFunction } from 'solid-js/store'
-import { type ItemName, findItem } from '../items/items'
+import { type ItemName } from '../items/items'
 import { createContext, useContext } from 'solid-js'
 import toast from 'solid-toast'
 
@@ -8,6 +8,7 @@ export interface Player {
   slot1: ItemName | null
   slot2: ItemName | null
   slot3: ItemName | null
+  selectedCraft: ItemName | null
 }
 
 export function createDefaultInventory () {
@@ -15,7 +16,8 @@ export function createDefaultInventory () {
     items: new Map<ItemName, number>(),
     slot1: null,
     slot2: null,
-    slot3: null
+    slot3: null,
+    selectedCraft: null
   })
 }
 
