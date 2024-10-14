@@ -41,6 +41,7 @@ export type ItemName =
   | 'obsidian'
   | 'spirit water'
   | 'ethereal canvas'
+  | 'soul stone'
 
 export const fireShard: Item = {
   name: 'fire shard',
@@ -249,6 +250,15 @@ const soul: Item = {
   airElement: 3
 }
 
+const soulStone: Item = {
+  name: 'soul stone',
+  imgSrc: '/assets/items/soul.png',
+  fireElement: 3,
+  waterElement: 3,
+  earthElement: 7,
+  airElement: 3
+}
+
 const etherealCanvas: Item = {
   name: 'ethereal canvas',
   imgSrc: '/assets/items/ethereal canvas.png',
@@ -263,7 +273,7 @@ const elementalMatrix: Item = {
   imgSrc: '/assets/items/elemental matrix.png',
   fireElement: 7,
   waterElement: 7,
-  earthElement: 7,
+  earthElement: 4,
   airElement: 7
 }
 
@@ -320,6 +330,7 @@ export const ITEMS = [
   worldTree,
   soul,
   dirt,
+  soulStone,
   philosophersStone
 ].sort((i1, i2) => i1.name.localeCompare(i2.name))
 
