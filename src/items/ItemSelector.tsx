@@ -33,7 +33,7 @@ export const ItemSelector = (props: {
       />
       {props.selectedItem !== null && <p class="p-1">Currently selected item is {props.selectedItem.name}</p>}
       <Show when={modalIsOpen()}>
-        <div class="absolute z-50 bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-80 h-fit ">
+        <div class="absolute bg-white border-2 border-black flex flex-wrap rounded-md gap-2 p-4 w-80 h-fit ">
           <button
             class="absolute right-2 bottom-2 p-2 bg-red-300 border border-black rounded-md"
             onClick={() => setModalIsOpen(false)}

@@ -8,7 +8,7 @@ export const ItemImg = (props: { itemName: ItemName }) => {
       ondragstart={(e) => {
         e.preventDefault()
       }}
-      class="size-16"
+      class="size-16 rounded-[32px] hover:cursor-pointer"
       src={item().imgSrc}
     />
   )
@@ -19,7 +19,7 @@ export const ItemIcon = (props: { itemName: ItemName }) => {
   const quantity = () => player.items.get(props.itemName)
 
   return (
-    <div class="size-16 rounded relative bg-white/50 ">
+    <div class="size-16 rounded-sm relative bg-white/50 ">
       <ItemImg itemName={props.itemName} />
       <div class="absolute bg-white rounded size-6 text-center bottom-1 right-1">{quantity()}</div>
     </div>

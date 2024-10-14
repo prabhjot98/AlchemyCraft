@@ -22,33 +22,3 @@
     @apply rounded-md outline outline-gray-600 hover:bg-blue-300 hover:outline-blue-600 active:bg-violet-300 active:outline-violet-600;
   }
 }
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  25% {
-    transform: translateX(-50px);
-  }
-  75% {
-    transform: translateX(50px);
-  }
-}
-
-.rotate-360 {
-  animation: spin 0.5s linear;
-}
-
-.failed-craft {
-  animation: shake 0.5s linear;
-}

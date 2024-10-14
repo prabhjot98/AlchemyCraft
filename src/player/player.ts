@@ -1,13 +1,13 @@
 import { createStore, type SetStoreFunction } from 'solid-js/store'
 import { type ItemName } from '../items/items'
 import { createContext, useContext } from 'solid-js'
-import toast from 'solid-toast'
 
 export interface Player {
   items: Map<ItemName, number>
   slot1: ItemName | null
   slot2: ItemName | null
   slot3: ItemName | null
+  slot4: ItemName | null
   selectedCraft: ItemName | null
 }
 
@@ -17,6 +17,7 @@ export function createDefaultInventory () {
     slot1: null,
     slot2: null,
     slot3: null,
+    slot4: null,
     selectedCraft: null
   })
 }
@@ -54,10 +55,9 @@ export const addItem = (itemName: ItemName, amount?: number) => {
     newMap.set(itemName, count + (amount ?? 1))
     return newMap
   })
-  toast(`Obtained ${itemName}`)
 }
 
-export const setSlot = (itemName: ItemName | null, slot: '1' | '2' | '3') => {
+export const setSlot = (itemName: ItemName | null, slot: '1' | '2' | '3' | '4') => {
   const [, setInventory] = usePlayer()
   if (itemName === null) {
     setInventory(`slot${slot}`, itemName)

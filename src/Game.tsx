@@ -5,7 +5,7 @@ import { Mine } from './player/mine'
 
 export const Game = () => {
   return (
-    <div class="flex flex-col gap-2 w-screen h-screen bg-gradient-to-b from-[#58BEA4] to-[#DAC2A7]">
+    <div class="flex flex-col gap-2 w-screen h-screen bg-gradient-to-b from-[#58BEA4] to-[#DAC2A7] justify-center items-center overflow-y-auto">
       <Mine />
       <CraftingCircle />
       <Backpack />

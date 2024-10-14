@@ -15,6 +15,8 @@ export const App = () => {
         setSlot(itemName, '2')
       } else if (droppable.id === 3) {
         setSlot(itemName, '3')
+      } else if (droppable.id === 4) {
+        setSlot(itemName, '4')
       }
       removeItem(itemName)
     }
@@ -22,7 +24,7 @@ export const App = () => {
 
   return (
     <PlayerContext.Provider value={PlayerContext.defaultValue}>
-      <Toaster gutter={0} position="bottom-right" />
+      <Toaster gutter={0} position="top-right" />
       <ModalContext.Provider value={undefined}>
         <Modal />
         <DragDropProvider onDragEnd={onDragEnd} collisionDetector={mostIntersecting}>
