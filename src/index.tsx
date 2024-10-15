@@ -1,4 +1,3 @@
-/* @refresh reload */
 import { render } from 'solid-js/web'
 
 import './index.css'
@@ -12,5 +11,4 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   )
 }
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 render(() => <App />, root!)

@@ -9,7 +9,9 @@
     "sourceType": "module"
   },
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   },
   "ignorePatterns": ["dist", "postcss.config.js", "tailwind.config.js"]
 }

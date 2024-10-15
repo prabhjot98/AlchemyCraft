@@ -1,23 +1,18 @@
 import { createStore, type SetStoreFunction } from 'solid-js/store'
-import { type ItemName } from '../items/items'
+import { sortByTotalElements, type ItemName } from '../items/items'
 import { createContext, useContext } from 'solid-js'
+import toast from 'solid-toast'
 
 export interface Player {
-  items: Map<ItemName, number>
-  slot1: ItemName | null
-  slot2: ItemName | null
-  slot3: ItemName | null
-  slot4: ItemName | null
+  unlockedItems: ItemName[]
+  craftingCircle: ItemName[]
   selectedCraft: ItemName | null
 }
 
 export function createDefaultInventory () {
   return createStore<Player>({
-    items: new Map<ItemName, number>(),
-    slot1: null,
-    slot2: null,
-    slot3: null,
-    slot4: null,
+    unlockedItems: ['fire shard', 'water shard', 'earth shard', 'air shard'],
+    craftingCircle: [],
     selectedCraft: null
   })
 }
@@ -33,35 +28,39 @@ export function usePlayer () {
   return player
 }
 
-export const removeItem = (itemName: ItemName) => {
-  const [, setInventory] = usePlayer()
-  setInventory('items', (i) => {
-    const newMap = new Map(i)
-    const count = newMap.get(itemName) ?? 0
-    if (count === 1) {
-      newMap.delete(itemName)
-    } else {
-      newMap.set(itemName, count - 1)
+export const unlockItem = (itemName: ItemName) => {
+  const [, setPlayer] = usePlayer()
+  setPlayer('unlockedItems', (i) => {
+    const newArr = [...i]
+    newArr.push(itemName)
+    return [...new Set(newArr)].sort(sortByTotalElements)
+  })
+}
+
+export const addToCircle = (itemName: ItemName) => {
+  const [, setPlayer] = usePlayer()
+  setPlayer('craftingCircle', (i) => {
+    if (i.length === 4) {
+      toast.error('Cannot add anymore items!')
+      return i
     }
-    return newMap
+    const newArr = [...i]
+    newArr.push(itemName)
+    return newArr
   })
 }
 
-export const addItem = (itemName: ItemName, amount?: number) => {
-  const [, setInventory] = usePlayer()
-  setInventory('items', (i) => {
-    const newMap = new Map(i)
-    const count = newMap.get(itemName) ?? 0
-    newMap.set(itemName, count + (amount ?? 1))
-    return newMap
+export const removeFromCircle = (slot: number) => {
+  const [, setPlayer] = usePlayer()
+  setPlayer('craftingCircle', (i) => {
+    const newArr = [...i].filter((_item, index) => index !== slot)
+    return newArr
   })
 }
 
-export const setSlot = (itemName: ItemName | null, slot: '1' | '2' | '3' | '4') => {
-  const [, setInventory] = usePlayer()
-  if (itemName === null) {
-    setInventory(`slot${slot}`, itemName)
-    return
-  }
-  setInventory(`slot${slot}`, itemName)
+export const clearCircle = () => {
+  const [, setPlayer] = usePlayer()
+  setPlayer('craftingCircle', () => {
+    return []
+  })
 }

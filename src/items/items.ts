@@ -1,3 +1,5 @@
+import { usePlayer } from '../player/player'
+
 export const randomItemFrom = (items: Item[]): Item => {
   const randomIndex = Math.floor(Math.random() * items.length)
   return items[randomIndex]
@@ -252,7 +254,7 @@ const soul: Item = {
 
 const soulStone: Item = {
   name: 'soul stone',
-  imgSrc: '/assets/items/soul.png',
+  imgSrc: '/assets/items/soul stone.png',
   fireElement: 3,
   waterElement: 3,
   earthElement: 7,
@@ -332,7 +334,27 @@ export const ITEMS = [
   dirt,
   soulStone,
   philosophersStone
-].sort((i1, i2) => i1.name.localeCompare(i2.name))
+]
+
+export const sortByTotalElements = (i1: ItemName, i2: ItemName): number => {
+  const item1 = findItem(i1)
+  const item2 = findItem(i2)
+
+  if (
+    item1.fireElement + item1.waterElement + item1.earthElement + item1.airElement <
+    item2.fireElement + item2.waterElement + item2.earthElement + item2.airElement
+  ) {
+    return -1
+  }
+  if (
+    item1.fireElement + item1.waterElement + item1.earthElement + item1.airElement ===
+    item2.fireElement + item2.waterElement + item2.earthElement + item2.airElement
+  ) {
+    return 0
+  }
+
+  return 1
+}
 
 export function findItem (itemName: ItemName): Item {
   const foundItem = [...ITEMS, ...SHARDS].find((i) => i.name === itemName)
@@ -366,14 +388,15 @@ export const calcTotalAirElement = (...items: Array<Item | null>): number => {
   return total
 }
 
-export const isValidCraft = (
-  item1: ItemName | null,
-  item2: ItemName | null,
-  item3: ItemName | null,
-  item4: ItemName | null,
-  craft: ItemName
-): boolean => {
-  if (item1 === null || item2 === null || item3 === null || item4 === null || craft == null) return false
+export const isValidCraft = (): boolean => {
+  const [player] = usePlayer()
+  const item1 = player.craftingCircle[0]
+  const item2 = player.craftingCircle[1]
+  const item3 = player.craftingCircle[2]
+  const item4 = player.craftingCircle[3]
+  const craft = player.selectedCraft
+
+  if (!item1 || !item2 || !item3 || !item4 || !craft) return false
 
   const i1 = findItem(item1)
   const i2 = findItem(item2)
