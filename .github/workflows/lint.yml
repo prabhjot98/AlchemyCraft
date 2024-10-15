@@ -19,3 +19,14 @@ jobs:
               args: [--frozen-lockfile, --strict-peer-dependencies]
       - run: pnpm lint
         name: Lint
+
+  deploy:
+    name: Deploy app
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
