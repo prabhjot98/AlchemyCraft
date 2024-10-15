@@ -1,10 +1,10 @@
-import { type Engine, tsParticles } from '@tsparticles/engine'
+import { type Engine, tsParticles, type ISourceOptions } from '@tsparticles/engine'
 import Particles from '@tsparticles/solid'
 import { loadFull } from 'tsparticles'
 import { type Resource, Show, createResource } from 'solid-js'
 import { usePlayer } from '../player/player'
 
-const config = {
+const config: ISourceOptions = {
   fullScreen: {
     zIndex: 1
   },
@@ -13,10 +13,21 @@ const config = {
       value: 0
     },
     color: {
-      value: ['#00FFFC', '#FC00FF', '#fffc00']
+      value: [
+        '#FF5733',
+        '#FFBD33',
+        '#75FF33',
+        '#33FFBD',
+        '#3385FF',
+        '#9D33FF',
+        '#FF33A8',
+        '#FFDD33',
+        '#33FF57',
+        '#FF3380'
+      ]
     },
     shape: {
-      type: ['circle', 'square'],
+      type: ['circle', 'square', 'triangle'],
       options: {}
     },
     opacity: {
