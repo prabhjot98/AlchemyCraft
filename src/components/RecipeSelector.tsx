@@ -1,7 +1,8 @@
-import { For, type JSXElement, createSignal, Show } from 'solid-js'
-import { ITEMS, sortByTotalElements, type Item, findItem, type ItemName } from '../items/items'
-import { usePlayer } from '../player/player'
+import { For, Show, createSignal, type JSXElement } from 'solid-js'
+import { Portal } from 'solid-js/web'
 import { ItemImg } from '../items/ItemIcon'
+import { ITEMS, findItem, sortByTotalElements, type Item, type ItemName } from '../player/items'
+import { usePlayer } from '../player/player'
 
 export function capitalizeWords (str: string): string {
   return str
@@ -72,45 +73,47 @@ export const RecipeSelector = (): JSXElement => {
         alt="Select a recipe"
       />
       <Show when={modalIsOpen()}>
-        <div class="fixed top-0 left-0 bg-black/50 w-full h-full" onClick={() => setModalIsOpen(false)}>
-          <div
-            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+        <Portal>
+          <div class="fixed top-0 left-0 bg-black/50 w-full h-full" onClick={() => setModalIsOpen(false)}>
+            <div
+              class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
             bg-gray-100 border-1 border-black flex flex-col rounded-md gap-2 p-4 w-96 min-h-96 max-h-[500px]"
-          >
-            <div class="overflow-y-auto">
-              <table class="border-collapse">
-                <thead>
-                  <tr class="bg-gray-300 sticky top-0 z-50">
-                    <th class="sticky top-0 w-32 pl-1 rounded rounded-r-none rounded-b-none text-left font-medium">
-                      Item
-                    </th>
-                    <th class="sticky w-14 text-center font-medium">Fire</th>
-                    <th class="sticky w-14 text-center font-medium">Water</th>
-                    <th class="sticky w-14 text-center font-medium">Earth</th>
-                    <th class="sticky w-14 rounded rounded-l-none rounded-b-none text-center font-medium">Air</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <For each={ITEMS.sort((i1, i2) => sortByTotalElements(i1.name, i2.name))}>
-                    {(r) => (
-                      <RecipeCard
-                        item={r}
-                        onClick={() => {
-                          handleRecipeCardSelected(r)
-                        }}
-                        selected={(() => {
-                          if (!player.selectedCraft) return false
-                          if (player.selectedCraft === r.name) return true
-                          return false
-                        })()}
-                      />
-                    )}
-                  </For>
-                </tbody>
-              </table>
+            >
+              <div class="overflow-y-auto">
+                <table class="border-collapse">
+                  <thead>
+                    <tr class="bg-gray-300 sticky top-0 z-50">
+                      <th class="sticky top-0 w-32 pl-1 rounded rounded-r-none rounded-b-none text-left font-medium">
+                        Item
+                      </th>
+                      <th class="sticky w-14 text-center font-medium">Fire</th>
+                      <th class="sticky w-14 text-center font-medium">Water</th>
+                      <th class="sticky w-14 text-center font-medium">Earth</th>
+                      <th class="sticky w-14 rounded rounded-l-none rounded-b-none text-center font-medium">Air</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <For each={ITEMS.sort((i1, i2) => sortByTotalElements(i1.name, i2.name))}>
+                      {(r) => (
+                        <RecipeCard
+                          item={r}
+                          onClick={() => {
+                            handleRecipeCardSelected(r)
+                          }}
+                          selected={(() => {
+                            if (!player.selectedCraft) return false
+                            if (player.selectedCraft === r.name) return true
+                            return false
+                          })()}
+                        />
+                      )}
+                    </For>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
+        </Portal>
       </Show>
     </div>
   )

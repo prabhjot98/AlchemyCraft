@@ -1,4 +1,4 @@
-import { type ItemName, findItem } from './items'
+import { findItem, type ItemName } from '../player/items'
 
 export const ItemImg = (props: { itemName: ItemName, onClick?: () => void }) => {
   const item = () => findItem(props.itemName)

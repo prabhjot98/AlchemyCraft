@@ -1,11 +1,11 @@
 import { Show, type JSXElement } from 'solid-js'
-import { type Item } from './items'
+import { type Item } from '../player/items'
 import { ElementDisplay } from './ElementDisplay'
 
 export const ItemDisplay = (props: { item: Item, count?: number, onClick?: () => void }): JSXElement => {
   return (
     <div class="flex flex-row bg-gray-100 rounded-md justify-center px-2 m-auto w-96" onClick={props.onClick}>
-      <h4 class="font-semibold w-max text-xl" textContent={props.item.name} />
+      <span class="font-semibold w-max text-xl" textContent={props.item.name} />
       <ElementDisplay
         class="ml-auto mr-2"
         fireElement={props.item.fireElement}
@@ -14,7 +14,7 @@ export const ItemDisplay = (props: { item: Item, count?: number, onClick?: () =>
         airElement={props.item.airElement}
       />
       <Show when={props.count !== undefined}>
-        <h4 class="font-semibold mr-1 " textContent={'x ' + props.count} />
+        <span class="font-semibold mr-1 " textContent={'x ' + props.count} />
       </Show>
     </div>
   )

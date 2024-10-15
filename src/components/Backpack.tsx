@@ -1,8 +1,8 @@
 import { For, type JSXElement } from 'solid-js'
-import { ItemImg } from '../items/ItemIcon'
-import { findItem, type ItemName } from '../items/items'
-import { addToCircle, usePlayer } from './player'
 import { ElementDisplay } from '../items/ElementDisplay'
+import { ItemImg } from '../items/ItemIcon'
+import { findItem, type ItemName } from '../player/items'
+import { addToCircle, usePlayer } from '../player/player'
 
 const BackpackItem = (props: { itemName: ItemName }) => {
   const item = findItem(props.itemName)
@@ -29,7 +29,7 @@ export const Backpack = (): JSXElement => {
   const [player] = usePlayer()
 
   return (
-    <div class="bg-white/50 flex flex-initial content-start flex-wrap gap-x-4 gap-y-2 size-96 overflow-y-auto rounded p-4">
+    <div class="bg-white/50 flex flex-initial content-start justify-center flex-wrap gap-x-4 gap-y-2 size-96 overflow-y-auto rounded p-4 drop-shadow-2xl">
       <For each={player.unlockedItems}>
         {(i) => {
           return <BackpackItem itemName={i} />

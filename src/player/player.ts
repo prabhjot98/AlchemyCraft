@@ -1,7 +1,7 @@
-import { createStore, type SetStoreFunction } from 'solid-js/store'
-import { sortByTotalElements, type ItemName } from '../items/items'
 import { createContext, useContext } from 'solid-js'
+import { createStore, type SetStoreFunction } from 'solid-js/store'
 import toast from 'solid-toast'
+import { sortByTotalElements, type ItemName } from './items'
 
 export interface Player {
   unlockedItems: ItemName[]

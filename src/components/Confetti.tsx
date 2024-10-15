@@ -1,7 +1,7 @@
-import { type Engine, tsParticles, type ISourceOptions } from '@tsparticles/engine'
+import { tsParticles, type Engine, type ISourceOptions } from '@tsparticles/engine'
 import Particles from '@tsparticles/solid'
+import { Show, createResource, type Resource } from 'solid-js'
 import { loadFull } from 'tsparticles'
-import { type Resource, Show, createResource } from 'solid-js'
 import { usePlayer } from '../player/player'
 
 const config: ISourceOptions = {
