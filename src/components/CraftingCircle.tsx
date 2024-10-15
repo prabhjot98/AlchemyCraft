@@ -92,7 +92,7 @@ export const CraftingCircle = () => {
     unlockItem(craft)
   }
 
-  const isUnlocked = player.unlockedItems.find((i) => i === player.selectedCraft)
+  const isUnlocked = () => player.unlockedItems.find((i) => i === player.selectedCraft)
 
   return (
     <div>
@@ -117,10 +117,10 @@ export const CraftingCircle = () => {
             }}
             role="button"
           >
-            <Show when={isUnlocked}>
+            <Show when={isUnlocked()}>
               <ItemImg itemName={player.selectedCraft!} />
             </Show>
-            <Show when={!isUnlocked}>
+            <Show when={!isUnlocked()}>
               <BlurryItemImg itemName={player.selectedCraft!} />
             </Show>
           </div>
