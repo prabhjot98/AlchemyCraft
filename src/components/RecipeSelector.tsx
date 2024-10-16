@@ -26,12 +26,12 @@ export const BlurryItemImg = (props: { itemName: ItemName, onClick?: () => void 
   )
 }
 
-const RecipeCard = (props: { item: Item, onClick?: () => void, selected: boolean }): JSXElement => {
+const RecipeCard = (props: { item: Item, onClick?: () => void }): JSXElement => {
   const [player] = usePlayer()
   const isUnlocked = player.unlockedItems.find((i) => i === props.item.name)
 
   return (
-    <tr class={'bg-gray-200 ' + (props.selected ? 'bg-green-200' : 'odd:bg-gray-100')} onClick={props.onClick}>
+    <tr class="bg-gray-200 hover:bg-blue-200 active:bg-blue-300  odd:bg-gray-100" onClick={props.onClick}>
       <td class="rounded rounded-r-none text-left pl-1">
         <Show when={isUnlocked}>
           <ItemImg itemName={props.item.name} />
@@ -52,7 +52,7 @@ const RecipeCard = (props: { item: Item, onClick?: () => void, selected: boolean
 
 export const RecipeSelector = (): JSXElement => {
   const [modalIsOpen, setModalIsOpen] = createSignal(false)
-  const [player, setPlayer] = usePlayer()
+  const [, setPlayer] = usePlayer()
 
   const handleRecipeCardSelected = (r: Item): void => {
     console.log(r.name)
@@ -67,7 +67,7 @@ export const RecipeSelector = (): JSXElement => {
         ondragstart={(e) => {
           e.preventDefault()
         }}
-        class="size-16 rounded-md hover:bg-blue-300"
+        class="size-16 rounded-md hover:bg-blue-200 active:bg-blue-300"
         src="/assets/icons/recipe_book.png"
         onClick={() => setModalIsOpen(true)}
         alt="Select a recipe"
@@ -77,7 +77,7 @@ export const RecipeSelector = (): JSXElement => {
           <div class="fixed top-0 left-0 bg-black/50 w-full h-full" onClick={() => setModalIsOpen(false)}>
             <div
               class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-            bg-gray-100 border-1 border-black flex flex-col rounded-md gap-2 p-4 w-96 min-h-96 max-h-[500px]"
+            bg-gray-100 border-1 border-black flex flex-col rounded-md gap-2 p-4 w-96 min-h-96 max-h-[680px]"
             >
               <div class="overflow-y-auto">
                 <table class="border-collapse">
@@ -100,11 +100,6 @@ export const RecipeSelector = (): JSXElement => {
                           onClick={() => {
                             handleRecipeCardSelected(r)
                           }}
-                          selected={(() => {
-                            if (!player.selectedCraft) return false
-                            if (player.selectedCraft === r.name) return true
-                            return false
-                          })()}
                         />
                       )}
                     </For>

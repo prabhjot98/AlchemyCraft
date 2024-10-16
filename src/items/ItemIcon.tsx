@@ -10,6 +10,7 @@ export const ItemImg = (props: { itemName: ItemName, onClick?: () => void }) => 
       onClick={props.onClick}
       class="size-16 rounded-[32px] hover:cursor-pointer"
       src={item().imgSrc}
+      role="button"
     />
   )
 }

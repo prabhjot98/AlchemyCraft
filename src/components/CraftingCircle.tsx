@@ -23,9 +23,9 @@ const ElementsReq = () => {
   const totalAir = () => calcTotalAirElement(...items())
 
   return (
-    <div class="flex flex-col w-32 bg-white items-center justify-center rounded border border-black">
-      <div class="flex gap-1 text-sm">
-        <span>Have </span>
+    <div class="flex flex-col w-36 bg-white items-center justify-center rounded border border-black">
+      <div class="flex gap-1">
+        <span class="font-bold">Have </span>
         <ElementDisplay
           fireElement={totalFire()}
           waterElement={totalWater()}
@@ -33,8 +33,8 @@ const ElementsReq = () => {
           airElement={totalAir()}
         />
       </div>
-      <div class="flex gap-1 text-sm">
-        <span>Need </span>
+      <div class="flex gap-1">
+        <span class="font-bold">Need </span>
         <ElementDisplay
           fireElement={findItem(player.selectedCraft!).fireElement}
           waterElement={findItem(player.selectedCraft!).waterElement}
@@ -52,14 +52,12 @@ const CraftingIcon = (props: { slot: 0 | 1 | 2 | 3 }) => {
 
   return (
     <Show when={itemName()}>
-      <div
-        class="size-16 relative"
+      <ItemImg
+        itemName={itemName()}
         onClick={() => {
           removeFromCircle(props.slot)
         }}
-      >
-        <ItemImg itemName={itemName()} />
-      </div>
+      />
     </Show>
   )
 }

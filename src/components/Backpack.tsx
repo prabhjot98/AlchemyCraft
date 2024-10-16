@@ -8,13 +8,14 @@ const BackpackItem = (props: { itemName: ItemName }) => {
   const item = findItem(props.itemName)
 
   return (
-    <div class="flex flex-col rounded p-0.5 bg-gray-50 items-center justify-center">
-      <ItemImg
-        itemName={props.itemName}
-        onClick={() => {
-          addToCircle(props.itemName)
-        }}
-      />
+    <div
+      class="flex flex-col rounded p-0.5 bg-gray-50 items-center justify-center hover:bg-blue-200 active:bg-blue-300"
+      onClick={() => {
+        addToCircle(props.itemName)
+      }}
+      role="button"
+    >
+      <ItemImg itemName={props.itemName} />
       <ElementDisplay
         fireElement={item.fireElement}
         waterElement={item.waterElement}
