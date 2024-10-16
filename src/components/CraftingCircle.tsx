@@ -1,6 +1,5 @@
-import { Show, createMemo } from 'solid-js'
+import { Show, createEffect, createMemo, createSignal } from 'solid-js'
 import toast from 'solid-toast'
-import { ElementDisplay } from '../items/ElementDisplay'
 import { ItemImg } from '../items/ItemIcon'
 import {
   calcTotalAirElement,
@@ -13,7 +12,7 @@ import {
 import { clearCircle, removeFromCircle, unlockItem, usePlayer } from '../player/player'
 import { BlurryItemImg, RecipeSelector, capitalizeWords } from './RecipeSelector'
 
-const ElementsReq = () => {
+const ElementsReq = (props: { reqsNotMet: boolean }) => {
   const [player] = usePlayer()
 
   const items = createMemo(() => player.craftingCircle.map(findItem))
@@ -23,24 +22,26 @@ const ElementsReq = () => {
   const totalAir = () => calcTotalAirElement(...items())
 
   return (
-    <div class="flex flex-col w-36 bg-white items-center justify-center rounded border border-black">
-      <div class="flex gap-1">
-        <span class="font-bold">Have </span>
-        <ElementDisplay
-          fireElement={totalFire()}
-          waterElement={totalWater()}
-          earthElement={totalEarth()}
-          airElement={totalAir()}
-        />
+    <div
+      class={`flex flex-col w-[154px] items-center justify-center rounded border border-black px-1 ${props.reqsNotMet ? 'bg-red-300' : 'bg-white'}`}
+    >
+      <div class="flex w-full gap-2 font-mono">
+        <span class="">Have </span>
+        <div class="flex flex-row gap-0.5">
+          <span class="text-red-600 w-6" textContent={totalFire()} />
+          <span class="text-blue-600 w-6" textContent={totalWater()} />
+          <span class="text-amber-600 w-6" textContent={totalEarth()} />
+          <span class="text-purple-600 w-6" textContent={totalAir()} />
+        </div>
       </div>
-      <div class="flex gap-1">
-        <span class="font-bold">Need </span>
-        <ElementDisplay
-          fireElement={findItem(player.selectedCraft!).fireElement}
-          waterElement={findItem(player.selectedCraft!).waterElement}
-          earthElement={findItem(player.selectedCraft!).earthElement}
-          airElement={findItem(player.selectedCraft!).airElement}
-        />
+      <div class="flex w-full gap-2 font-mono">
+        <span class="">Need </span>
+        <div class="flex flex-row gap-0.5">
+          <span class="text-red-600 w-6" textContent={findItem(player.selectedCraft!).fireElement} />
+          <span class="text-blue-600 w-6" textContent={findItem(player.selectedCraft!).waterElement} />
+          <span class="text-amber-600 w-6" textContent={findItem(player.selectedCraft!).earthElement} />
+          <span class="text-purple-600 w-6" textContent={findItem(player.selectedCraft!).airElement} />
+        </div>
       </div>
     </div>
   )
@@ -49,14 +50,23 @@ const ElementsReq = () => {
 const CraftingIcon = (props: { slot: 0 | 1 | 2 | 3 }) => {
   const [player] = usePlayer()
   const itemName = () => player.craftingCircle[props.slot]
+  const [isRemoving, setIsRemoving] = createSignal(false)
+
+  createEffect(async () => {
+    if (isRemoving()) {
+      setTimeout(() => {
+        removeFromCircle(props.slot)
+        setIsRemoving(false)
+      }, 300)
+    }
+  })
 
   return (
     <Show when={itemName()}>
       <ItemImg
         itemName={itemName()}
-        onClick={() => {
-          removeFromCircle(props.slot)
-        }}
+        onClick={() => setIsRemoving(true)}
+        class={`fall-into   ${isRemoving() ? 'fall-away' : ''}`}
       />
     </Show>
   )
@@ -91,11 +101,13 @@ export const CraftingCircle = () => {
   }
 
   const isUnlocked = () => player.unlockedItems.find((i) => i === player.selectedCraft)
+  const allSlotsFull = () => player.craftingCircle.length === 4
+  const badCraft = () => !isValidCraft() && allSlotsFull()
 
   return (
     <div>
       <div class="relative size-96 items-center bg-white/50 bg-cover bg-center bg-[url('/assets/icons/circle.png')] mx-auto rounded drop-shadow-2xl">
-        <div class="absolute top-4 left-40 size-16 rounded-[32px] bg-white">
+        <div class="absolute top-4 left-40 size-16 rounded-[32px] bg-white ease-in duration-100">
           <CraftingIcon slot={0} />
         </div>
         <div class="absolute right-4 top-40 size-16 rounded-[32px] bg-white">
@@ -122,8 +134,8 @@ export const CraftingCircle = () => {
               <BlurryItemImg itemName={player.selectedCraft!} />
             </Show>
           </div>
-          <div class="absolute top-[240px] left-[130px] mx-auto">
-            <ElementsReq />
+          <div class="absolute top-[240px] left-[114px] mx-auto">
+            <ElementsReq reqsNotMet={badCraft()} />
           </div>
         </Show>
         <div class="absolute right-0 bottom-0">

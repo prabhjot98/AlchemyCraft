@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes fallIntoPlace {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fall-into {
+  animation: fallIntoPlace 0.3s ease-out forwards;
+}
+
+@keyframes fallAwayPlace {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+.fall-away {
+  animation: fallAwayPlace 0.3s ease-out forwards;
+}
