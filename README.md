@@ -1,4 +1,4 @@
-# Alchemycraft
+# AlchemyCraft
 
 You can go to https://alchemycraft.fly.dev/ to play the game!
 
